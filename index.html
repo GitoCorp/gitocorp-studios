@@ -3,644 +3,144 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GITOcorp Studios</title>
-  <meta name="description" content="GITOcorp Studios crea apps, juegos y herramientas digitales para organizar, jugar y disfrutar mejor del día a día.">
-  <style>
-    :root {
-      --bg: #f6f7f2;
-      --paper: #ffffff;
-      --text: #18211b;
-      --muted: #687366;
-      --green: #2f6f45;
-      --green-dark: #173f28;
-      --green-soft: #e8f1e4;
-      --cream: #fff8e8;
-      --blue-soft: #e9f0ff;
-      --orange-soft: #fff0dc;
-      --line: rgba(24, 33, 27, 0.10);
-      --shadow: 0 18px 45px rgba(23, 63, 40, 0.10);
-      --radius: 28px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(47,111,69,0.18), transparent 34rem),
-        radial-gradient(circle at 90% 12%, rgba(255,214,140,0.28), transparent 30rem),
-        radial-gradient(circle at 100% 90%, rgba(137,166,255,0.18), transparent 28rem),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.68;
-      font-size: 17px;
-      letter-spacing: 0;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      padding: 28px 0 10px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      text-decoration: none;
-      color: var(--green-dark);
-      font-weight: 800;
-      font-size: 1.05rem;
-    }
-
-    .logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      color: white;
-      font-weight: 900;
-      font-size: 1.2rem;
-      background: linear-gradient(145deg, #173f28, #3d8a57 52%, #b6d98c);
-      box-shadow: 0 12px 26px rgba(23, 63, 40, 0.22);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--green-dark);
-      opacity: 0.88;
-    }
-
-    .hero {
-      padding: 78px 0 62px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-      gap: 48px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid var(--line);
-      color: var(--green-dark);
-      font-weight: 800;
-      font-size: 0.92rem;
-      box-shadow: 0 8px 22px rgba(24,33,27,0.05);
-    }
-
-    h1 {
-      margin: 22px 0 22px;
-      max-width: 780px;
-      color: var(--green-dark);
-      font-size: clamp(3rem, 7.4vw, 6rem);
-      line-height: 1.04;
-      letter-spacing: -0.035em;
-      font-weight: 850;
-    }
-
-    .lead {
-      max-width: 690px;
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(1.12rem, 2.1vw, 1.34rem);
-      line-height: 1.62;
-      font-weight: 500;
-    }
-
-    .actions {
-      margin-top: 34px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button {
-      min-height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      border-radius: 999px;
-      font-weight: 800;
-      text-decoration: none;
-      border: 1px solid transparent;
-    }
-
-    .primary {
-      background: var(--green-dark);
-      color: white;
-      box-shadow: 0 14px 30px rgba(23,63,40,0.24);
-    }
-
-    .secondary {
-      background: rgba(255,255,255,0.72);
-      color: var(--green-dark);
-      border-color: var(--line);
-    }
-
-    .showcase {
-      border-radius: 36px;
-      padding: 24px;
-      background: rgba(255,255,255,0.70);
-      border: 1px solid rgba(255,255,255,0.88);
-      box-shadow: var(--shadow);
-    }
-
-    .showcase-inner {
-      min-height: 470px;
-      border-radius: 28px;
-      padding: 24px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.68)),
-        linear-gradient(145deg, rgba(47,111,69,0.12), rgba(255,214,140,0.20));
-      border: 1px solid var(--line);
-    }
-
-    .showcase-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .showcase-title strong {
-      color: var(--green-dark);
-      font-size: 1.25rem;
-    }
-
-    .status {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      font-weight: 800;
-      font-size: 0.8rem;
-    }
-
-    .mini-grid {
-      display: grid;
-      gap: 13px;
-    }
-
-    .mini-card {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 21px;
-      padding: 16px;
-      box-shadow: 0 9px 22px rgba(24,33,27,0.06);
-    }
-
-    .mini-card small {
-      display: block;
-      color: var(--muted);
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .mini-card strong {
-      display: block;
-      color: var(--text);
-      font-size: 1.05rem;
-      line-height: 1.35;
-    }
-
-    .section {
-      padding: 42px 0;
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 24px;
-    }
-
-    h2 {
-      margin: 0 0 12px;
-      color: var(--green-dark);
-      font-size: clamp(2rem, 4vw, 3.15rem);
-      line-height: 1.12;
-      letter-spacing: -0.025em;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.7;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.76);
-      border: 1px solid rgba(255,255,255,0.86);
-      border-radius: var(--radius);
-      padding: 25px;
-      box-shadow: 0 12px 32px rgba(24,33,27,0.07);
-    }
-
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 17px;
-      display: grid;
-      place-items: center;
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      background: var(--green-soft);
-    }
-
-    .card:nth-child(2) .icon {
-      background: var(--blue-soft);
-    }
-
-    .card:nth-child(3) .icon {
-      background: var(--orange-soft);
-    }
-
-    .card h3 {
-      margin: 0 0 9px;
-      color: var(--green-dark);
-      font-size: 1.25rem;
-      line-height: 1.28;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .apps-list {
-      display: grid;
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .app-row {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 18px;
-      align-items: center;
-      padding: 20px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(255,255,255,0.88);
-      box-shadow: 0 12px 30px rgba(24,33,27,0.06);
-    }
-
-    .app-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 20px;
-      display: grid;
-      place-items: center;
-      font-size: 1.65rem;
-      background: linear-gradient(145deg, #173f28, #7bb66a);
-      box-shadow: 0 12px 24px rgba(23,63,40,0.18);
-    }
-
-    .app-copy h3 {
-      margin: 0 0 4px;
-      color: var(--green-dark);
-      font-size: 1.2rem;
-    }
-
-    .app-copy p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .tag {
-      display: inline-flex;
-      white-space: nowrap;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(23,63,40,0.08);
-      color: var(--green-dark);
-      font-weight: 800;
-      font-size: 0.82rem;
-    }
-
-    .privacy-link {
-      display: inline-flex;
-      margin-top: 8px;
-      color: var(--green-dark);
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .closing {
-      margin: 44px 0 78px;
-      padding: clamp(28px, 5vw, 48px);
-      border-radius: 34px;
-      background: var(--green-dark);
-      color: white;
-      box-shadow: 0 18px 45px rgba(23,63,40,0.18);
-    }
-
-    .closing h2 {
-      color: white;
-    }
-
-    .closing p {
-      max-width: 720px;
-      color: rgba(255,255,255,0.78);
-      margin: 0;
-      font-size: 1.08rem;
-    }
-
-    footer {
-      padding: 28px 0 44px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    footer a {
-      color: var(--green-dark);
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 54px;
-      }
-
-      .showcase-inner {
-        min-height: auto;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .app-row {
-        grid-template-columns: auto 1fr;
-      }
-
-      .app-row .tag,
-      .app-row .button {
-        grid-column: 1 / -1;
-        justify-self: start;
-      }
-
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-      }
-    }
-
-    @media (max-width: 560px) {
-      body {
-        font-size: 16px;
-      }
-
-      .container {
-        width: min(100% - 28px, 1120px);
-      }
-
-      .hero {
-        padding: 42px 0 48px;
-      }
-
-      h1 {
-        font-size: clamp(2.6rem, 13vw, 4rem);
-      }
-
-      .showcase {
-        padding: 14px;
-        border-radius: 28px;
-      }
-
-      .showcase-inner {
-        padding: 18px;
-        border-radius: 23px;
-      }
-
-      .app-row {
-        padding: 17px;
-      }
-    }
-  </style>
+  <title>GITOcorp Studios · Apps para iPhone</title>
+  <meta name="description" content="Web oficial de GITOcorp Studios y sus apps para iPhone.">
+  <meta name="theme-color" content="#070812">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;850;950&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="index.html" aria-label="GITOcorp Studios">
-        <span class="logo">G</span>
-        <span>GITOcorp Studios</span>
-      </a>
-
-      <nav class="nav-links" aria-label="Secciones">
-        <a href="#proyectos">Proyectos</a>
-        <a href="#apps">Apps</a>
-        <a href="#privacidad">Privacidad</a>
-        <a href="mailto:gito@gitocorp.com">Contacto</a>
-      </nav>
+<body class="">
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a class="logo" href="index.html" aria-label="GITOcorp Studios"><span class="logo-mark">G</span><span>GITOcorp Studios</span></a>
+    <div class="nav-links">
+      <a href="index.html#apps">Apps</a>
+      <a href="index.html#studio">Estudio</a>
+      <a href="privacy/realfood-planner.html">Privacidad</a>
+      <a href="mailto:gito@gitocorp.com">Contacto</a>
     </div>
-  </header>
+  </nav>
+</header>
+<main>
+  <section class="section hero">
+    <div>
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Apps iPhone en desarrollo y TestFlight</span>
+      <h1>Apps personales con aspecto de producto real.</h1>
+      <p class="lead">GITOcorp Studios reúne pequeñas apps pensadas para resolver cosas concretas: planificar comidas, jugar en familia, organizar noches de mesa y crear experiencias sociales divertidas.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#apps">Ver apps</a>
+        <a class="btn" href="mailto:gito@gitocorp.com">Contactar</a>
+      </div>
+    </div>
+    <div class="hero-stage" aria-hidden="true">
+      <div class="orbit-card one">RealFood Planner<small>Semana organizada</small></div>
+      <div class="orbit-card two">DanoQuiz<small>Trivia con ritmo</small></div>
+      <div class="orbit-card three">Infiltrado<small>Identidad secreta</small></div>
+      <div class="orbit-card four">Noche de Juegos<small>Retos y colección</small></div>
+      <div class="phone-shell">
+        <div class="phone-screen">
+          <div class="phone-title">GITOcorp</div>
+          <div class="phone-subtitle">Una lanzadera para apps cuidadas, útiles y con personalidad.</div>
+          <div class="phone-list">
+            <div class="phone-row"><b>Hoy</b><span>Plan, juego o reto listo para empezar.</span></div>
+            <div class="phone-row"><b>Familia</b><span>Herramientas sencillas para usarlas de verdad.</span></div>
+            <div class="phone-row"><b>Apple</b><span>Preparadas para TestFlight y futuras mejoras.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <main>
-    <section class="container hero">
+  <section id="apps" class="section">
+    <div class="section-head">
       <div>
-        <span class="eyebrow">Apps · Juegos · Herramientas familiares</span>
-        <h1>Un pequeño estudio para ideas que se usan de verdad.</h1>
-        <p class="lead">
-          GITOcorp Studios es la casa de nuestras aplicaciones para iPhone: planificación de menús,
-          juegos de preguntas, juegos sociales, biblioteca de juegos de mesa y utilidades pensadas
-          para la familia, el trabajo y el día a día.
-        </p>
-
-        <div class="actions">
-          <a class="button primary" href="#apps">Ver apps y proyectos</a>
-          <a class="button secondary" href="mailto:gito@gitocorp.com">Escribir a GITOcorp</a>
-        </div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Catálogo inicial</span>
+        <h2 style="margin-top:18px">Cuatro apps, una misma identidad visual.</h2>
       </div>
-
-      <aside class="showcase" aria-label="Proyectos destacados">
-        <div class="showcase-inner">
-          <div class="showcase-title">
-            <strong>En desarrollo</strong>
-            <span class="status">GITOcorp</span>
-          </div>
-
-          <div class="mini-grid">
-            <div class="mini-card">
-              <small>Planificación</small>
-              <strong>RealFood Planner para organizar comidas, despensa y compra.</strong>
-            </div>
-            <div class="mini-card">
-              <small>Juego familiar</small>
-              <strong>DanoQuiz, preguntas, retos y partidas para jugar en grupo.</strong>
-            </div>
-            <div class="mini-card">
-              <small>Juegos de mesa</small>
-              <strong>Biblioteca, retos y organización de partidas de colección.</strong>
-            </div>
-            <div class="mini-card">
-              <small>Juego social</small>
-              <strong>Infiltrado, partidas rápidas con sospechas, pistas y acusaciones.</strong>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="container section" id="proyectos">
-      <div class="section-head">
-        <h2>Una lanzadera para varios tipos de app.</h2>
-        <p>
-          La página principal de GITOcorp Studios sirve como punto de entrada a todas las apps,
-          políticas de privacidad, soporte y futuros proyectos publicados.
-        </p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="icon">📱</div>
-          <h3>Apps útiles</h3>
-          <p>
-            Herramientas prácticas para organizar menús, tareas, compras, rutinas e información
-            del día a día sin complicaciones.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="icon">🎲</div>
-          <h3>Juegos y experiencias</h3>
-          <p>
-            Juegos de preguntas, dinámicas sociales, retos familiares y pequeñas experiencias
-            pensadas para jugar juntos.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="icon">♟️</div>
-          <h3>Biblioteca de juegos</h3>
-          <p>
-            Organización de colecciones de juegos de mesa, planificación de partidas, retos
-            y seguimiento de lo que queda por jugar.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="container section" id="apps">
-      <div class="section-head">
-        <h2>Apps y proyectos.</h2>
-        <p>
-          Algunos proyectos están en pruebas y otros llegarán más adelante. Esta página irá creciendo
-          como centro de soporte, privacidad y presentación de cada app.
-        </p>
-      </div>
-
-      <div class="apps-list">
-        <article class="app-row">
-          <div class="app-icon" aria-hidden="true">🍽️</div>
-          <div class="app-copy">
-            <h3>RealFood Planner</h3>
-            <p>Planificador de comidas y cenas con platos propios, despensa, lista de compra, batch cooking e historial.</p>
-            <a class="privacy-link" href="realfood-planner-privacy.html">Política de privacidad</a>
-          </div>
-          <span class="tag">TestFlight / iPhone</span>
-        </article>
-
-        <article class="app-row">
-          <div class="app-icon" aria-hidden="true">❓</div>
-          <div class="app-copy">
-            <h3>DanoQuiz</h3>
-            <p>Juego de preguntas y retos para partidas familiares o con amigos, con modos y categorías en evolución.</p>
-          </div>
-          <span class="tag">Próximamente</span>
-        </article>
-
-        <article class="app-row">
-          <div class="app-icon" aria-hidden="true">🕵️</div>
-          <div class="app-copy">
-            <h3>Infiltrado</h3>
-            <p>Juego social de sospechas, turnos y acusaciones, pensado para jugar rápido en grupo desde el móvil.</p>
-          </div>
-          <span class="tag">En preparación</span>
-        </article>
-
-        <article class="app-row">
-          <div class="app-icon" aria-hidden="true">🎲</div>
-          <div class="app-copy">
-            <h3>Biblioteca de juegos de mesa</h3>
-            <p>Catálogo personal, retos de juego, seguimiento de partidas y organización de la colección.</p>
-          </div>
-          <span class="tag">En desarrollo</span>
-        </article>
-      </div>
-    </section>
-
-    <section class="container closing" id="privacidad">
-      <h2>Privacidad y soporte desde el principio.</h2>
-      <p>
-        Cada app publicada por GITOcorp Studios tendrá su propia información de privacidad,
-        soporte y contacto. Para cualquier consulta puedes escribir a gito@gitocorp.com.
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <span>© 2026 GITOcorp Studios</span>
-      <span><a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a></span>
+      <p>Cada app tiene su propio color, tono y página, pero todas comparten una base elegante para web, soporte, privacidad y App Store Connect.</p>
     </div>
-  </footer>
+    <div class="grid apps-grid">
+      
+      <article class="app-card infiltrado">
+        <div>
+          <div class="app-icon" aria-hidden="true">🕵️</div>
+          <p class="eyebrow" style="margin-top:18px"><span class="eyebrow-dot"></span>Juego social de deducción</p>
+          <h3 style="margin-top:16px">Infiltrado</h3>
+          <p>Una app para partidas rápidas con amigos o familia: reparto de expedientes, orden de turno, deliberación y acusación final con un cierre más cinematográfico.</p>
+        </div>
+        <div class="card-links">
+          <a class="pill" href="apps/infiltrado/index.html">Ver app</a>
+          <a class="pill" href="privacy/infiltrado.html">Privacidad</a>
+        </div>
+      </article>
+      <article class="app-card realfood">
+        <div>
+          <div class="app-icon" aria-hidden="true">🥗</div>
+          <p class="eyebrow" style="margin-top:18px"><span class="eyebrow-dot"></span>Planificación real de comidas</p>
+          <h3 style="margin-top:16px">RealFood Planner</h3>
+          <p>Un planificador doméstico para organizar menús, platos, despensa, lista de la compra e historial de comidas con un enfoque práctico y familiar.</p>
+        </div>
+        <div class="card-links">
+          <a class="pill" href="apps/realfood-planner/index.html">Ver app</a>
+          <a class="pill" href="privacy/realfood-planner.html">Privacidad</a>
+        </div>
+      </article>
+      <article class="app-card noche">
+        <div>
+          <div class="app-icon" aria-hidden="true">🎲</div>
+          <p class="eyebrow" style="margin-top:18px"><span class="eyebrow-dot"></span>Organización lúdica familiar</p>
+          <h3 style="margin-top:16px">Noche de Juegos</h3>
+          <p>Una app para organizar sesiones, crear retos, registrar partidas y dar vida a la ludoteca familiar con una experiencia visual cuidada.</p>
+        </div>
+        <div class="card-links">
+          <a class="pill" href="apps/noche-de-juegos/index.html">Ver app</a>
+          <a class="pill" href="privacy/noche-de-juegos.html">Privacidad</a>
+        </div>
+      </article>
+      <article class="app-card danoquiz">
+        <div>
+          <div class="app-icon" aria-hidden="true">⚡</div>
+          <p class="eyebrow" style="margin-top:18px"><span class="eyebrow-dot"></span>Trivia rápida y competitiva</p>
+          <h3 style="margin-top:16px">DanoQuiz</h3>
+          <p>Un juego de preguntas pensado para partidas ágiles, modos competitivos y una interfaz clara para jugar solo, en familia o con amigos.</p>
+        </div>
+        <div class="card-links">
+          <a class="pill" href="apps/danoquiz/index.html">Ver app</a>
+          <a class="pill" href="privacy/danoquiz.html">Privacidad</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="studio" class="section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Enfoque</span>
+        <h2 style="margin-top:18px">Hechas para probar, pulir y publicar.</h2>
+      </div>
+      <p>La web sirve como punto de entrada para usuarios, enlaces de privacidad, soporte y futuras campañas de App Store.</p>
+    </div>
+    <div class="grid feature-grid">
+      <div class="feature"><span>📱</span><h3>iPhone primero</h3><p>Diseño orientado a apps móviles reales, con lenguaje claro y sin parecer una plantilla genérica.</p></div>
+      <div class="feature"><span>🔐</span><h3>Privacidad clara</h3><p>Páginas listas para enlazar desde App Store Connect, con texto conservador y fácil de adaptar por versión.</p></div>
+      <div class="feature"><span>🚀</span><h3>Escalable</h3><p>Preparada para añadir TestFlight, App Store, capturas, notas de versión o páginas de soporte más adelante.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>GITOcorp Studios</strong><br>
+      <span>Apps pequeñas, útiles y con mimo para familia, ocio y organización.</span>
+    </div>
+    <div class="footer-links">
+      <a href="apps/infiltrado/index.html">Infiltrado</a><a href="apps/realfood-planner/index.html">RealFood Planner</a><a href="apps/noche-de-juegos/index.html">Noche de Juegos</a><a href="apps/danoquiz/index.html">DanoQuiz</a>
+      <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
