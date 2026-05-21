@@ -4,16 +4,402 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GITOcorp Studios</title>
+  <meta name="description" content="GITOcorp Studios desarrolla aplicaciones sencillas, cuidadas y útiles para iPhone.">
+  <style>
+    :root {
+      --bg: #f4f7f2;
+      --card: rgba(255,255,255,0.78);
+      --text: #172018;
+      --muted: #5f6f62;
+      --green: #2f6f45;
+      --green-dark: #173f28;
+      --line: rgba(23,32,24,0.10);
+      --shadow: 0 18px 55px rgba(23, 63, 40, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47,111,69,0.22), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(180,205,163,0.35), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    header {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--green-dark);
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #2f6f45, #9fca7f);
+      box-shadow: 0 10px 28px rgba(47,111,69,0.25);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    nav a {
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 650;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 90px 22px 64px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      margin: 20px 0 18px;
+      font-size: clamp(2.8rem, 8vw, 5.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      color: var(--green-dark);
+    }
+
+    .lead {
+      max-width: 640px;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .actions {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 750;
+      border: 1px solid transparent;
+    }
+
+    .primary {
+      background: var(--green-dark);
+      color: white;
+      box-shadow: 0 12px 28px rgba(23,63,40,0.22);
+    }
+
+    .secondary {
+      color: var(--green-dark);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.62);
+    }
+
+    .phone-card {
+      min-height: 430px;
+      border-radius: 34px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.78);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(18px);
+    }
+
+    .app-preview {
+      height: 100%;
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.90), rgba(255,255,255,0.62)),
+        linear-gradient(145deg, rgba(47,111,69,0.13), rgba(159,202,127,0.18));
+      padding: 22px;
+      border: 1px solid var(--line);
+    }
+
+    .screen-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .screen-title strong {
+      font-size: 1.3rem;
+      letter-spacing: -0.03em;
+      color: var(--green-dark);
+    }
+
+    .pill {
+      background: rgba(47,111,69,0.10);
+      color: var(--green-dark);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+
+    .meal {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      margin: 12px 0;
+      box-shadow: 0 8px 22px rgba(23,32,24,0.06);
+    }
+
+    .meal small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .meal strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 22px 70px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      letter-spacing: -0.055em;
+      color: var(--green-dark);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(23,32,24,0.08);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--green-dark);
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .apps {
+      margin-top: 44px;
+    }
+
+    .app-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(255,255,255,0.78);
+      box-shadow: 0 12px 32px rgba(23,32,24,0.08);
+    }
+
+    .app-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .app-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #173f28, #9fca7f);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1.55rem;
+      box-shadow: 0 12px 24px rgba(23,63,40,0.20);
+    }
+
+    .app-info h3 {
+      margin: 0 0 4px;
+      color: var(--green-dark);
+      letter-spacing: -0.03em;
+    }
+
+    .app-info p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 28px 22px 44px;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      header {
+        align-items: flex-start;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 54px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .app-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .phone-card {
+        min-height: auto;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.6;">
-  <h1>GITOcorp Studios</h1>
-  <p>Información legal y políticas de privacidad de las aplicaciones de GITOcorp Studios.</p>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">G</div>
+      <span>GITOcorp Studios</span>
+    </div>
+    <nav>
+      <a href="#apps">Apps</a>
+    </nav>
+  </header>
 
-  <h2>Aplicaciones</h2>
-  <ul>
-    <li><a href="realfood-planner-privacy.html">RealFood Planner - Política de privacidad</a></li>
-  </ul>
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Apps útiles, sencillas y cuidadas</span>
+      <h1>Pequeñas apps para organizar mejor el día a día.</h1>
+      <p class="lead">
+        GITOcorp Studios crea aplicaciones para iPhone pensadas para resolver necesidades reales:
+        planificar, jugar, recordar, compartir y simplificar tareas cotidianas.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="#apps">Ver aplicaciones</a>
+        <a class="button secondary" href="realfood-planner-privacy.html">Privacidad de RealFood Planner</a>
+      </div>
+    </div>
 
-  <p>Contacto: gito@gitocorp.com</p>
+    <div class="phone-card" aria-label="Vista previa de RealFood Planner">
+      <div class="app-preview">
+        <div class="screen-title">
+          <strong>RealFood Planner</strong>
+          <span class="pill">Semana</span>
+        </div>
+        <div class="meal">
+          <small>Hoy · Comida</small>
+          <strong>Ensalada de garbanzos</strong>
+        </div>
+        <div class="meal">
+          <small>Hoy · Cena</small>
+          <strong>Tortilla con verduras</strong>
+        </div>
+        <div class="meal">
+          <small>Mañana · Compra</small>
+          <strong>3 ingredientes pendientes</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <h2 class="section-title">Diseñadas con mentalidad de producto</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Útiles desde el primer día</h3>
+        <p>Aplicaciones enfocadas en casos reales, sin complicar lo que debería ser sencillo.</p>
+      </div>
+      <div class="card">
+        <h3>Privacidad primero</h3>
+        <p>Siempre que sea posible, los datos se guardan localmente y el usuario mantiene el control.</p>
+      </div>
+      <div class="card">
+        <h3>Preparadas para crecer</h3>
+        <p>Primeras versiones simples, con camino claro hacia iCloud, comunidad y funciones familiares.</p>
+      </div>
+    </div>
+
+    <section class="apps" id="apps">
+      <h2 class="section-title">Aplicaciones</h2>
+
+      <div class="app-row">
+        <div class="app-info">
+          <div class="app-icon">🍽️</div>
+          <div>
+            <h3>RealFood Planner</h3>
+            <p>Planifica comidas, cenas, despensa, compra e historial semanal.</p>
+          </div>
+        </div>
+        <a class="button secondary" href="realfood-planner-privacy.html">Política de privacidad</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 GITOcorp Studios · Contacto: gito@gitocorp.com
+  </footer>
 </body>
 </html>
