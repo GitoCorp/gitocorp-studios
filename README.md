@@ -1,2 +1,0 @@
-# gitocorp-studios
-GitoCorp
