@@ -200,3 +200,46 @@ h3 { font-size: 25px; line-height: 1.12; }
   .side-panel, .status-stack { display: none; }
   .footer-links { justify-content: flex-start; }
 }
+
+
+/* Brand update v3.5 */
+.logo { display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:-.03em; }
+.logo-image { width:42px; height:42px; object-fit:contain; filter: drop-shadow(0 8px 18px rgba(0,0,0,.28)); }
+.logo-text { display:flex; flex-direction:column; line-height:1; }
+.logo-text strong { font-size:20px; font-weight:900; color:#fff; }
+.logo-text small { margin-top:5px; font-size:10px; font-weight:900; letter-spacing:.42em; color:transparent; background:linear-gradient(90deg,#8b5cf6 0%,#2f7cff 18%,#22d3ee 36%,#22c55e 54%,#f59e0b 74%,#f43f5e 100%); -webkit-background-clip:text; background-clip:text; }
+.logo-mark { display:none; }
+
+.brand-showcase { padding-top: 12px; }
+.brand-card { display:grid; grid-template-columns: .9fr 1.1fr; gap:24px; align-items:center; border:1px solid var(--line); border-radius: var(--radius); padding: 32px; background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05)); box-shadow: 0 22px 60px rgba(0,0,0,.2); }
+.brand-card-copy p { max-width: 680px; }
+.brand-signature { display:flex; align-items:center; gap:24px; justify-content:flex-end; padding: 10px 4px; }
+.brand-signature-mark { width:min(160px, 26vw); height:auto; object-fit:contain; filter: drop-shadow(0 18px 40px rgba(0,0,0,.28)); }
+.brand-signature-wordmark { display:flex; flex-direction:column; align-items:flex-start; }
+.brand-word-main { font-size: clamp(34px, 4.4vw, 82px); font-weight:900; letter-spacing:-.055em; color:#f8fafc; text-shadow: 0 10px 30px rgba(0,0,0,.24); }
+.brand-word-sub { display:flex; gap: clamp(8px, 1.2vw, 18px); margin-top: 10px; font-size: clamp(18px, 2vw, 34px); font-weight:800; letter-spacing:.18em; }
+.brand-word-sub span:nth-child(1){color:#8b5cf6;} .brand-word-sub span:nth-child(2){color:#2f7cff;} .brand-word-sub span:nth-child(3){color:#22d3ee;} .brand-word-sub span:nth-child(4){color:#22c55e;} .brand-word-sub span:nth-child(5){color:#f59e0b;} .brand-word-sub span:nth-child(6){color:#fb7a2f;} .brand-word-sub span:nth-child(7){color:#f43f5e;}
+
+.footer { margin-top: 24px; }
+.footer-inner { flex-direction: column; align-items: stretch; }
+.footer-brand { display:flex; align-items:center; gap:16px; }
+.footer-brand-mark { width:58px; height:58px; object-fit:contain; filter: drop-shadow(0 10px 28px rgba(0,0,0,.26)); }
+.footer-brand-main { font-size: 24px; font-weight: 900; color:#fff; letter-spacing:-.04em; }
+.footer-brand-main span { margin-left: 8px; font-size: 12px; letter-spacing: .36em; vertical-align: middle; color: transparent; background: linear-gradient(90deg,#8b5cf6 0%,#2f7cff 18%,#22d3ee 36%,#22c55e 54%,#f59e0b 74%,#f43f5e 100%); -webkit-background-clip: text; background-clip:text; }
+.footer-brand span { color: var(--muted); }
+.footer-links { justify-content: flex-start; padding-top: 8px; }
+.footer-legal { padding-top: 10px; border-top: 1px solid rgba(255,255,255,.08); color: var(--muted); font-size: 13px; }
+
+@media (max-width: 900px) {
+  .brand-card { grid-template-columns: 1fr; }
+  .brand-signature { justify-content:flex-start; }
+}
+@media (max-width: 760px) {
+  .logo-image { width:38px; height:38px; }
+  .logo-text strong { font-size:18px; }
+  .brand-signature { gap:16px; }
+  .brand-signature-mark { width:84px; }
+  .brand-word-main { font-size: 34px; }
+  .brand-word-sub { font-size: 16px; gap: 10px; }
+  .footer-brand { align-items:flex-start; }
+}
