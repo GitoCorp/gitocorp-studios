@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+<title>Infiltrado icon</title><desc>App icon with confidential dossier, fingerprint and magnifying glass.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset=".45" stop-color="#1e1b4b"/><stop offset="1" stop-color="#020617"/></linearGradient>
+  <radialGradient id="glow" cx="20%" cy="10%" r="72%"><stop offset="0" stop-color="#f0abfc" stop-opacity=".58"/><stop offset=".5" stop-color="#a78bfa" stop-opacity=".10"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="34" stdDeviation="38" flood-color="#000" flood-opacity=".48"/></filter>
+</defs>
+<rect width="1024" height="1024" rx="230" fill="url(#bg)"/>
+<rect width="1024" height="1024" rx="230" fill="url(#glow)"/>
+<g filter="url(#shadow)">
+  <path d="M244 264c0-55 45-100 100-100h172l86 86h78c55 0 100 45 100 100v378c0 55-45 100-100 100H344c-55 0-100-45-100-100z" fill="#f8fafc" opacity=".96"/>
+  <path d="M244 342h536v386c0 55-45 100-100 100H344c-55 0-100-45-100-100z" fill="#ede9fe"/>
+  <path d="M334 420h286" stroke="#312e81" stroke-width="34" stroke-linecap="round" opacity=".72"/>
+  <path d="M334 504h212" stroke="#312e81" stroke-width="34" stroke-linecap="round" opacity=".38"/>
+  <path d="M334 588h150" stroke="#312e81" stroke-width="34" stroke-linecap="round" opacity=".28"/>
+  <circle cx="630" cy="586" r="118" fill="#111827" opacity=".94"/>
+  <circle cx="630" cy="586" r="72" fill="none" stroke="#a78bfa" stroke-width="22"/>
+  <path d="M712 668l94 94" stroke="#f8fafc" stroke-width="44" stroke-linecap="round"/>
+  <path d="M618 514c44 0 80 36 80 80M582 594c0-20 8-39 22-53M630 550c24 0 44 20 44 44M630 594c0 22-16 42-38 46" fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round" opacity=".95"/>
+  <rect x="376" y="686" width="184" height="56" rx="28" fill="#7c3aed"/>
+  <path d="M410 714h116" stroke="#fff" stroke-width="16" stroke-linecap="round" opacity=".92"/>
+</g>
+</svg>
