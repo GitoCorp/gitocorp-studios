@@ -1,0 +1,3 @@
+Noche de Juegos ayuda a familias y grupos a dar mas uso a su coleccion de juegos de mesa mediante ludoteca, perfiles, rankings, retos, planificacion y sincronizacion iCloud.
+
+La version 3.0 incorpora Ludo, un asistente local que recomienda juegos adecuados para cada mesa segun numero de jugadores, tiempo disponible, historial, preferencias y retos activos.

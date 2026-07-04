@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Mockup iPad Ludoteca</title>
+  <desc id="desc">Mockup editorial de iPad con panel de ludoteca para Noche de Juegos 3.0.</desc>
+  <rect width="1800" height="1200" fill="#FAFAF7"/>
+  <rect x="230" y="150" width="1340" height="820" rx="78" fill="#111827"/>
+  <rect x="264" y="184" width="1272" height="752" rx="48" fill="#F7F3EA"/>
+  <text x="340" y="300" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="800">Ludoteca familiar</text>
+  <text x="342" y="352" fill="#4B5563" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="600">Juegos, retos, perfiles y rankings sincronizados con iCloud.</text>
+  <rect x="340" y="430" width="250" height="170" rx="28" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="3"/>
+  <rect x="622" y="430" width="250" height="170" rx="28" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="3"/>
+  <rect x="904" y="430" width="250" height="170" rx="28" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="3"/>
+  <rect x="1186" y="430" width="250" height="170" rx="28" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="3"/>
+  <text x="382" y="508" fill="#E4423F" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">177</text>
+  <text x="382" y="552" fill="#4B5563" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">juegos</text>
+  <text x="664" y="508" fill="#1FA67A" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">34</text>
+  <text x="664" y="552" fill="#4B5563" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">retos</text>
+  <text x="946" y="508" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="800">iCloud</text>
+  <text x="946" y="552" fill="#4B5563" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">familia</text>
+  <text x="1228" y="508" fill="#F2C94C" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="800">Local</text>
+  <text x="1228" y="552" fill="#4B5563" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">privacidad</text>
+  <rect x="340" y="675" width="1096" height="34" rx="17" fill="#E5E7EB"/>
+  <rect x="340" y="740" width="760" height="34" rx="17" fill="#E5E7EB"/>
+  <text x="228" y="1060" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">Noche de Juegos 3.0</text>
+  <text x="230" y="1116" fill="#4B5563" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600">Mockup editorial | iPad</text>
+</svg>

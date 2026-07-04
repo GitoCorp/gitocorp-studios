@@ -1,0 +1,1 @@
+Noche de Juegos 3.0 es una app iOS de GITOcorp Studios para organizar una ludoteca familiar, registrar partidas y recibir recomendaciones locales con Ludo.

@@ -1,0 +1,3 @@
+Ludo es el asistente local de Noche de Juegos 3.0.
+
+Su objetivo es ayudar a elegir que juego sacar a mesa cruzando contexto real: numero de jugadores, tiempo disponible, tipo de partida, retos activos, historial y preferencias. El aprendizaje es prudente y local, sin depender de servidores externos.

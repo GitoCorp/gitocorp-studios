@@ -1,0 +1,8 @@
+Diferenciales de Noche de Juegos 3.0:
+
+- Organiza la ludoteca familiar.
+- Registra partidas, perfiles y rankings.
+- Propone retos para jugar mas variado.
+- Incorpora Ludo, un asistente local de recomendaciones.
+- Usa sincronizacion iCloud familiar.
+- Prioriza privacidad: los datos permanecen en el iPhone o iCloud familiar.
