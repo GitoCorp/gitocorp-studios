@@ -11,6 +11,9 @@ Web estática preparada para GitHub Pages.
 - `apps/realfood-planner/index.html`: página de RealFood Planner.
 - `apps/noche-de-juegos/index.html`: página de Noche de Juegos.
 - `apps/danoquiz/index.html`: página de DanoQuiz.
+- `apps/turno-plus/index.html`: página de Turno+.
+- `apps/nfc-life/index.html`: página de NFC Life.
+- `apps/familybank/index.html`: página de FamilyBank.
 - `privacy/index.html`: hub general de privacidad.
 - `privacy/*.html`: política individual de cada app.
 - `assets/icons/*.png`: iconos 1024x1024 de las apps usados en la landing, páginas de app y privacidad.
@@ -24,6 +27,9 @@ Usando `https://gitocorp.github.io/gitocorp-studios/` como dominio principal:
 - RealFood Planner: `https://gitocorp.github.io/gitocorp-studios/privacy/realfood-planner.html`
 - Noche de Juegos: `https://gitocorp.github.io/gitocorp-studios/privacy/noche-de-juegos.html`
 - DanoQuiz: `https://gitocorp.github.io/gitocorp-studios/privacy/danoquiz.html`
+- Turno+: `https://gitocorp.github.io/gitocorp-studios/privacy/turno-plus.html`
+- NFC Life: `https://gitocorp.github.io/gitocorp-studios/privacy/nfc-life.html`
+- FamilyBank: `https://gitocorp.github.io/gitocorp-studios/privacy/familybank.html`
 
 ## Contacto oficial
 
@@ -72,3 +78,13 @@ En GitoCorp Studios convertimos ideas reales en apps iPhone independientes: herr
 - Noche de Juegos: incluye uso de BoardGameGeek para búsquedas/importación de información pública de juegos.
 - Infiltrado y DanoQuiz: aclaran almacenamiento local y posibles servicios de Apple si se activan logros, clasificaciones o sincronización.
 - La landing queda abierta a nuevas apps y proyectos como Expedientes.
+
+
+## v3.9
+
+Añadidas Turno+ y NFC Life (páginas de app, políticas de privacidad, tarjetas en la landing y en el hub de privacidad, enlaces en todos los footers). Los iconos de ambas son provisionales: sustitúyelos por los finales manteniendo el nombre (`assets/icons/turno-plus.png`, `assets/icons/nfc-life.png`).
+
+
+## v4.0
+
+Añadida FamilyBank (icono provisional, página de app, política de privacidad, tarjeta en la landing y en el hub de privacidad, enlaces en todos los footers). Sustituye `assets/icons/familybank.png` por el icono final manteniendo el nombre.

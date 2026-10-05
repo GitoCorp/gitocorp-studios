@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+<title>NFC Life icon</title><desc>App icon with NFC tag and signal waves.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset=".45" stop-color="#0891b2"/><stop offset="1" stop-color="#031418"/></linearGradient>
+  <radialGradient id="glow" cx="22%" cy="12%" r="76%"><stop offset="0" stop-color="#ccfbf1" stop-opacity=".55"/><stop offset=".5" stop-color="#2dd4bf" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="34" stdDeviation="36" flood-color="#000" flood-opacity=".48"/></filter>
+</defs>
+<rect width="1024" height="1024" rx="230" fill="url(#bg)"/>
+<rect width="1024" height="1024" rx="230" fill="url(#glow)"/>
+<g filter="url(#shadow)">
+  <rect x="252" y="312" width="382" height="400" rx="62" fill="#f0fdfa" opacity=".97"/>
+  <circle cx="443" cy="512" r="66" fill="none" stroke="#0f766e" stroke-width="26"/>
+  <path d="M443 446a66 66 0 0 1 0 132" fill="none" stroke="#0f766e" stroke-width="18" opacity=".6"/>
+  <rect x="316" y="640" width="254" height="34" rx="17" fill="#0f766e" opacity=".7"/>
+  <path d="M616 372a220 220 0 0 1 0 280" fill="none" stroke="#ecfeff" stroke-width="30" stroke-linecap="round" opacity=".92"/>
+  <path d="M672 320a300 300 0 0 1 0 384" fill="none" stroke="#ecfeff" stroke-width="30" stroke-linecap="round" opacity=".62"/>
+  <path d="M728 268a380 380 0 0 1 0 488" fill="none" stroke="#ecfeff" stroke-width="30" stroke-linecap="round" opacity=".34"/>
+</g>
+</svg>
