@@ -5,61 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DanoQuiz · GitoCorp Studios</title>
   <meta name="description" content="DanoQuiz es un juego de preguntas para iPhone con modos de partida para jugar solo o competir en grupo.">
-  <meta name="theme-color" content="#050712">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e18" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="../../assets/brand/favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="../../assets/brand/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;850;900;950&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/styles.css">
+  <script src="../../assets/site.js" defer></script>
 </head>
-<body class="app-page" style="--accent:#38bdf8; --brand:#38bdf8; --brand2:#f97316;">
-<header class="site-header">
-  <nav class="nav" aria-label="Navegación principal">
-    <a class="logo" href="../../" aria-label="GitoCorp Studios"><img class="logo-image" src="../../assets/brand/gito-mark.png" alt="Logotipo de GitoCorp Studios"><span class="logo-text"><strong>GitoCorp</strong><small>STUDIOS</small></span></a>
-    <div class="nav-links">
-      <a href="../../#apps" class="active">Apps</a>
-      <a href="../../#studio">Estudio</a>
+<body style="--accent:#38bdf8">
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="brand" href="../../" aria-label="GitoCorp Studios, inicio"><img src="../../assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="../../#apps" aria-current="page" class="nav__opt">Apps</a>
+      <a href="../../#studio" class="nav__opt">Estudio</a>
       <a href="../../privacy/">Privacidad</a>
       <a href="mailto:gito@gitocorp.com">Contacto</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
-<main>
-  <section class="section app-hero">
-    <div>
-      <div class="app-badge"><img src="../../assets/icons/danoquiz.png" alt="Icono de DanoQuiz"><div><span>Trivia para iPhone</span><p style="margin:4px 0 0">GitoCorp Studios</p></div></div>
-      <h1>DanoQuiz</h1>
-      <p class="lead">Preguntas rápidas, modos competitivos y partidas con ritmo.</p>
-      <div class="hero-actions"><a class="btn primary" href="../../privacy/danoquiz.html">Política de privacidad</a><a class="btn" href="mailto:gito@gitocorp.com">Contactar</a></div>
-    </div>
-    <div class="product-shot">
-      <div class="mock-top"><div class="mock-title"><img src="../../assets/icons/danoquiz.png" alt=""><div><b>Ronda 04</b><span>Pregunta rápida · 15 segundos</span></div></div><div class="mock-chip">iPhone</div></div>
-      <div class="mock-cards"><div class="mock-card"><span class="num">Pregunta</span><h3>¿Qué planeta es conocido como el planeta rojo?</h3><p>Elige una respuesta antes de que termine el tiempo.</p></div><div class="mock-card"><span class="num">Marcador</span><h3>Dani 8 · Ana 7 · Gito 6</h3><p>Partida igualada hasta el final</p></div><div class="mock-card"><span class="num">Modo</span><h3>Eliminación</h3><p>Fallos acumulados y tensión en cada ronda</p></div></div>
+<main id="main">
+  <section class="ahero">
+    <div class="wrap ahero__grid">
+      <div>
+        <a class="crumb" href="../../#apps">Todas las apps</a>
+        <div class="ahero__id">
+          <img src="../../assets/icons/danoquiz-256.png" alt="Icono de DanoQuiz" width="96" height="96">
+          <p class="kicker">Trivia para iPhone</p>
+        </div>
+        <h1 class="display display--app">DanoQuiz</h1>
+        <p class="lead">Preguntas rápidas, modos competitivos y partidas con ritmo.</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="../../privacy/danoquiz.html">Política de privacidad</a>
+          <a class="btn" href="mailto:gito@gitocorp.com">Contactar</a>
+        </div>
+      </div>
+      <div class="phone" role="img" aria-label="Ilustración de la pantalla de DanoQuiz">
+        <div class="screen">
+          <div class="screen__head"><img src="../../assets/icons/danoquiz-256.png" alt="" width="44" height="44"><div><b>Ronda 04</b><span>Pregunta rápida de 15 segundos</span></div></div>
+          <div class="srow"><small>Pregunta</small><b>¿Qué planeta es conocido como el planeta rojo?</b><span>Elige una respuesta antes de que termine el tiempo.</span></div><div class="srow"><small>Marcador</small><b>Dani 8 · Ana 7 · Gito 6</b><span>Partida igualada hasta el final</span></div><div class="srow"><small>Modo</small><b>Eliminación</b><span>Fallos acumulados y tensión en cada ronda</span></div>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="section">
-    <div class="section-head"><div><span class="eyebrow"><span class="eyebrow-dot"></span>Producto</span><h2 style="margin-top:18px">Trivia directa, sin complicaciones.</h2></div><p>DanoQuiz está pensado para entrar, elegir modo y empezar a responder. El foco está en el ritmo de la partida y en que cada modo tenga una sensación distinta.</p></div>
-    <div class="grid feature-grid"><div class="feature"><div class="symbol">01</div><h3>Ritmo de partida</h3><p>Pantallas claras, tiempos bien marcados y decisiones rápidas para que la energía no caiga.</p></div><div class="feature"><div class="symbol">02</div><h3>Modos diferenciados</h3><p>Rapidez, batalla y eliminación para que cada partida tenga un tono distinto.</p></div><div class="feature"><div class="symbol">03</div><h3>Retos y marcas</h3><p>Preguntas, puntuaciones y objetivos para jugar una ronda rápida o intentar mejorar resultado.</p></div></div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">Trivia directa, sin complicaciones.</h2>
+        <p class="sub">DanoQuiz está pensado para entrar, elegir modo y empezar a responder. El foco está en el ritmo de la partida y en que cada modo tenga una sensación distinta.</p>
+      </div>
+      <div class="feats"><div class="feat"><h3>Ritmo de partida</h3><p>Pantallas claras, tiempos bien marcados y decisiones rápidas para que la energía no caiga.</p></div><div class="feat"><h3>Modos diferenciados</h3><p>Rapidez, batalla y eliminación para que cada partida tenga un tono distinto.</p></div><div class="feat"><h3>Retos y marcas</h3><p>Preguntas, puntuaciones y objetivos para jugar una ronda rápida o intentar mejorar resultado.</p></div></div>
+    </div>
   </section>
-  <section class="section">
-    <div class="privacy-box"><div><h2>Privacidad de DanoQuiz</h2><p>La app no vende datos personales. Algunas versiones pueden usar servicios de Apple como Game Center o iCloud si el usuario decide utilizarlos; esos servicios se rigen por sus propias condiciones.</p></div><a class="btn primary" href="../../privacy/danoquiz.html">Leer política</a></div>
+
+  <section class="wrap">
+    <div class="note">
+      <div>
+        <h2 class="h3x">Privacidad de DanoQuiz</h2>
+        <p class="sub">La app no vende datos personales. Algunas versiones pueden usar servicios de Apple como Game Center o iCloud si el usuario decide utilizarlos; esos servicios se rigen por sus propias condiciones.</p>
+      </div>
+      <a class="btn btn--solid" href="../../privacy/danoquiz.html">Leer la política</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h2 class="h3x">Más apps de GitoCorp</h2>
+      <div class="others"><a class="other" href="../../apps/infiltrado/"><img src="../../assets/icons/infiltrado-256.png" alt="" width="84" height="84" loading="lazy"><span>Infiltrado</span></a><a class="other" href="../../apps/realfood-planner/"><img src="../../assets/icons/realfood-planner-256.png" alt="" width="84" height="84" loading="lazy"><span>RealFood Planner</span></a><a class="other" href="../../apps/noche-de-juegos/"><img src="../../assets/icons/noche-de-juegos-256.png" alt="" width="84" height="84" loading="lazy"><span>Noche de Juegos</span></a><a class="other" href="../../apps/turno-plus/"><img src="../../assets/icons/turno-plus-256.png" alt="" width="84" height="84" loading="lazy"><span>Turno+</span></a><a class="other" href="../../apps/nfc-life/"><img src="../../assets/icons/nfc-life-256.png" alt="" width="84" height="84" loading="lazy"><span>NFC Life</span></a><a class="other" href="../../apps/familybank/"><img src="../../assets/icons/familybank-256.png" alt="" width="84" height="84" loading="lazy"><span>FamilyBank</span></a></div>
+    </div>
   </section>
 </main>
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand"><img class="footer-brand-mark" src="../../assets/brand/gito-mark.png" alt="Marca GitoCorp Studios"><div><div class="footer-brand-main">GitoCorp <span>STUDIOS</span></div><span>Estudio personal de apps, juegos y herramientas digitales.</span></div></div>
-    <div class="footer-links">
-      <a href="../../apps/infiltrado/">Infiltrado</a>
-      <a href="../../apps/realfood-planner/">RealFood Planner</a>
-      <a href="../../apps/noche-de-juegos/">Noche de Juegos</a>
-      <a href="../../apps/turno-plus/">Turno+</a>
-      <a href="../../apps/nfc-life/">NFC Life</a>
-      <a href="../../apps/familybank/">FamilyBank</a>
-      <a href="../../apps/danoquiz/">DanoQuiz</a>
-      <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <a class="brand" href="../../"><img src="../../assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+      <p>Apps iPhone independientes: juegos, herramientas y experiencias digitales.</p>
+      <p class="foot__legal">Desarrollador: Jorge Sanz Borrell.<br>Marca pública: GitoCorp Studios.</p>
     </div>
-  <div class="footer-legal">Desarrollador: Jorge Sanz Borrell · Marca pública: GitoCorp Studios.</div>
+    <div class="foot__links">
+      <div>
+        <a href="../../apps/infiltrado/">Infiltrado</a>
+        <a href="../../apps/realfood-planner/">RealFood Planner</a>
+        <a href="../../apps/noche-de-juegos/">Noche de Juegos</a>
+        <a href="../../apps/turno-plus/">Turno+</a>
+        <a href="../../apps/nfc-life/">NFC Life</a>
+        <a href="../../apps/familybank/">FamilyBank</a>
+        <a href="../../apps/danoquiz/">DanoQuiz</a>
+      </div>
+      <div>
+        <a href="../../privacy/">Privacidad</a>
+        <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+      </div>
+    </div>
   </div>
 </footer>
 </body>

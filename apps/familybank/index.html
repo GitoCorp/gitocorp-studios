@@ -5,61 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FamilyBank · GitoCorp Studios</title>
   <meta name="description" content="FamilyBank es el banco de tu familia con dinero ficticio para iPhone: tarjeta virtual, paga, huchas, ahorro y programa de puntos con premios.">
-  <meta name="theme-color" content="#050712">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e18" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="../../assets/brand/favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="../../assets/brand/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;850;900;950&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/styles.css">
+  <script src="../../assets/site.js" defer></script>
 </head>
-<body class="app-page" style="--accent:#d9a441; --brand:#d9a441; --brand2:#3b6a8f;">
-<header class="site-header">
-  <nav class="nav" aria-label="Navegación principal">
-    <a class="logo" href="../../" aria-label="GitoCorp Studios"><img class="logo-image" src="../../assets/brand/gito-mark.png" alt="Logotipo de GitoCorp Studios"><span class="logo-text"><strong>GitoCorp</strong><small>STUDIOS</small></span></a>
-    <div class="nav-links">
-      <a href="../../#apps" class="active">Apps</a>
-      <a href="../../#studio">Estudio</a>
+<body style="--accent:#d9a441">
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="brand" href="../../" aria-label="GitoCorp Studios, inicio"><img src="../../assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="../../#apps" aria-current="page" class="nav__opt">Apps</a>
+      <a href="../../#studio" class="nav__opt">Estudio</a>
       <a href="../../privacy/">Privacidad</a>
       <a href="mailto:gito@gitocorp.com">Contacto</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
-<main>
-  <section class="section app-hero">
-    <div>
-      <div class="app-badge"><img src="../../assets/icons/familybank.png" alt="Icono de FamilyBank"><div><span>El banco de tu familia, con dinero ficticio</span><p style="margin:4px 0 0">GitoCorp Studios</p></div></div>
-      <h1>FamilyBank</h1>
-      <p class="lead">Paga semanal, ahorro, huchas y puntos con premios para que los peques aprendan a gestionar su dinero, sin que se mueva un solo euro real.</p>
-      <div class="hero-actions"><a class="btn primary" href="../../privacy/familybank.html">Política de privacidad</a><a class="btn" href="mailto:gito@gitocorp.com">Contactar</a></div>
-    </div>
-    <div class="product-shot">
-      <div class="mock-top"><div class="mock-title"><img src="../../assets/icons/familybank.png" alt=""><div><b>Tarjeta familiar</b><span>Saldo y puntos de un vistazo</span></div></div><div class="mock-chip">iPhone</div></div>
-      <div class="mock-cards"><div class="mock-card"><span class="num">Tarjeta</span><h3>Una tarjeta virtual para cada miembro</h3><p>Entra con tarjeta NFC, Face ID o Touch ID.</p></div><div class="mock-card"><span class="num">Ahorro</span><h3>Huchas y fondo de ahorro</h3><p>Retos con icono y color propios.</p></div><div class="mock-card"><span class="num">Puntos</span><h3>Premios creados por cada familia</h3><p>Eventos flash y premios acumulativos.</p></div></div>
+<main id="main">
+  <section class="ahero">
+    <div class="wrap ahero__grid">
+      <div>
+        <a class="crumb" href="../../#apps">Todas las apps</a>
+        <div class="ahero__id">
+          <img src="../../assets/icons/familybank-256.png" alt="Icono de FamilyBank" width="96" height="96">
+          <p class="kicker">El banco de tu familia, con dinero ficticio</p>
+        </div>
+        <h1 class="display display--app">FamilyBank</h1>
+        <p class="lead">Paga semanal, ahorro, huchas y puntos con premios para que los peques aprendan a gestionar su dinero, sin que se mueva un solo euro real.</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="../../privacy/familybank.html">Política de privacidad</a>
+          <a class="btn" href="mailto:gito@gitocorp.com">Contactar</a>
+        </div>
+      </div>
+      <div class="phone" role="img" aria-label="Ilustración de la pantalla de FamilyBank">
+        <div class="screen">
+          <div class="screen__head"><img src="../../assets/icons/familybank-256.png" alt="" width="44" height="44"><div><b>Tarjeta familiar</b><span>Saldo y puntos de un vistazo</span></div></div>
+          <div class="srow"><small>Tarjeta</small><b>Una tarjeta virtual para cada miembro</b><span>Entra con tarjeta NFC, Face ID o Touch ID.</span></div><div class="srow"><small>Ahorro</small><b>Huchas y fondo de ahorro</b><span>Retos con icono y color propios.</span></div><div class="srow"><small>Puntos</small><b>Premios creados por cada familia</b><span>Eventos flash y premios acumulativos.</span></div>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="section">
-    <div class="section-head"><div><span class="eyebrow"><span class="eyebrow-dot"></span>Producto</span><h2 style="margin-top:18px">Un banco a escala familiar.</h2></div><p>FamilyBank reproduce la experiencia de una app bancaria seria, pero con dinero ficticio y bajo el control de los adultos de la casa.</p></div>
-    <div class="grid feature-grid"><div class="feature"><div class="symbol">01</div><h3>Roles de director y cliente</h3><p>Los adultos directores ingresan la paga, dan puntos y ven todos los movimientos. Los clientes retiran, transfieren y ahorran dentro de sus límites.</p></div><div class="feature"><div class="symbol">02</div><h3>Ahorro con propósito</h3><p>Un fondo de ahorro individual intocable y huchas para retos concretos, con aportaciones claras y colores por tipo de movimiento.</p></div><div class="feature"><div class="symbol">03</div><h3>Puntos y premios</h3><p>Cada familia crea su catálogo de premios, y los clientes pueden pedir puntos por una buena tarea y canjearlos por sus recompensas.</p></div></div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">Un banco a escala familiar.</h2>
+        <p class="sub">FamilyBank reproduce la experiencia de una app bancaria seria, pero con dinero ficticio y bajo el control de los adultos de la casa.</p>
+      </div>
+      <div class="feats"><div class="feat"><h3>Roles de director y cliente</h3><p>Los adultos directores ingresan la paga, dan puntos y ven todos los movimientos. Los clientes retiran, transfieren y ahorran dentro de sus límites.</p></div><div class="feat"><h3>Ahorro con propósito</h3><p>Un fondo de ahorro individual intocable y huchas para retos concretos, con aportaciones claras y colores por tipo de movimiento.</p></div><div class="feat"><h3>Puntos y premios</h3><p>Cada familia crea su catálogo de premios, y los clientes pueden pedir puntos por una buena tarea y canjearlos por sus recompensas.</p></div></div>
+    </div>
   </section>
-  <section class="section">
-    <div class="privacy-box"><div><h2>Privacidad de FamilyBank</h2><p>FamilyBank no maneja dinero real ni pide datos bancarios. Los datos de cada familia se guardan en un espacio propio y separado, y las fotos de personalización de la tarjeta se quedan solo en el dispositivo.</p></div><a class="btn primary" href="../../privacy/familybank.html">Leer política</a></div>
+
+  <section class="wrap">
+    <div class="note">
+      <div>
+        <h2 class="h3x">Privacidad de FamilyBank</h2>
+        <p class="sub">FamilyBank no maneja dinero real ni pide datos bancarios. Los datos de cada familia se guardan en un espacio propio y separado, y las fotos de personalización de la tarjeta se quedan solo en el dispositivo.</p>
+      </div>
+      <a class="btn btn--solid" href="../../privacy/familybank.html">Leer la política</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h2 class="h3x">Más apps de GitoCorp</h2>
+      <div class="others"><a class="other" href="../../apps/infiltrado/"><img src="../../assets/icons/infiltrado-256.png" alt="" width="84" height="84" loading="lazy"><span>Infiltrado</span></a><a class="other" href="../../apps/realfood-planner/"><img src="../../assets/icons/realfood-planner-256.png" alt="" width="84" height="84" loading="lazy"><span>RealFood Planner</span></a><a class="other" href="../../apps/noche-de-juegos/"><img src="../../assets/icons/noche-de-juegos-256.png" alt="" width="84" height="84" loading="lazy"><span>Noche de Juegos</span></a><a class="other" href="../../apps/turno-plus/"><img src="../../assets/icons/turno-plus-256.png" alt="" width="84" height="84" loading="lazy"><span>Turno+</span></a><a class="other" href="../../apps/nfc-life/"><img src="../../assets/icons/nfc-life-256.png" alt="" width="84" height="84" loading="lazy"><span>NFC Life</span></a><a class="other" href="../../apps/danoquiz/"><img src="../../assets/icons/danoquiz-256.png" alt="" width="84" height="84" loading="lazy"><span>DanoQuiz</span></a></div>
+    </div>
   </section>
 </main>
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand"><img class="footer-brand-mark" src="../../assets/brand/gito-mark.png" alt="Marca GitoCorp Studios"><div><div class="footer-brand-main">GitoCorp <span>STUDIOS</span></div><span>Estudio personal de apps, juegos y herramientas digitales.</span></div></div>
-    <div class="footer-links">
-      <a href="../../apps/infiltrado/">Infiltrado</a>
-      <a href="../../apps/realfood-planner/">RealFood Planner</a>
-      <a href="../../apps/noche-de-juegos/">Noche de Juegos</a>
-      <a href="../../apps/turno-plus/">Turno+</a>
-      <a href="../../apps/nfc-life/">NFC Life</a>
-      <a href="../../apps/familybank/">FamilyBank</a>
-      <a href="../../apps/danoquiz/">DanoQuiz</a>
-      <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <a class="brand" href="../../"><img src="../../assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+      <p>Apps iPhone independientes: juegos, herramientas y experiencias digitales.</p>
+      <p class="foot__legal">Desarrollador: Jorge Sanz Borrell.<br>Marca pública: GitoCorp Studios.</p>
     </div>
-  <div class="footer-legal">Desarrollador: Jorge Sanz Borrell · Marca pública: GitoCorp Studios.</div>
+    <div class="foot__links">
+      <div>
+        <a href="../../apps/infiltrado/">Infiltrado</a>
+        <a href="../../apps/realfood-planner/">RealFood Planner</a>
+        <a href="../../apps/noche-de-juegos/">Noche de Juegos</a>
+        <a href="../../apps/turno-plus/">Turno+</a>
+        <a href="../../apps/nfc-life/">NFC Life</a>
+        <a href="../../apps/familybank/">FamilyBank</a>
+        <a href="../../apps/danoquiz/">DanoQuiz</a>
+      </div>
+      <div>
+        <a href="../../privacy/">Privacidad</a>
+        <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+      </div>
+    </div>
   </div>
 </footer>
 </body>

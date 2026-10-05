@@ -5,61 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Turno+ · GitoCorp Studios</title>
   <meta name="description" content="Turno+ es un marcador y gestor de turnos para juegos de mesa y cartas: contadores personalizables, ruleta de turnos y dados virtuales.">
-  <meta name="theme-color" content="#050712">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e18" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="../../assets/brand/favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="../../assets/brand/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;850;900;950&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/styles.css">
+  <script src="../../assets/site.js" defer></script>
 </head>
-<body class="app-page" style="--accent:#ef4444; --brand:#ef4444; --brand2:#f97316;">
-<header class="site-header">
-  <nav class="nav" aria-label="Navegación principal">
-    <a class="logo" href="../../" aria-label="GitoCorp Studios"><img class="logo-image" src="../../assets/brand/gito-mark.png" alt="Logotipo de GitoCorp Studios"><span class="logo-text"><strong>GitoCorp</strong><small>STUDIOS</small></span></a>
-    <div class="nav-links">
-      <a href="../../#apps" class="active">Apps</a>
-      <a href="../../#studio">Estudio</a>
+<body style="--accent:#ef4444">
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="brand" href="../../" aria-label="GitoCorp Studios, inicio"><img src="../../assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="../../#apps" aria-current="page" class="nav__opt">Apps</a>
+      <a href="../../#studio" class="nav__opt">Estudio</a>
       <a href="../../privacy/">Privacidad</a>
       <a href="mailto:gito@gitocorp.com">Contacto</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
-<main>
-  <section class="section app-hero">
-    <div>
-      <div class="app-badge"><img src="../../assets/icons/turno-plus.png" alt="Icono de Turno+"><div><span>Marcador y turnos para juegos de mesa</span><p style="margin:4px 0 0">GitoCorp Studios</p></div></div>
-      <h1>Turno+</h1>
-      <p class="lead">El contador, la ruleta y los dados que sustituyen a la libreta en cualquier partida.</p>
-      <div class="hero-actions"><a class="btn primary" href="../../privacy/turno-plus.html">Política de privacidad</a><a class="btn" href="mailto:gito@gitocorp.com">Contactar</a></div>
-    </div>
-    <div class="product-shot">
-      <div class="mock-top"><div class="mock-title"><img src="../../assets/icons/turno-plus.png" alt=""><div><b>La Cuenta</b><span>4 jugadores · ronda 3</span></div></div><div class="mock-chip">iPhone</div></div>
-      <div class="mock-cards"><div class="mock-card"><span class="num">Marcador</span><h3>Contadores para cada juego</h3><p>Plantillas estándar o creadas con el asistente.</p></div><div class="mock-card"><span class="num">Turnos</span><h3>Ruleta para decidir quién empieza</h3><p>Grupos guardados y animación real de giro.</p></div><div class="mock-card"><span class="num">Dados</span><h3>Dados virtuales de varias caras</h3><p>Tira uno o varios a la vez, sin buscar los físicos.</p></div></div>
+<main id="main">
+  <section class="ahero">
+    <div class="wrap ahero__grid">
+      <div>
+        <a class="crumb" href="../../#apps">Todas las apps</a>
+        <div class="ahero__id">
+          <img src="../../assets/icons/turno-plus-256.png" alt="Icono de Turno+" width="96" height="96">
+          <p class="kicker">Marcador y turnos para juegos de mesa</p>
+        </div>
+        <h1 class="display display--app">Turno+</h1>
+        <p class="lead">El contador, la ruleta y los dados que sustituyen a la libreta en cualquier partida.</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="../../privacy/turno-plus.html">Política de privacidad</a>
+          <a class="btn" href="mailto:gito@gitocorp.com">Contactar</a>
+        </div>
+      </div>
+      <div class="phone" role="img" aria-label="Ilustración de la pantalla de Turno+">
+        <div class="screen">
+          <div class="screen__head"><img src="../../assets/icons/turno-plus-256.png" alt="" width="44" height="44"><div><b>La Cuenta</b><span>4 jugadores, ronda 3</span></div></div>
+          <div class="srow"><small>Marcador</small><b>Contadores para cada juego</b><span>Plantillas estándar o creadas con el asistente.</span></div><div class="srow"><small>Turnos</small><b>Ruleta para decidir quién empieza</b><span>Grupos guardados y animación real de giro.</span></div><div class="srow"><small>Dados</small><b>Dados virtuales de varias caras</b><span>Tira uno o varios a la vez, sin buscar los físicos.</span></div>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="section">
-    <div class="section-head"><div><span class="eyebrow"><span class="eyebrow-dot"></span>Producto</span><h2 style="margin-top:18px">Un marcador para cada juego.</h2></div><p>Turno+ nace como complemento de Noche de Juegos: un contador flexible que se adapta al juego concreto en lugar de obligarte a encajarlo en un marcador genérico.</p></div>
-    <div class="grid feature-grid"><div class="feature"><div class="symbol">01</div><h3>Asistente de creación</h3><p>Responde unas preguntas sencillas sobre cómo se puntúa tu juego y Turno+ construye el marcador adecuado: rondas acumulativas, cantidad que baja hasta cero, vidas, acarreo por grupos y más.</p></div><div class="feature"><div class="symbol">02</div><h3>Ruleta de turnos</h3><p>Decide quién empieza con una ruleta animada, guarda grupos de jugadores habituales y elige entre distintos temas de color.</p></div><div class="feature"><div class="symbol">03</div><h3>Dados virtuales</h3><p>Dados de 4, 6, 12 o 20 caras con animación de tirada real, para jugar sin depender de los dados físicos.</p></div></div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">Un marcador para cada juego.</h2>
+        <p class="sub">Turno+ nace como complemento de Noche de Juegos: un contador flexible que se adapta al juego concreto en lugar de obligarte a encajarlo en un marcador genérico.</p>
+      </div>
+      <div class="feats"><div class="feat"><h3>Asistente de creación</h3><p>Responde unas preguntas sencillas sobre cómo se puntúa tu juego y Turno+ construye el marcador adecuado: rondas acumulativas, cantidad que baja hasta cero, vidas, acarreo por grupos y más.</p></div><div class="feat"><h3>Ruleta de turnos</h3><p>Decide quién empieza con una ruleta animada, guarda grupos de jugadores habituales y elige entre distintos temas de color.</p></div><div class="feat"><h3>Dados virtuales</h3><p>Dados de 4, 6, 12 o 20 caras con animación de tirada real, para jugar sin depender de los dados físicos.</p></div></div>
+    </div>
   </section>
-  <section class="section">
-    <div class="privacy-box"><div><h2>Privacidad de Turno+</h2><p>Los marcadores, grupos de jugadores y partidas se guardan para que puedas retomarlos y consultar tu historial. Algunas funciones pueden consultar BoardGameGeek para completar información pública de un juego al crear un contador nuevo.</p></div><a class="btn primary" href="../../privacy/turno-plus.html">Leer política</a></div>
+
+  <section class="wrap">
+    <div class="note">
+      <div>
+        <h2 class="h3x">Privacidad de Turno+</h2>
+        <p class="sub">Los marcadores, grupos de jugadores y partidas se guardan para que puedas retomarlos y consultar tu historial. Algunas funciones pueden consultar BoardGameGeek para completar información pública de un juego al crear un contador nuevo.</p>
+      </div>
+      <a class="btn btn--solid" href="../../privacy/turno-plus.html">Leer la política</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h2 class="h3x">Más apps de GitoCorp</h2>
+      <div class="others"><a class="other" href="../../apps/infiltrado/"><img src="../../assets/icons/infiltrado-256.png" alt="" width="84" height="84" loading="lazy"><span>Infiltrado</span></a><a class="other" href="../../apps/realfood-planner/"><img src="../../assets/icons/realfood-planner-256.png" alt="" width="84" height="84" loading="lazy"><span>RealFood Planner</span></a><a class="other" href="../../apps/noche-de-juegos/"><img src="../../assets/icons/noche-de-juegos-256.png" alt="" width="84" height="84" loading="lazy"><span>Noche de Juegos</span></a><a class="other" href="../../apps/nfc-life/"><img src="../../assets/icons/nfc-life-256.png" alt="" width="84" height="84" loading="lazy"><span>NFC Life</span></a><a class="other" href="../../apps/familybank/"><img src="../../assets/icons/familybank-256.png" alt="" width="84" height="84" loading="lazy"><span>FamilyBank</span></a><a class="other" href="../../apps/danoquiz/"><img src="../../assets/icons/danoquiz-256.png" alt="" width="84" height="84" loading="lazy"><span>DanoQuiz</span></a></div>
+    </div>
   </section>
 </main>
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand"><img class="footer-brand-mark" src="../../assets/brand/gito-mark.png" alt="Marca GitoCorp Studios"><div><div class="footer-brand-main">GitoCorp <span>STUDIOS</span></div><span>Estudio personal de apps, juegos y herramientas digitales.</span></div></div>
-    <div class="footer-links">
-      <a href="../../apps/infiltrado/">Infiltrado</a>
-      <a href="../../apps/realfood-planner/">RealFood Planner</a>
-      <a href="../../apps/noche-de-juegos/">Noche de Juegos</a>
-      <a href="../../apps/turno-plus/">Turno+</a>
-      <a href="../../apps/nfc-life/">NFC Life</a>
-      <a href="../../apps/familybank/">FamilyBank</a>
-      <a href="../../apps/danoquiz/">DanoQuiz</a>
-      <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <a class="brand" href="../../"><img src="../../assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+      <p>Apps iPhone independientes: juegos, herramientas y experiencias digitales.</p>
+      <p class="foot__legal">Desarrollador: Jorge Sanz Borrell.<br>Marca pública: GitoCorp Studios.</p>
     </div>
-  <div class="footer-legal">Desarrollador: Jorge Sanz Borrell · Marca pública: GitoCorp Studios.</div>
+    <div class="foot__links">
+      <div>
+        <a href="../../apps/infiltrado/">Infiltrado</a>
+        <a href="../../apps/realfood-planner/">RealFood Planner</a>
+        <a href="../../apps/noche-de-juegos/">Noche de Juegos</a>
+        <a href="../../apps/turno-plus/">Turno+</a>
+        <a href="../../apps/nfc-life/">NFC Life</a>
+        <a href="../../apps/familybank/">FamilyBank</a>
+        <a href="../../apps/danoquiz/">DanoQuiz</a>
+      </div>
+      <div>
+        <a href="../../privacy/">Privacidad</a>
+        <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+      </div>
+    </div>
   </div>
 </footer>
 </body>

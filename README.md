@@ -1,90 +1,43 @@
-# GitoCorp Studios
+# GitoCorp Studios · web v5.0
 
-Versión v3.4 con iconos reales integrados en la web. · Web v3
+Web estática para GitHub Pages. Sube el **contenido** de esta carpeta a la raíz del repositorio (no la carpeta contenedora). Todas las rutas son relativas, así que funciona también dentro del subdirectorio del proyecto.
 
-Web estática preparada para GitHub Pages.
+## Estructura
 
-## Archivos principales
+- `index.html`: landing (hero con pared de iconos, lista de apps, estudio, privacidad y contacto).
+- `apps/<app>/index.html`: ficha de cada app (Infiltrado, RealFood Planner, Noche de Juegos, Turno+, NFC Life, FamilyBank, DanoQuiz).
+- `privacy/index.html`: hub de privacidad. `privacy/<app>.html`: política de cada app.
+- `assets/styles.css`, `assets/site.js`: diseño y la única interacción (la pared de iconos del inicio).
+- `assets/icons/<app>.png` (1024 px, originales) y `<app>-256.png` (los que usa la web, ligeros).
+- `content/privacy/<app>.html`: texto legal de cada política (la primera línea es la entradilla).
+- `tools/build.py`: genera todas las páginas.
 
-- `index.html`: landing general de GitoCorp Studios.
-- `apps/infiltrado/index.html`: página de Infiltrado.
-- `apps/realfood-planner/index.html`: página de RealFood Planner.
-- `apps/noche-de-juegos/index.html`: página de Noche de Juegos.
-- `apps/danoquiz/index.html`: página de DanoQuiz.
-- `apps/turno-plus/index.html`: página de Turno+.
-- `apps/nfc-life/index.html`: página de NFC Life.
-- `apps/familybank/index.html`: página de FamilyBank.
-- `privacy/index.html`: hub general de privacidad.
-- `privacy/*.html`: política individual de cada app.
-- `assets/icons/*.png`: iconos 1024x1024 de las apps usados en la landing, páginas de app y privacidad.
-- `assets/icons/*.svg`: versiones vectoriales auxiliares heredadas; la web enlaza los PNG reales.
+## URLs para App Store Connect
 
-## URLs recomendadas para App Store Connect
+Base: `https://gitocorp.github.io/gitocorp-studios/`
 
-Usando `https://gitocorp.github.io/gitocorp-studios/` como dominio principal:
+- `privacy/infiltrado.html`, `privacy/realfood-planner.html`, `privacy/noche-de-juegos.html`
+- `privacy/turno-plus.html`, `privacy/nfc-life.html`, `privacy/familybank.html`, `privacy/danoquiz.html`
 
-- Infiltrado: `https://gitocorp.github.io/gitocorp-studios/privacy/infiltrado.html`
-- RealFood Planner: `https://gitocorp.github.io/gitocorp-studios/privacy/realfood-planner.html`
-- Noche de Juegos: `https://gitocorp.github.io/gitocorp-studios/privacy/noche-de-juegos.html`
-- DanoQuiz: `https://gitocorp.github.io/gitocorp-studios/privacy/danoquiz.html`
-- Turno+: `https://gitocorp.github.io/gitocorp-studios/privacy/turno-plus.html`
-- NFC Life: `https://gitocorp.github.io/gitocorp-studios/privacy/nfc-life.html`
-- FamilyBank: `https://gitocorp.github.io/gitocorp-studios/privacy/familybank.html`
+Contacto oficial: gito@gitocorp.com
 
-## Contacto oficial
+## Añadir o cambiar una app
 
-gito@gitocorp.com
+1. Añade su entrada en la lista `APPS` de `tools/build.py` (nombre, color, textos, pantalla de ejemplo).
+2. Pon sus iconos en `assets/icons/` (`<slug>.png` de 1024 px y `<slug>-256.png` de 256 px).
+3. Escribe su política en `content/privacy/<slug>.html`.
+4. Ejecuta `python3 tools/build.py` desde la raíz. Las páginas, la landing, el hub y los pies se regeneran solos.
 
-## Notas
+Para editar un texto de una política: cambia el fichero de `content/privacy/` y vuelve a ejecutar el script (no edites `privacy/*.html` a mano, se sobrescriben).
 
-Esta v3 sustituye los bloques tipo wireframe por texto real y usa iconos propios en SVG y PNG 1024x1024 para las cuatro apps. Si más adelante tienes los iconos finales exportados desde Xcode/App Store Connect, puedes reemplazar los archivos manteniendo el mismo nombre.
+## Diseño
 
+- Una sola familia tipográfica, Bricolage Grotesque (Google Fonts), con ejes de anchura y peso.
+- Base neutra fría (`#eef1f5`) con modo oscuro automático; el color de cada app es el único acento (resplandor del hero, líneas, puntos y tinte de la ficha).
+- Momento principal: en el inicio, al pasar por un icono el resplandor del hero toma el color de esa app. Fuera de eso, solo hay una animación de entrada de los iconos. Respeta `prefers-reduced-motion`.
+- Sin eyebrows, sin numeración y sin tarjetas idénticas: las apps van en filas, no en cuadrícula.
 
-## Nota importante para GitHub Pages en repositorio de proyecto
+## Notas de versión
 
-Si el repositorio se llama `gitocorp-studios`, la URL pública base será:
-
-`https://gitocorp.github.io/gitocorp-studios/gitocorp-studios/`
-
-Esta versión usa rutas relativas para que CSS, iconos y enlaces internos funcionen correctamente dentro de esa carpeta de proyecto.
-
-URLs recomendadas:
-
-- Home: `https://gitocorp.github.io/gitocorp-studios/gitocorp-studios/`
-- Privacidad general: `https://gitocorp.github.io/gitocorp-studios/gitocorp-studios/privacy/`
-- Infiltrado: `https://gitocorp.github.io/gitocorp-studios/gitocorp-studios/privacy/infiltrado.html`
-- RealFood Planner: `https://gitocorp.github.io/gitocorp-studios/gitocorp-studios/privacy/realfood-planner.html`
-- Noche de Juegos: `https://gitocorp.github.io/gitocorp-studios/gitocorp-studios/privacy/noche-de-juegos.html`
-- DanoQuiz: `https://gitocorp.github.io/gitocorp-studios/gitocorp-studios/privacy/danoquiz.html`
-
-Sube el contenido de esta carpeta al raíz del repositorio, no la carpeta contenedora completa.
-
-
-## Nota v3.2
-
-Ajuste del hero principal: titular más compacto, móvil más limpio y tarjetas flotantes más legibles para escritorio.
-
-
-## Hero v3.7
-
-Donde una idea se convierte en una app.
-
-En GitoCorp Studios convertimos ideas reales en apps iPhone independientes: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.
-
-
-## Privacidad actualizada
-
-- RealFood Planner: preparado para explicar uso familiar con iCloud/CloudKit.
-- Noche de Juegos: incluye uso de BoardGameGeek para búsquedas/importación de información pública de juegos.
-- Infiltrado y DanoQuiz: aclaran almacenamiento local y posibles servicios de Apple si se activan logros, clasificaciones o sincronización.
-- La landing queda abierta a nuevas apps y proyectos como Expedientes.
-
-
-## v3.9
-
-Añadidas Turno+ y NFC Life (páginas de app, políticas de privacidad, tarjetas en la landing y en el hub de privacidad, enlaces en todos los footers). Los iconos de ambas son provisionales: sustitúyelos por los finales manteniendo el nombre (`assets/icons/turno-plus.png`, `assets/icons/nfc-life.png`).
-
-
-## v4.0
-
-Añadida FamilyBank (icono provisional, página de app, política de privacidad, tarjeta en la landing y en el hub de privacidad, enlaces en todos los footers). Sustituye `assets/icons/familybank.png` por el icono final manteniendo el nombre.
+- v5.0: rediseño completo y generador de páginas. Iconos ligeros de 256 px.
+- v4.0: FamilyBank. v3.9: Turno+ y NFC Life.

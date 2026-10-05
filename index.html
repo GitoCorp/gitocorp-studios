@@ -5,175 +5,244 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GitoCorp Studios · Donde una idea se convierte en una app</title>
   <meta name="description" content="GitoCorp Studios: estudio independiente de apps iPhone para juegos, herramientas y experiencias digitales útiles, entretenidas y con identidad propia.">
-  <meta name="theme-color" content="#050712">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0e18" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/brand/favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/brand/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;850;900;950&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
 </head>
 <body>
-<header class="site-header">
-  <nav class="nav" aria-label="Navegación principal">
-    <a class="logo" href="./" aria-label="GitoCorp Studios"><img class="logo-image" src="assets/brand/gito-mark.png" alt="Logotipo de GitoCorp Studios"><span class="logo-text"><strong>GitoCorp</strong><small>STUDIOS</small></span></a>
-    <div class="nav-links">
-      <a href="#apps">Apps</a>
-      <a href="#studio">Estudio</a>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="brand" href="./" aria-label="GitoCorp Studios, inicio"><img src="assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#apps" class="nav__opt">Apps</a>
+      <a href="#studio" class="nav__opt">Estudio</a>
       <a href="privacy/">Privacidad</a>
       <a href="mailto:gito@gitocorp.com">Contacto</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
-<main>
-  <section class="section hero">
-    <div>
-      <span class="eyebrow"><span class="eyebrow-dot"></span>Estudio independiente de apps iPhone</span>
-      <h1>Donde una idea se convierte en una app.</h1>
-      <p class="lead">En GitoCorp Studios convertimos ideas reales en apps iPhone independientes: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#apps">Ver apps</a>
-        <a class="btn" href="privacy/">Privacidad</a>
-      </div>
-    </div>
-    <div class="hero-visual" aria-label="Vista de apps GitoCorp">
-      <div class="side-panel"><h3>Un estudio para ideas propias.</h3><p>Aplicaciones útiles y entretenidas, creadas con una misma forma de trabajar: claridad, buen diseño y atención al detalle.</p></div>
-      <div class="status-stack"><div class="status-pill"><img src="assets/icons/realfood-planner.png" alt=""><span>RealFood Planner</span></div><div class="status-pill"><img src="assets/icons/turno-plus.png" alt=""><span>Turno+</span></div><div class="status-pill"><img src="assets/icons/nfc-life.png" alt=""><span>NFC Life</span></div></div>
-      <div class="phone">
-        <div class="phone-screen">
-          <div class="phone-title">GitoCorp</div>
-          <div class="phone-sub">Juegos, herramientas y experiencias digitales nacidas de necesidades reales.</div>
-          <div class="phone-app-grid"><div class="phone-app"><img src="assets/icons/infiltrado.png" alt=""><b>Infiltrado</b><span>Juego social de identidad secreta</span></div><div class="phone-app"><img src="assets/icons/realfood-planner.png" alt=""><b>RealFood Planner</b><span>Planificación real de comidas</span></div><div class="phone-app"><img src="assets/icons/noche-de-juegos.png" alt=""><b>Noche de Juegos</b><span>Retos, sesiones y ludoteca familiar</span></div><div class="phone-app"><img src="assets/icons/turno-plus.png" alt=""><b>Turno+</b><span>Marcador, turnos y dados</span></div><div class="phone-app"><img src="assets/icons/nfc-life.png" alt=""><b>NFC Life</b><span>Inventario de etiquetas NFC</span></div><div class="phone-app" style="grid-column:1/-1"><img src="assets/icons/familybank.png" alt=""><b>FamilyBank</b><span>El banco de la familia, con dinero ficticio</span></div><div class="phone-app"><img src="assets/icons/danoquiz.png" alt=""><b>DanoQuiz</b><span>Trivia rápida y competitiva</span></div></div>
+<main id="main">
+  <section class="hero" data-hero>
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <h1 class="display">Donde una idea se convierte en una app.</h1>
+        <p class="lead">En GitoCorp Studios convertimos ideas reales en apps iPhone independientes: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="#apps">Ver las apps</a>
+          <a class="btn" href="privacy/">Privacidad</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="apps" class="section">
-    <div class="section-head">
-      <div><span class="eyebrow"><span class="eyebrow-dot"></span>Proyectos actuales</span><h2 style="margin-top:18px">Apps útiles, entretenidas y con identidad propia.</h2></div>
-      <p>Entretenimiento, organización, planificación y pequeñas herramientas pensadas para resolver momentos concretos con una experiencia clara.</p>
-    </div>
-    <div class="grid apps-grid"><article class="app-card" style="--accent:#8b5cf6">
-  <div>
-    <img class="app-icon" src="assets/icons/infiltrado.png" alt="Icono de Infiltrado">
-    <div class="app-kicker">Juego social</div>
-    <h3>Infiltrado</h3>
-    <p>Un juego presencial de sospechas, roles ocultos y acusaciones. La app guía la partida, reparte identidades y mantiene el ritmo sin interrumpir la conversación.</p>
-    <ul class="mini-list"><li>Partidas rápidas para grupos.</li><li>Modos pensados para distintos estilos de juego.</li></ul>
-  </div>
-  <div class="card-links"><a class="pill primary" href="apps/infiltrado/">Ver app</a><a class="pill" href="privacy/infiltrado.html">Privacidad</a></div>
-</article><article class="app-card" style="--accent:#22c55e">
-  <div>
-    <img class="app-icon" src="assets/icons/realfood-planner.png" alt="Icono de RealFood Planner">
-    <div class="app-kicker">Planificación de comidas</div>
-    <h3>RealFood Planner</h3>
-    <p>Una forma sencilla de organizar comidas y cenas, guardar platos habituales y preparar la compra con más criterio.</p>
-    <ul class="mini-list"><li>Menú semanal claro y editable.</li><li>Platos, despensa, compra, historial y sincronización familiar con iCloud.</li></ul>
-  </div>
-  <div class="card-links"><a class="pill primary" href="apps/realfood-planner/">Ver app</a><a class="pill" href="privacy/realfood-planner.html">Privacidad</a></div>
-</article><article class="app-card" style="--accent:#f59e0b">
-  <div>
-    <img class="app-icon" src="assets/icons/noche-de-juegos.png" alt="Icono de Noche de Juegos">
-    <div class="app-kicker">Juegos de mesa</div>
-    <h3>Noche de Juegos</h3>
-    <p>Una ayuda para sacar más partido a la ludoteca: elegir qué jugar, registrar partidas y crear retos que animen a volver a mesa.</p>
-    <ul class="mini-list"><li>Biblioteca, partidas y retos.</li><li>Búsqueda e importación de datos públicos desde BoardGameGeek.</li></ul>
-  </div>
-  <div class="card-links"><a class="pill primary" href="apps/noche-de-juegos/">Ver app</a><a class="pill" href="privacy/noche-de-juegos.html">Privacidad</a></div>
-</article><article class="app-card" style="--accent:#ef4444">
-  <div>
-    <img class="app-icon" src="assets/icons/turno-plus.png" alt="Icono de Turno+">
-    <div class="app-kicker">Marcador y turnos</div>
-    <h3>Turno+</h3>
-    <p>El contador, la ruleta de turnos y los dados virtuales que sustituyen a la libreta en cualquier partida, con marcadores creados a medida para cada juego.</p>
-    <ul class="mini-list"><li>Asistente para crear el marcador de tu juego.</li><li>Ruleta de turnos y dados virtuales con animación.</li></ul>
-  </div>
-  <div class="card-links"><a class="pill primary" href="apps/turno-plus/">Ver app</a><a class="pill" href="privacy/turno-plus.html">Privacidad</a></div>
-</article><article class="app-card" style="--accent:#2dd4bf">
-  <div>
-    <img class="app-icon" src="assets/icons/nfc-life.png" alt="Icono de NFC Life">
-    <div class="app-kicker">Inventario NFC</div>
-    <h3>NFC Life</h3>
-    <p>Graba etiquetas NFC y vincúlalas a los objetos de casa para encontrarlos al instante y recibir avisos de mantenimiento.</p>
-    <ul class="mini-list"><li>Lectura y escritura de etiquetas NTAG213/215/216.</li><li>Recordatorios de mantenimiento y sincronización con iCloud.</li></ul>
-  </div>
-  <div class="card-links"><a class="pill primary" href="apps/nfc-life/">Ver app</a><a class="pill" href="privacy/nfc-life.html">Privacidad</a></div>
-</article><article class="app-card" style="--accent:#d9a441">
-  <div>
-    <img class="app-icon" src="assets/icons/familybank.png" alt="Icono de FamilyBank">
-    <div class="app-kicker">Banco familiar</div>
-    <h3>FamilyBank</h3>
-    <p>El banco de la familia con dinero ficticio: tarjeta virtual para cada miembro, paga, ahorro, huchas y un programa de puntos con premios creados por cada casa.</p>
-    <ul class="mini-list"><li>Roles de director y cliente, con acceso por tarjeta NFC, Face ID o Touch ID.</li><li>Avisos en tiempo real entre los miembros de la familia.</li></ul>
-  </div>
-  <div class="card-links"><a class="pill primary" href="apps/familybank/">Ver app</a><a class="pill" href="privacy/familybank.html">Privacidad</a></div>
-</article><article class="app-card" style="--accent:#38bdf8">
-  <div>
-    <img class="app-icon" src="assets/icons/danoquiz.png" alt="Icono de DanoQuiz">
-    <div class="app-kicker">Trivia y competición</div>
-    <h3>DanoQuiz</h3>
-    <p>Un juego de preguntas con modos rápidos para jugar solo, en grupo o en formato batalla.</p>
-    <ul class="mini-list"><li>Partidas ágiles y competitivas.</li><li>Modos diseñados para mantener el ritmo.</li></ul>
-  </div>
-  <div class="card-links"><a class="pill primary" href="apps/danoquiz/">Ver app</a><a class="pill" href="privacy/danoquiz.html">Privacidad</a></div>
-</article></div>
-    <div class="big-panel upcoming-panel" style="margin-top:22px">
-      <span class="eyebrow"><span class="eyebrow-dot"></span>Próximamente</span>
-      <h2 style="margin-top:18px">Más ideas en camino.</h2>
-      <p>GitoCorp Studios seguirá sumando apps independientes: herramientas útiles, juegos sociales y nuevas experiencias narrativas como <strong>Expedientes</strong>, siempre con la misma idea de fondo: convertir necesidades reales en aplicaciones cuidadas.</p>
-    </div>
-  </section>
-
-  <section id="studio" class="section">
-    <div class="section-head">
-      <div><span class="eyebrow"><span class="eyebrow-dot"></span>Estudio</span><h2 style="margin-top:18px">Ideas reales, experiencias cuidadas.</h2></div>
-      <p>El punto de partida siempre es una necesidad concreta: jugar mejor, organizar algo, simplificar una tarea o dar forma a una idea que merece convertirse en app.</p>
-    </div>
-    <div class="grid feature-grid">
-      <div class="feature"><div class="symbol">📱</div><h3>Diseñadas para iPhone</h3><p>Interfaces directas, legibles y pensadas para usarse cómodamente desde el primer momento.</p></div>
-      <div class="feature"><div class="symbol">🔐</div><h3>Privacidad sin rodeos</h3><p>Cada app tiene su política, su contacto y una explicación clara de lo que necesita para funcionar.</p></div>
-      <div class="feature"><div class="symbol">✨</div><h3>Identidad propia</h3><p>Cada app tiene su carácter, su color y su ritmo, pero todas comparten una misma mirada de estudio.</p></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="split">
-      <div class="big-panel"><span class="eyebrow"><span class="eyebrow-dot"></span>Privacidad</span><h2 style="margin-top:18px">Información clara y accesible.</h2><p>Cada aplicación cuenta con su propia política de privacidad y una página de referencia para soporte, contacto y consulta pública.</p><a class="btn primary" href="privacy/">Ver privacidad</a></div>
-      <div class="big-panel"><span class="eyebrow"><span class="eyebrow-dot"></span>Contacto</span><h2 style="margin-top:18px">Contacto directo.</h2><p>Para soporte, sugerencias o consultas relacionadas con las apps, puedes escribir al correo oficial de GitoCorp Studios.</p><a class="btn" href="mailto:gito@gitocorp.com">gito@gitocorp.com</a></div>
-    </div>
-  </section>
-  <section class="section brand-showcase">
-    <div class="brand-card">
-      <div class="brand-card-copy">
-        <span class="eyebrow"><span class="eyebrow-dot"></span>Identidad de marca</span>
-        <h2 style="margin-top:18px">Una firma común para ideas diferentes.</h2>
-        <p>GitoCorp Studios reúne apps con usos muy distintos y deja espacio para nuevos proyectos: juegos, herramientas, planificación, experiencias narrativas y cualquier idea que pueda convertirse en una app útil, entretenida y cuidada.</p>
-      </div>
-      <div class="brand-signature" aria-label="Identidad visual GitoCorp Studios">
-        <img class="brand-signature-mark" src="assets/brand/gito-mark.png" alt="Icono G de GitoCorp Studios">
-        <div class="brand-signature-wordmark">
-          <div class="brand-word-main">GitoCorp</div>
-          <div class="brand-word-sub"><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span><span>S</span></div>
+      <div class="wallwrap">
+        <div class="wall" data-wall>
+      <a class="tile" href="apps/infiltrado/" style="--i:0" data-accent="#8b5cf6" data-name="Infiltrado" data-tagline="Juego social de identidad secreta"><img src="assets/icons/infiltrado-256.png" alt="Infiltrado" width="256" height="256"></a>
+      <a class="tile" href="apps/realfood-planner/" style="--i:1" data-accent="#22c55e" data-name="RealFood Planner" data-tagline="Planificación real de comidas"><img src="assets/icons/realfood-planner-256.png" alt="RealFood Planner" width="256" height="256"></a>
+      <a class="tile" href="apps/noche-de-juegos/" style="--i:2" data-accent="#f59e0b" data-name="Noche de Juegos" data-tagline="Retos, sesiones y ludoteca familiar"><img src="assets/icons/noche-de-juegos-256.png" alt="Noche de Juegos" width="256" height="256"></a>
+      <a class="tile" href="apps/turno-plus/" style="--i:3" data-accent="#ef4444" data-name="Turno+" data-tagline="Marcador, turnos y dados"><img src="assets/icons/turno-plus-256.png" alt="Turno+" width="256" height="256"></a>
+      <a class="tile" href="apps/nfc-life/" style="--i:4" data-accent="#2dd4bf" data-name="NFC Life" data-tagline="Inventario de etiquetas NFC"><img src="assets/icons/nfc-life-256.png" alt="NFC Life" width="256" height="256"></a>
+      <a class="tile" href="apps/familybank/" style="--i:5" data-accent="#d9a441" data-name="FamilyBank" data-tagline="El banco de la familia, con dinero ficticio"><img src="assets/icons/familybank-256.png" alt="FamilyBank" width="256" height="256"></a>
+      <a class="tile" href="apps/danoquiz/" style="--i:6" data-accent="#38bdf8" data-name="DanoQuiz" data-tagline="Trivia rápida y competitiva"><img src="assets/icons/danoquiz-256.png" alt="DanoQuiz" width="256" height="256"></a>
         </div>
+        <p class="caption" aria-live="polite" data-caption data-default="Siete apps independientes. Elige una para ver su ficha.">Siete apps independientes. Elige una para ver su ficha.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="apps" class="block">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">Apps útiles, entretenidas y con identidad propia.</h2>
+        <p class="sub">Entretenimiento, organización, planificación y pequeñas herramientas pensadas para resolver momentos concretos con una experiencia clara.</p>
+      </div>
+      <div class="apps">
+    <article class="app-row" style="--accent:#8b5cf6">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="assets/icons/infiltrado-256.png" alt="Icono de Infiltrado" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">Juego social</p>
+          <h3 class="app-row__name"><a href="apps/infiltrado/">Infiltrado</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>Un juego presencial de sospechas, roles ocultos y acusaciones. La app guía la partida, reparte identidades y mantiene el ritmo sin interrumpir la conversación.</p>
+        <ul class="points"><li>Partidas rápidas para grupos.</li><li>Modos pensados para distintos estilos de juego.</li></ul>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="apps/infiltrado/" tabindex="-1" aria-hidden="true">Ver app</a>
+        <a class="link" href="privacy/infiltrado.html">Privacidad</a>
+      </div>
+    </article>
+    <article class="app-row" style="--accent:#22c55e">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="assets/icons/realfood-planner-256.png" alt="Icono de RealFood Planner" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">Planificación de comidas</p>
+          <h3 class="app-row__name"><a href="apps/realfood-planner/">RealFood Planner</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>Una forma sencilla de organizar comidas y cenas, guardar platos habituales y preparar la compra con más criterio.</p>
+        <ul class="points"><li>Menú semanal claro y editable.</li><li>Platos, despensa, compra, historial y sincronización familiar con iCloud.</li></ul>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="apps/realfood-planner/" tabindex="-1" aria-hidden="true">Ver app</a>
+        <a class="link" href="privacy/realfood-planner.html">Privacidad</a>
+      </div>
+    </article>
+    <article class="app-row" style="--accent:#f59e0b">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="assets/icons/noche-de-juegos-256.png" alt="Icono de Noche de Juegos" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">Juegos de mesa</p>
+          <h3 class="app-row__name"><a href="apps/noche-de-juegos/">Noche de Juegos</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>Una ayuda para sacar más partido a la ludoteca: elegir qué jugar, registrar partidas y crear retos que animen a volver a mesa.</p>
+        <ul class="points"><li>Biblioteca, partidas y retos.</li><li>Búsqueda e importación de datos públicos desde BoardGameGeek.</li></ul>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="apps/noche-de-juegos/" tabindex="-1" aria-hidden="true">Ver app</a>
+        <a class="link" href="privacy/noche-de-juegos.html">Privacidad</a>
+      </div>
+    </article>
+    <article class="app-row" style="--accent:#ef4444">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="assets/icons/turno-plus-256.png" alt="Icono de Turno+" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">Marcador y turnos</p>
+          <h3 class="app-row__name"><a href="apps/turno-plus/">Turno+</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>El contador, la ruleta de turnos y los dados virtuales que sustituyen a la libreta en cualquier partida, con marcadores creados a medida para cada juego.</p>
+        <ul class="points"><li>Asistente para crear el marcador de tu juego.</li><li>Ruleta de turnos y dados virtuales con animación.</li></ul>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="apps/turno-plus/" tabindex="-1" aria-hidden="true">Ver app</a>
+        <a class="link" href="privacy/turno-plus.html">Privacidad</a>
+      </div>
+    </article>
+    <article class="app-row" style="--accent:#2dd4bf">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="assets/icons/nfc-life-256.png" alt="Icono de NFC Life" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">Inventario NFC</p>
+          <h3 class="app-row__name"><a href="apps/nfc-life/">NFC Life</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>Graba etiquetas NFC y vincúlalas a los objetos de casa para encontrarlos al instante y recibir avisos de mantenimiento.</p>
+        <ul class="points"><li>Lectura y escritura de etiquetas NTAG213/215/216.</li><li>Recordatorios de mantenimiento y sincronización con iCloud.</li></ul>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="apps/nfc-life/" tabindex="-1" aria-hidden="true">Ver app</a>
+        <a class="link" href="privacy/nfc-life.html">Privacidad</a>
+      </div>
+    </article>
+    <article class="app-row" style="--accent:#d9a441">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="assets/icons/familybank-256.png" alt="Icono de FamilyBank" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">Banco familiar</p>
+          <h3 class="app-row__name"><a href="apps/familybank/">FamilyBank</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>El banco de la familia con dinero ficticio: tarjeta virtual para cada miembro, paga, ahorro, huchas y un programa de puntos con premios creados por cada casa.</p>
+        <ul class="points"><li>Roles de director y cliente, con acceso por tarjeta NFC, Face ID o Touch ID.</li><li>Avisos en tiempo real entre los miembros de la familia.</li></ul>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="apps/familybank/" tabindex="-1" aria-hidden="true">Ver app</a>
+        <a class="link" href="privacy/familybank.html">Privacidad</a>
+      </div>
+    </article>
+    <article class="app-row" style="--accent:#38bdf8">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="assets/icons/danoquiz-256.png" alt="Icono de DanoQuiz" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">Trivia y competición</p>
+          <h3 class="app-row__name"><a href="apps/danoquiz/">DanoQuiz</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>Un juego de preguntas con modos rápidos para jugar solo, en grupo o en formato batalla.</p>
+        <ul class="points"><li>Partidas ágiles y competitivas.</li><li>Modos diseñados para mantener el ritmo.</li></ul>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="apps/danoquiz/" tabindex="-1" aria-hidden="true">Ver app</a>
+        <a class="link" href="privacy/danoquiz.html">Privacidad</a>
+      </div>
+    </article>
+    <article class="app-row app-row--soon">
+      <div class="app-row__id">
+        <div class="ghost" aria-hidden="true">+</div>
+        <div>
+          <p class="kicker">Próximamente</p>
+          <h3 class="app-row__name">Más ideas en camino</h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>GitoCorp Studios seguirá sumando apps independientes: herramientas útiles, juegos sociales y nuevas experiencias narrativas como <strong>Expedientes</strong>, siempre con la misma idea de fondo: convertir necesidades reales en aplicaciones cuidadas.</p>
+      </div>
+    </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="studio" class="wrap">
+    <div class="studio">
+      <h2 class="h2">Ideas reales, experiencias cuidadas.</h2>
+      <p class="studio__lead">El punto de partida siempre es una necesidad concreta: jugar mejor, organizar algo, simplificar una tarea o dar forma a una idea que merece convertirse en app.</p>
+      <div class="studio__items"><div class="studio__item"><h3>Diseñadas para iPhone</h3><p>Interfaces directas, legibles y pensadas para usarse cómodamente desde el primer momento.</p></div><div class="studio__item"><h3>Privacidad sin rodeos</h3><p>Cada app tiene su política, su contacto y una explicación clara de lo que necesita para funcionar.</p></div><div class="studio__item"><h3>Identidad propia</h3><p>Cada app tiene su carácter, su color y su ritmo, pero todas comparten una misma mirada de estudio.</p></div></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap duo">
+      <div>
+        <h2 class="h3x">Información clara y accesible.</h2>
+        <p class="sub">Cada aplicación cuenta con su propia política de privacidad y una página de referencia para soporte, contacto y consulta pública.</p>
+        <p><a class="btn btn--solid" href="privacy/">Ver privacidad</a></p>
+      </div>
+      <div>
+        <h2 class="h3x">Contacto directo.</h2>
+        <p class="sub">Para soporte, sugerencias o consultas relacionadas con las apps, escribe al correo oficial de GitoCorp Studios.</p>
+        <p><a class="bigmail" href="mailto:gito@gitocorp.com">gito@gitocorp.com</a></p>
       </div>
     </div>
   </section>
 </main>
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand"><img class="footer-brand-mark" src="assets/brand/gito-mark.png" alt="Marca GitoCorp Studios"><div><div class="footer-brand-main">GitoCorp <span>STUDIOS</span></div><span>Apps iPhone independientes: juegos, herramientas y experiencias digitales.</span></div></div>
-    <div class="footer-links">
-      <a href="apps/infiltrado/">Infiltrado</a>
-      <a href="apps/realfood-planner/">RealFood Planner</a>
-      <a href="apps/noche-de-juegos/">Noche de Juegos</a>
-      <a href="apps/turno-plus/">Turno+</a>
-      <a href="apps/nfc-life/">NFC Life</a>
-      <a href="apps/familybank/">FamilyBank</a>
-      <a href="apps/danoquiz/">DanoQuiz</a>
-      <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <a class="brand" href="./"><img src="assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+      <p>Apps iPhone independientes: juegos, herramientas y experiencias digitales.</p>
+      <p class="foot__legal">Desarrollador: Jorge Sanz Borrell.<br>Marca pública: GitoCorp Studios.</p>
     </div>
-  <div class="footer-legal">Desarrollador: Jorge Sanz Borrell · Marca pública: GitoCorp Studios.</div>
+    <div class="foot__links">
+      <div>
+        <a href="apps/infiltrado/">Infiltrado</a>
+        <a href="apps/realfood-planner/">RealFood Planner</a>
+        <a href="apps/noche-de-juegos/">Noche de Juegos</a>
+        <a href="apps/turno-plus/">Turno+</a>
+        <a href="apps/nfc-life/">NFC Life</a>
+        <a href="apps/familybank/">FamilyBank</a>
+        <a href="apps/danoquiz/">DanoQuiz</a>
+      </div>
+      <div>
+        <a href="privacy/">Privacidad</a>
+        <a href="mailto:gito@gitocorp.com">gito@gitocorp.com</a>
+      </div>
+    </div>
   </div>
 </footer>
 </body>
