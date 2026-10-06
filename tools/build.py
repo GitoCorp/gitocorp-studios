@@ -79,7 +79,7 @@ APPS = [
         hub="Biblioteca, retos y sesiones de juego. Puede consultar BoardGameGeek para buscar o importar información pública de juegos.",
     ),
     dict(
-        slug="turno-plus", name="Turno+", accent="#ef4444",
+        slug="turno-plus", name="Turno+", accent="#E2521E",
         badge="Marcador y turnos para juegos de mesa", kicker="Marcador y turnos",
         tagline="Marcador, turnos y dados",
         desc="El contador, la ruleta de turnos y los dados virtuales que sustituyen a la libreta en cualquier partida, con marcadores creados a medida para cada juego.",
@@ -98,7 +98,7 @@ APPS = [
         hub="Marcadores, ruleta de turnos y dados virtuales. Puede consultar BoardGameGeek al crear un marcador para un juego concreto.",
     ),
     dict(
-        slug="nfc-life", name="NFC Life", accent="#2dd4bf",
+        slug="nfc-life", name="NFC Life", accent="#5b63f5",
         badge="Inventario de etiquetas NFC", kicker="Inventario NFC",
         tagline="Inventario de etiquetas NFC",
         desc="Graba etiquetas NFC y vincúlalas a los objetos de casa para encontrarlos al instante y recibir avisos de mantenimiento.",
