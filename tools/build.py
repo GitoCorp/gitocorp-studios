@@ -261,8 +261,8 @@ def app_row(app, root, mode):
         {text}
       </div>
       <div class="app-row__links">
-        <a class="btn btn--solid" href="{main_href}" tabindex="-1" aria-hidden="true">{main_label}</a>
-        <a class="link" href="{sec_href}">{sec_label}</a>
+        <a class="btn btn--solid" href="{main_href}">{main_label}</a>
+        <a class="btn" href="{sec_href}">{sec_label}</a>
       </div>
     </article>
 """
