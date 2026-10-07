@@ -121,7 +121,7 @@ APPS = [
         badge="Juego social para iPhone", kicker="Juego social",
         tagline="Juego social de identidad secreta",
         desc="Un juego presencial de sospechas, roles ocultos y acusaciones que se juega pasando el móvil. Ahora con Modo Caos: roles extra como el Confundido y el Detective para que ninguna partida se parezca a la anterior.",
-        points=["Modo Caos con roles nuevos: Confundido y Detective.", "Todas las categorías disponibles desde el primer día, sin desbloqueos."],
+        points=["Modo Caos con roles nuevos: Confundido y Detective.", "Todas las categorías disponibles desde el primer día, sin desbloqueos.", "Grupos de jugadores guardados para no escribir nombres cada vez."],
         meta="Infiltrado es un juego social presencial para iPhone basado en roles ocultos, sospechas y acusaciones.",
         lead="Roles ocultos, caos controlado y una acusación final.",
         screen=("Expediente 01", "Partida presencial de 7 jugadores", [
