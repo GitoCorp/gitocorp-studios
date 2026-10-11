@@ -179,9 +179,28 @@ APPS = [
         privacy="Las colecciones, fotos y nombres se guardan solo en tu dispositivo. NickClick no tiene cuentas, anuncios ni analíticas, y el recorte del fondo y el reconocimiento por foto se hacen dentro del iPhone sin enviar nada a internet.",
         hub="Colecciones de muñecos con foto y nombre. Todo se guarda solo en el dispositivo y el reconocimiento por foto se hace sin conexión.",
     ),
+    dict(
+        slug="disfrazados", name="Disfrazados", accent="#E0559F",
+        badge="Juego de adivinar para toda la familia", kicker="Juego de deducción",
+        tagline="¿Quién se ha llevado la tarta?",
+        desc="Un juego de deducción para niños desde 6 años y para toda la familia: alguien se ha llevado la tarta de la fiesta y hay que descubrir qué invitado disfrazado ha sido, a base de preguntas de sí o no.",
+        points=["Invitados distintos en cada partida, con preguntas que se hacen tocando dibujos.", "Contra Mask, en duelo, en el Reto del día o en los modos «Te toca responder» y «¡Que se escapa!».", "Diseño propio para iPhone, iPad y Apple TV."],
+        meta="Disfrazados es un juego de deducción para iPhone, iPad y Apple TV: descubre qué invitado disfrazado se ha llevado la tarta haciendo preguntas de sí o no.",
+        lead="Alguien se ha llevado la tarta de la fiesta. Pregunta, descarta y pilla al culpable antes que nadie.",
+        screen=("¿Quién ha sido?", "16 invitados · Turno de Luna", [
+            ("Pregunta", "¿Lleva corona?", "Se pregunta tocando un dibujo, sin necesidad de leer."),
+            ("Respuesta", "¡SÍ! Se descartan 6 invitados", "Las cartas que no encajan se tachan solas."),
+            ("VIP", "Brunix era en realidad… Conde Pirulí", "40 invitados VIP disfrazados por coleccionar.")]),
+        head=("Deducción de verdad, a medida de los peques.", "Disfrazados toma la idea clásica de adivinar con preguntas y la convierte en una fiesta distinta cada vez: invitados generados al momento, sorpresas que cambian el tablero y un rival, Mask, con un nivel de dificultad bajo control."),
+        feats=[("Cada partida es nueva", "Los invitados se crean en cada partida combinando colores, cuerpos, ojos, cuernos, sombreros y objetos, con los rasgos bien repartidos para que todas las preguntas cuenten."),
+               ("Mask, un rival a tu nivel", "En Fácil, Normal o Experto, Mask juega a un ritmo fijo y sin trampas de azar, para que un niño pueda ganarle y un adulto tenga un reto de verdad."),
+               ("Modos para toda la familia", "Duelo pasando el dispositivo, modo clásico eligiendo tu disfrazado, «Te toca responder», «¡Que se escapa!» y un Reto del día con un solo intento.")],
+        privacy="Disfrazados guarda todo solo en el dispositivo: nombres de los detectives, ajustes, álbum de culpables, invitados VIP y resultados del Reto del día. No tiene cuentas, anuncios, compras ni analíticas, no necesita internet y no pide ningún permiso.",
+        hub="Juego de deducción para toda la familia. Todo se guarda solo en el dispositivo, sin cuentas, anuncios, compras ni conexión a internet.",
+    ),
 ]
 
-NUMBERS = {1: "Una", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho"}
+NUMBERS = {1: "Una", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho", 9: "Nueve", 10: "Diez"}
 N = len(APPS)
 E = html.escape
 

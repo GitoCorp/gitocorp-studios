@@ -5,7 +5,7 @@ Web estática para GitHub Pages. Sube el **contenido** de esta carpeta a la raí
 ## Estructura
 
 - `index.html`: landing (hero con pared de iconos, lista de apps, estudio, privacidad y contacto).
-- `apps/<app>/index.html`: ficha de cada app (Infiltrado, RealFood Planner, Noche de Juegos, Turno+, NFC Life, FamilyBank, DanoQuiz, NickClick).
+- `apps/<app>/index.html`: ficha de cada app (Infiltrado, RealFood Planner, Noche de Juegos, Turno+, NFC Life, FamilyBank, DanoQuiz, NickClick, Disfrazados).
 - `privacy/index.html`: hub de privacidad. `privacy/<app>.html`: política de cada app.
 - `assets/styles.css`, `assets/site.js`: diseño y la única interacción (la pared de iconos del inicio).
 - `assets/icons/<app>.png` (1024 px, originales) y `<app>-256.png` (los que usa la web, ligeros).
@@ -18,7 +18,7 @@ Base: `https://gitocorp.github.io/gitocorp-studios/`
 
 - `privacy/infiltrado.html`, `privacy/realfood-planner.html`, `privacy/noche-de-juegos.html`
 - `privacy/turno-plus.html`, `privacy/nfc-life.html`, `privacy/familybank.html`, `privacy/danoquiz.html`
-- `privacy/nickclick.html`
+- `privacy/nickclick.html`, `privacy/disfrazados.html`
 
 Contacto oficial: gito@gitocorp.com
 
@@ -40,6 +40,7 @@ Para editar un texto de una política: cambia el fichero de `content/privacy/` y
 
 ## Notas de versión
 
+- v5.2: Disfrazados (ficha y política de privacidad). La pared de iconos del inicio admite 9 apps (filas 3-4-2).
 - v5.1: NickClick (ficha, guía «Cómo empezar» y política de privacidad). La ficha de una app admite una guía opcional con la clave `steps`.
 - v5.0: rediseño completo y generador de páginas. Iconos ligeros de 256 px.
 - v4.0: FamilyBank. v3.9: Turno+ y NFC Life.
