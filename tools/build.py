@@ -159,7 +159,7 @@ APPS = [
         badge="Tus colecciones de muñecos, con nombre", kicker="Colecciones de muñecos",
         tagline="Tus muñecos, con foto y nombre",
         desc="Guarda tus colecciones de muñecos y figuras —Playmobil, Funko, minifiguras o sorpresas de huevo— con su foto, su nombre y sus rasgos, y reconócelos con la cámara.",
-        points=["Fotos con el fondo recortado y un color a elegir.", "Historial de nombres, favoritos y familias opcionales entre personajes.", "Reconoce un muñeco con una foto, sin conexión."],
+        points=["Fotos con el fondo recortado y un color a elegir.", "Lista de los que te faltan y progreso de cada colección.", "Historial de nombres, favoritos y familias opcionales entre personajes.", "Reconoce un muñeco con una foto, sin conexión."],
         meta="NickClick es una app para iPhone para guardar colecciones de muñecos y figuras con foto, nombre, rasgos e historial de nombres, y reconocerlos con la cámara.",
         lead="Cada muñeco con su foto, su nombre y su historia. Para coleccionar o para jugar.",
         screen=("Mi colección", "24 muñecos · Coleccionar y jugar", [
@@ -173,6 +173,7 @@ APPS = [
         steps=[("Crea una colección", "Ponle nombre e imagen y elige si es para solo coleccionar o para coleccionar y jugar. Si juegas, puedes activar las familias entre muñecos."),
                ("Añade tus muñecos", "Pulsa «+», haz una foto o elígela de la galería, escribe su nombre y, si quieres, sus rasgos (pelo, ropa, accesorios)."),
                ("Quita el fondo", "En la ficha, pulsa «Quitar el fondo» y elige un color en la cuadrícula. «Recuperar el fondo» devuelve la foto original."),
+               ("Apunta los que te faltan", "En «Me faltan» escribe a mano los que aún no tienes. Si indicas el total de la colección, verás el progreso; al conseguir uno, «¡La tengo!» lo pasa a tu colección con su nombre."),
                ("Marca favoritos y familias", "Toca la estrella para marcar un favorito. En las colecciones con familia, «Añadir familiar» los relaciona y el lápiz permite cambiarlo."),
                ("Busca, filtra y reconoce", "Usa el buscador, el botón de filtro (orden, favoritos, color y familia) o la pestaña «¿Quién es?» para identificar un muñeco con una foto."),
                ("Varios usuarios, si hace falta", "Con un solo usuario la app entra directa. Desde el menú puedes añadir más; cada uno tiene sus propias colecciones.")],
