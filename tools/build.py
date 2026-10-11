@@ -154,6 +154,31 @@ APPS = [
         privacy="La app no vende datos personales. Algunas versiones pueden usar servicios de Apple como Game Center o iCloud si el usuario decide utilizarlos; esos servicios se rigen por sus propias condiciones.",
         hub="Juego de preguntas con modos competitivos. El progreso se guarda para la experiencia de juego y los servicios de Apple dependen de la configuración del usuario.",
     ),
+    dict(
+        slug="nickclick", name="NickClick", accent="#1C66EB",
+        badge="Tus colecciones de muñecos, con nombre", kicker="Colecciones de muñecos",
+        tagline="Tus muñecos, con foto y nombre",
+        desc="Guarda tus colecciones de muñecos y figuras —Playmobil, Funko, minifiguras o sorpresas de huevo— con su foto, su nombre y sus rasgos, y reconócelos con la cámara.",
+        points=["Fotos con el fondo recortado y un color a elegir.", "Historial de nombres, favoritos y familias opcionales entre personajes.", "Reconoce un muñeco con una foto, sin conexión."],
+        meta="NickClick es una app para iPhone para guardar colecciones de muñecos y figuras con foto, nombre, rasgos e historial de nombres, y reconocerlos con la cámara.",
+        lead="Cada muñeco con su foto, su nombre y su historia. Para coleccionar o para jugar.",
+        screen=("Mi colección", "24 muñecos · Coleccionar y jugar", [
+            ("Muñeco", "Mike", "Recortado sobre fondo verde, marcado como favorito."),
+            ("Familia", "Amigo de Demogorgon", "Relaciones opcionales que se ven en las dos fichas."),
+            ("¿Quién es?", "El más parecido: Mike", "Una foto basta para saber cuál es.")]),
+        head=("Nombres que no se olvidan.", "NickClick nació para que dos hermanas recordaran los nombres que ponían a sus muñecos. Hoy sirve para cualquier colección: separa cada tipo de figura en su propia colección y decide si es solo para coleccionar o también para jugar."),
+        feats=[("Foto con fondo de color", "Recorta el muñeco de la foto con un toque, ponle un color de fondo de la cuadrícula y agrupa la colección por colores. La foto original se puede recuperar siempre."),
+               ("Nombre e historial", "Cada muñeco tiene su nombre, sus rasgos y un historial con los nombres anteriores, para cuando cambia de nombre en una nueva historia."),
+               ("¿Quién es?", "Haz una foto a un muñeco y NickClick te muestra los más parecidos de tu colección. El reconocimiento se hace dentro del iPhone, sin conexión.")],
+        steps=[("Crea una colección", "Ponle nombre e imagen y elige si es para solo coleccionar o para coleccionar y jugar. Si juegas, puedes activar las familias entre muñecos."),
+               ("Añade tus muñecos", "Pulsa «+», haz una foto o elígela de la galería, escribe su nombre y, si quieres, sus rasgos (pelo, ropa, accesorios)."),
+               ("Quita el fondo", "En la ficha, pulsa «Quitar el fondo» y elige un color en la cuadrícula. «Recuperar el fondo» devuelve la foto original."),
+               ("Marca favoritos y familias", "Toca la estrella para marcar un favorito. En las colecciones con familia, «Añadir familiar» los relaciona y el lápiz permite cambiarlo."),
+               ("Busca, filtra y reconoce", "Usa el buscador, el botón de filtro (orden, favoritos, color y familia) o la pestaña «¿Quién es?» para identificar un muñeco con una foto."),
+               ("Varios usuarios, si hace falta", "Con un solo usuario la app entra directa. Desde el menú puedes añadir más; cada uno tiene sus propias colecciones.")],
+        privacy="Las colecciones, fotos y nombres se guardan solo en tu dispositivo. NickClick no tiene cuentas, anuncios ni analíticas, y el recorte del fondo y el reconocimiento por foto se hacen dentro del iPhone sin enviar nada a internet.",
+        hub="Colecciones de muñecos con foto y nombre. Todo se guarda solo en el dispositivo y el reconocimiento por foto se hace sin conexión.",
+    ),
 ]
 
 NUMBERS = {1: "Una", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho"}
@@ -370,6 +395,25 @@ def phone(app, root):
       </div>"""
 
 
+def steps_html(app):
+    """Guía rápida opcional (clave 'steps' en APPS)."""
+    steps = app.get("steps")
+    if not steps:
+        return ""
+    items = "".join(f'<div class="feat"><h3>{i}. {E(t)}</h3><p>{E(p)}</p></div>' for i, (t, p) in enumerate(steps, 1))
+    return f"""  <section class="block" id="como-empezar">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">Cómo empezar</h2>
+        <p class="sub">Una guía rápida de {E(app['name'])}. El mismo tutorial aparece en la app la primera vez y desde el menú «Cómo funciona».</p>
+      </div>
+      <div class="feats">{items}</div>
+    </div>
+  </section>
+
+"""
+
+
 def page_app(app):
     root = "../../"
     slug = app["slug"]
@@ -408,7 +452,7 @@ def page_app(app):
     </div>
   </section>
 
-  <section class="wrap">
+{steps_html(app)}  <section class="wrap">
     <div class="note">
       <div>
         <h2 class="h3x">Privacidad de {E(app['name'])}</h2>
