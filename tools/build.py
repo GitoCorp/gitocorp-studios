@@ -166,7 +166,7 @@ APPS = [
             ("Muñeco", "Mike", "Recortado sobre fondo verde, marcado como favorito."),
             ("Familia", "Amigo de Demogorgon", "Relaciones opcionales que se ven en las dos fichas."),
             ("¿Quién es?", "El más parecido: Mike", "Una foto basta para saber cuál es.")]),
-        head=("Nombres que no se olvidan.", "NickClick nació para que dos hermanas recordaran los nombres que ponían a sus muñecos. Hoy sirve para cualquier colección: separa cada tipo de figura en su propia colección y decide si es solo para coleccionar o también para jugar."),
+        head=("Nombres que no se olvidan.", "Para una colección completa o para los juguetes de casa: cada tipo de figura en su propia colección, libre o con lista cerrada."),
         feats=[("Foto con fondo de color", "Recorta el muñeco de la foto con un toque, ponle un color de fondo de la cuadrícula y agrupa la colección por colores. La foto original se puede recuperar siempre."),
                ("Nombre e historial", "Cada muñeco tiene su nombre, sus rasgos y un historial con los nombres anteriores, para cuando cambia de nombre en una nueva historia."),
                ("¿Quién es?", "Haz una foto a un muñeco y NickClick te muestra los más parecidos de tu colección. El reconocimiento se hace dentro del iPhone, sin conexión.")],
