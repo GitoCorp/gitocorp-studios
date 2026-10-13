@@ -224,7 +224,10 @@ def head(root, title, desc, accent=None):
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a0e18" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="{root}assets/brand/favicon-32.png" type="image/png">
+  <link rel="icon" href="{root}favicon.ico" sizes="48x48">
+  <link rel="icon" href="{root}assets/brand/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="{root}assets/brand/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="icon" href="{root}assets/brand/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="{root}assets/brand/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
