@@ -199,9 +199,28 @@ APPS = [
         privacy="Disfrazados guarda todo solo en el dispositivo: nombres de los detectives, ajustes, álbum de culpables, invitados VIP y resultados del Reto del día. No tiene cuentas, anuncios, compras ni analíticas, no necesita internet y no pide ningún permiso.",
         hub="Juego de deducción para toda la familia. Todo se guarda solo en el dispositivo, sin cuentas, anuncios, compras ni conexión a internet.",
     ),
+    dict(
+        slug="carta-alta", name="Carta Alta", accent="#1E8A63",
+        badge="Duelo de cartas para dos", kicker="Juego de cartas",
+        tagline="El duelo de cartas más rápido",
+        desc="Un duelo de cartas para dos en un solo móvil: cada uno destapa su carta y gana la más alta. Con cartas de poder, barajas ilustradas y barajas hechas con tus propias fotos.",
+        points=["Pantalla dividida: un jugador a cada lado de la mesa.", "Contra otra persona o contra la máquina en Fácil, Medio o Experto.", "Barajas con tus fotos, recortadas y sin fondo, sin salir del móvil."],
+        meta="Carta Alta es un duelo de cartas para dos en iPhone: destapa tu carta, usa tus cartas de poder y gana la ronda. Con barajas ilustradas y barajas con tus fotos.",
+        lead="Una partida rápida para esperar una cola, una sobremesa o un viaje. Destapa, sorprende con un poder y llévate la ronda.",
+        screen=("Ronda 6 de 10", "Gito 07 · 05 Rival", [
+            ("Destapa", "Un 12 contra un 11", "El primero en destapar gana céntimos de iniciativa."),
+            ("Poder", "¡Robo!", "Pierdes por poco y te quedas la ronda."),
+            ("Baraja", "La familia", "Las figuras son vuestras fotos, sin fondo.")]),
+        head=("La carta más alta, con giros.", "Carta Alta convierte el juego más sencillo en un duelo con decisiones: cuándo destapar, qué poderes llevar y cuándo usarlos."),
+        feats=[("Cartas de poder", "Robo, Giro, Escudo, Doble o nada y más. Cada jugador monta su mazo de poder con los que ha conseguido en la tienda y elige el momento de usarlos."),
+               ("Justo y con ritmo", "Reparto equilibrado, con las mismas cartas para los dos en distinto orden, y una máquina que juega con las mismas reglas, sin mirar sus cartas."),
+               ("Barajas a tu gusto", "Cuatro temáticas ilustradas, dorsos coleccionables, tapetes distintos en cada partida y barajas con fotos de tu familia como figuras.")],
+        privacy="Carta Alta guarda en el dispositivo los perfiles de juego, los puntos, los poderes y las barajas con fotos. Las fotos se eligen una a una, se recortan y se les quita el fondo dentro del iPhone, y nunca salen de él. Sin cuentas, anuncios, compras ni conexión.",
+        hub="Duelo de cartas para dos. Perfiles, puntos y barajas con fotos se guardan solo en el dispositivo; las fotos se procesan dentro del iPhone y no se envían a ningún sitio.",
+    ),
 ]
 
-NUMBERS = {1: "Una", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho", 9: "Nueve", 10: "Diez"}
+NUMBERS = {1: "Una", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho", 9: "Nueve", 10: "Diez", 11: "Once", 12: "Doce"}
 N = len(APPS)
 E = html.escape
 
