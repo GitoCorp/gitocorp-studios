@@ -176,9 +176,9 @@ APPS = [
                ("Apunta los que te faltan", "En las colecciones con lista, «Me faltan» guarda a mano los que aún no tienes y la barra muestra el progreso. Al conseguir uno, «¡La tengo!» lo pasa a tu colección con su nombre."),
                ("Marca tus favoritos", "Toca la estrella en la ficha o al editar para marcar un favorito, y fíltralos después con el botón de filtro."),
                ("Busca, filtra y reconoce", "Usa el buscador, el botón de filtro (orden, favoritos, color y familia) o la pestaña «¿Quién es?» para identificar un muñeco con una foto."),
-               ("Varios usuarios, si hace falta", "Con un solo usuario la app entra directa. Desde el menú puedes añadir más; cada uno tiene sus propias colecciones.")],
-        privacy="Las colecciones, fotos y nombres se guardan solo en tu dispositivo. NickClick no tiene cuentas, anuncios ni analíticas, y el recorte del fondo y el reconocimiento por foto se hacen dentro del iPhone sin enviar nada a internet.",
-        hub="Colecciones de muñecos con foto y nombre. Todo se guarda solo en el dispositivo y el reconocimiento por foto se hace sin conexión.",
+               ("En iPhone y iPad", "Con la misma cuenta de iCloud, tus colecciones aparecen en todos tus dispositivos. Desde el menú puedes añadir más usuarios; cada uno tiene sus propias colecciones.")],
+        privacy="Las colecciones, fotos y nombres se guardan en tu dispositivo y se sincronizan con tu iCloud privado entre iPhone y iPad. NickClick no tiene cuentas, anuncios ni analíticas, y el recorte del fondo y el reconocimiento por foto se hacen dentro del dispositivo.",
+        hub="Colecciones de muñecos con foto y nombre. Se sincronizan con el iCloud privado del usuario y el reconocimiento por foto se hace en el dispositivo.",
     ),
     dict(
         slug="disfrazados", name="Disfrazados", accent="#E0559F",
