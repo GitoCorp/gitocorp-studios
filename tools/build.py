@@ -220,6 +220,61 @@ APPS = [
     ),
 ]
 
+# ---------------------------------------------------------------- prensa
+# Apps con kit de prensa (el orden de PRESS es el de la página /press/).
+# Para nominar otra app: añade su entrada aquí y deja sus imágenes en
+#   assets/press/<slug>/capturas/   capturas reales (PNG/JPG), en orden por nombre: 01-..., 02-...
+#   assets/press/<slug>/imagenes/   imágenes promocionales / mockups
+# El script genera las miniaturas, los iconos y el ZIP del kit.
+
+PRESS = {
+    "familybank": dict(
+        facts=[("Desarrollador", "Jorge Sanz Borrell · GitoCorp Studios"),
+               ("Plataformas", "iPhone y iPad"),
+               ("Disponibilidad", "App Store · España"),
+               ("Lanzamiento", "Otoño de 2026"),
+               ("Idioma", "Español"),
+               ("Acceso", "Iniciar sesión con Apple; tarjeta NFC, Face ID o Touch ID")],
+        short="FamilyBank es el banco de la familia con dinero ficticio: una tarjeta para cada miembro, paga, ahorro, huchas y un programa de puntos con premios, para que los niños aprendan a gestionar su dinero.",
+        long=["FamilyBank reproduce la experiencia de una app bancaria de verdad, pero con dinero ficticio y bajo el control de los adultos de la casa. Cada miembro tiene su tarjeta virtual con saldo y puntos, y los niños entran acercando su tarjeta NFC al iPhone o con Face ID o Touch ID.",
+              "Los adultos que dirigen el banco ingresan la paga, dan puntos explicando el motivo y ven todos los movimientos. Los niños retiran, transfieren a sus hermanos y ahorran: en un fondo de ahorro que no se puede tocar o en huchas para retos concretos, cada una con su icono y su color.",
+              "Cada familia crea su propio catálogo de premios, desde canjes inmediatos hasta metas a las que aporta toda la casa. Los avisos llegan al momento a los móviles de la familia, y los datos de cada familia se guardan en un espacio propio y separado. Sin dinero real y sin datos bancarios."],
+        short_en="FamilyBank is a family bank with pretend money: a card for every family member, allowance, savings, piggy banks and a points programme with rewards, so children learn to manage their money.",
+        long_en=["FamilyBank recreates the feel of a real banking app, but with pretend money and with the parents in charge. Every member has a virtual card showing their balance and points, and children sign in by tapping their NFC card on the iPhone or with Face ID or Touch ID.",
+                 "The adults who run the bank pay the allowance, award points with a reason and see every transaction. Children withdraw, transfer to their siblings and save: in a savings fund they cannot touch, or in piggy banks for specific goals, each with its own icon and colour.",
+                 "Each family builds its own rewards catalogue, from instant treats to bigger goals the whole household contributes to. Notifications reach the family's phones instantly, and each family's data lives in its own separate space. No real money and no bank details."],
+        highlights=[("Una tarjeta para cada miembro", "Saldo y puntos de un vistazo, con acceso por tarjeta NFC, Face ID o Touch ID y una tarjeta que cada uno puede personalizar."),
+                    ("Los adultos al mando", "Roles de director y cliente: los directores ingresan la paga, dan puntos y ven todos los movimientos para trasladarlos al mundo real."),
+                    ("Ahorrar tiene premio", "Fondo de ahorro intocable, huchas para retos y un programa de puntos con premios flash y acumulativos creados por cada familia.")],
+    ),
+    "noche-de-juegos": dict(
+        facts=[("Desarrollador", "Jorge Sanz Borrell · GitoCorp Studios"),
+               ("Plataforma", "iPhone"),
+               ("Disponibilidad", "App Store"),
+               ("Idioma", "Español"),
+               ("Datos", "En el dispositivo y en el iCloud de la familia")],
+        short="Noche de Juegos es la app para familias y grupos que juegan a juegos de mesa: organiza la ludoteca, registra cada partida y ayuda a decidir qué sacar a la mesa.",
+        long=["Noche de Juegos convierte una colección de juegos de mesa en algo vivo. Cada juego tiene su ficha, cada partida queda registrada con quién ganó y los retos animan a sacar de la estantería juegos que llevaban tiempo sin jugarse.",
+              "Ludo, el asistente de la app, propone qué jugar según cuántos sois, el tiempo que tenéis, el historial de partidas y los retos activos. Funciona dentro del propio iPhone, sin depender de servidores externos.",
+              "La ludoteca se comparte con la familia mediante iCloud, y la información pública de cada juego puede completarse desde BoardGameGeek. Perfiles, rankings y planificación de sesiones completan una app pensada para jugar más y elegir mejor."],
+        short_en="Noche de Juegos (Game Night) is an app for families and groups who love board games: it organises the collection, logs every play and helps decide what to bring to the table.",
+        long_en=["Noche de Juegos brings a board game collection to life. Every game has its own page, every play is logged along with the winner, and challenges encourage the family to bring games back off the shelf.",
+                 "Ludo, the app's assistant, suggests what to play based on the number of players, the time available, play history and active challenges. It runs entirely on the iPhone, with no external servers.",
+                 "The collection is shared with the family through iCloud, and public game information can be filled in from BoardGameGeek. Player profiles, rankings and session planning round out an app designed to help people play more and choose better."],
+        highlights=[("Ludoteca organizada", "Toda la colección con su ficha, añadida a mano o completada con la información pública de BoardGameGeek."),
+                    ("Partidas, retos y rankings", "Cada partida queda registrada, y los retos y la planificación de sesiones dan continuidad a las noches de juego."),
+                    ("Ludo, el asistente", "Recomienda qué jugar según la mesa, el tiempo y el historial, sin salir del iPhone.")],
+    ),
+}
+
+STUDIO_LOGO = "assets/press/gitocorp/gitocorp-studios-simbolo.png"
+IMG_EXT = {".png", ".jpg", ".jpeg"}
+
+try:
+    from PIL import Image
+except ImportError:  # sin Pillow se usan los originales como miniatura
+    Image = None
+
 NUMBERS = {1: "Una", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho", 9: "Nueve", 10: "Diez", 11: "Once", 12: "Doce"}
 N = len(APPS)
 E = html.escape
@@ -262,7 +317,7 @@ def head(root, title, desc, accent=None):
 def topbar(root, current):
     def a(label, href, key):
         cur = ' aria-current="page"' if current == key else ""
-        cls = ' class="nav__opt"' if key in ("apps", "studio") else ""
+        cls = ' class="nav__opt"' if key in ("apps", "studio", "press") else ""
         return f'<a href="{href}"{cur}{cls}>{label}</a>'
     return f"""<header class="topbar">
   <div class="wrap topbar__in">
@@ -271,6 +326,7 @@ def topbar(root, current):
       {a('Apps', root + '#apps', 'apps')}
       {a('Estudio', root + '#studio', 'studio')}
       {a('Privacidad', root + 'privacy/', 'privacy')}
+      {a('Prensa', root + 'press/', 'press')}
       <a href="mailto:{EMAIL}">Contacto</a>
     </nav>
   </div>
@@ -295,6 +351,7 @@ def footer(root):
       </div>
       <div>
         <a href="{root}privacy/">Privacidad</a>
+        <a href="{root}press/">Prensa</a>
         <a href="mailto:{EMAIL}">{EMAIL}</a>
       </div>
     </div>
@@ -477,7 +534,7 @@ def page_app(app):
         <p class="lead">{E(app['lead'])}</p>
         <div class="actions">
           <a class="btn btn--solid" href="{root}privacy/{slug}.html">Política de privacidad</a>
-          <a class="btn" href="mailto:{EMAIL}">Contactar</a>
+          {f'<a class="btn" href="{root}press/{slug}/">Kit de prensa</a>' if slug in PRESS else f'<a class="btn" href="mailto:{EMAIL}">Contactar</a>'}
         </div>
       </div>
       {phone(app, root)}
@@ -569,6 +626,282 @@ def page_privacy_hub():
     return out
 
 
+# ---------------------------------------------------------------- prensa: ficheros
+
+
+def human_size(n):
+    return f"{n / 1_048_576:.1f} MB".replace(".", ",") if n >= 1_048_576 else f"{max(1, round(n / 1024))} KB"
+
+
+def media(slug, folder):
+    """Imágenes de assets/press/<slug>/<folder>/, con su miniatura web y dimensiones."""
+    src_dir = ROOT / "assets" / "press" / slug / folder
+    if not src_dir.is_dir():
+        return []
+    out = []
+    for f in sorted(src_dir.iterdir()):
+        if f.suffix.lower() not in IMG_EXT:
+            continue
+        rel = f.relative_to(ROOT).as_posix()
+        item = dict(path=rel, thumb=rel, name=f.name, size=f.stat().st_size, w=0, h=0)
+        if Image:
+            with Image.open(f) as im:
+                item["w"], item["h"] = im.size
+                thumb = ROOT / "assets" / "press" / slug / "_web" / folder / (f.stem + ".jpg")
+                if not thumb.exists() or thumb.stat().st_mtime < f.stat().st_mtime:
+                    thumb.parent.mkdir(parents=True, exist_ok=True)
+                    t = im.convert("RGBA")
+                    t.thumbnail((720, 720 * 3))
+                    bg = Image.new("RGB", t.size, (255, 255, 255))
+                    bg.paste(t, mask=t.split()[3])
+                    bg.save(thumb, "JPEG", quality=82, optimize=True, progressive=True)
+                item["thumb"] = thumb.relative_to(ROOT).as_posix()
+        out.append(item)
+    return out
+
+
+def press_files():
+    """Iconos y logotipo derivados (solo se generan si faltan)."""
+    if not Image:
+        return
+    logo = ROOT / STUDIO_LOGO
+    if not logo.exists():
+        logo.parent.mkdir(parents=True, exist_ok=True)
+        with Image.open(ROOT / "assets/brand/gito-mark.png") as im:
+            im = im.convert("RGBA")
+            side = max(im.size)
+            sq = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+            sq.paste(im, ((side - im.width) // 2, (side - im.height) // 2))
+            sq.resize((1024, 1024), Image.LANCZOS).save(logo, optimize=True)
+    for slug in PRESS:
+        d = ROOT / "assets" / "press" / slug
+        d.mkdir(parents=True, exist_ok=True)
+        with Image.open(ROOT / f"assets/icons/{slug}.png") as im:
+            for px in (1024, 512):
+                f = d / f"icono-{slug}-{px}.png"
+                if not f.exists():
+                    im.convert("RGBA").resize((px, px), Image.LANCZOS).save(f, optimize=True)
+
+
+def press_text(app, p):
+    lines = [f"{app['name']} · Kit de prensa", "GitoCorp Studios · https://gitocorp.com/", ""]
+    lines += [f"{k}: {v}" for k, v in p["facts"]]
+    lines += ["", "DESCRIPCIÓN CORTA", p["short"], "", "DESCRIPCIÓN", *sum(([x, ""] for x in p["long"]), [])]
+    lines += ["LO MÁS DESTACADO", *[f"- {t}. {d}" for t, d in p["highlights"]], ""]
+    lines += ["SHORT DESCRIPTION (ENGLISH)", p["short_en"], "", "DESCRIPTION (ENGLISH)", *sum(([x, ""] for x in p["long_en"]), [])]
+    lines += [f"Web: https://gitocorp.com/apps/{app['slug']}/", f"Privacidad: https://gitocorp.com/privacy/{app['slug']}.html",
+              f"Contacto de prensa: {EMAIL}", "",
+              "Puedes usar este material para hablar de la app. Por favor, no modifiques el icono ni el logotipo."]
+    return "\n".join(lines) + "\n"
+
+
+def press_zip(app, p):
+    """ZIP del kit, con fecha fija para que no cambie si no cambia el contenido."""
+    import zipfile
+    slug = app["slug"]
+    zpath = ROOT / "assets" / "press" / slug / f"{slug}-kit-de-prensa.zip"
+    entries = [(f"{slug}-kit-de-prensa/LEEME-{slug}.txt", press_text(app, p).encode())]
+    for px in (1024, 512):
+        f = ROOT / "assets" / "press" / slug / f"icono-{slug}-{px}.png"
+        if f.exists():
+            entries.append((f"{slug}-kit-de-prensa/icono/{f.name}", f.read_bytes()))
+    for folder in ("capturas", "imagenes"):
+        for m in media(slug, folder):
+            entries.append((f"{slug}-kit-de-prensa/{folder}/{m['name']}", (ROOT / m["path"]).read_bytes()))
+    logo = ROOT / STUDIO_LOGO
+    if logo.exists():
+        entries.append((f"{slug}-kit-de-prensa/gitocorp-studios/{logo.name}", logo.read_bytes()))
+    with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
+        for name, data in entries:
+            info = zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            z.writestr(info, data)
+    print("escrito", zpath.relative_to(ROOT))
+    return zpath
+
+
+# ---------------------------------------------------------------- prensa: páginas
+
+
+def dl_card(href, thumb, title, meta, kind="icon"):
+    return (f'<a class="dl dl--{kind}" href="{href}" download>'
+            f'<span class="dl__img"><img src="{thumb}" alt="" loading="lazy"></span>'
+            f'<span class="dl__txt"><b>{E(title)}</b><small>{E(meta)}</small></span></a>')
+
+
+def gallery(app, root, folder, title, sub):
+    items = media(app["slug"], folder)
+    if not items:
+        return ""
+    kind = "shot" if folder == "capturas" else "promo"
+    cards = "".join(
+        f'<a class="media media--{kind}" href="{root}{m["path"]}" download>'
+        f'<img src="{root}{m["thumb"]}" alt="{E(app["name"])}: {E(m["name"].rsplit(".", 1)[0])}" loading="lazy"'
+        + (f' width="{m["w"]}" height="{m["h"]}"' if m["w"] else "")
+        + f'><small>{m["name"].rsplit(".", 1)[1].upper()}'
+        + (f' · {m["w"]} × {m["h"]}' if m["w"] else "") + f' · {human_size(m["size"])}</small></a>'
+        for m in items)
+    return f"""  <section class="block block--tight">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">{title}</h2>
+        <p class="sub">{sub}</p>
+      </div>
+      <div class="gallery gallery--{kind}">{cards}</div>
+    </div>
+  </section>
+
+"""
+
+
+def copy_block(id_, title, paras):
+    body = "".join(f"<p>{E(x)}</p>" for x in paras)
+    return (f'<div class="copy"><div class="copy__head"><h3>{E(title)}</h3>'
+            f'<button class="copybtn" type="button" data-copy="#{id_}">Copiar</button></div>'
+            f'<div class="copy__body" id="{id_}">{body}</div></div>')
+
+
+def page_press(app, p, zpath):
+    root = "../../"
+    slug = app["slug"]
+    facts = "".join(f"<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>" for k, v in p["facts"])
+    feats = "".join(f'<div class="feat"><h3>{E(t)}</h3><p>{E(d)}</p></div>' for t, d in p["highlights"])
+    icons = "".join([
+        dl_card(f"{root}assets/press/{slug}/icono-{slug}-1024.png", f"{root}{icon(app, root='')}", f"Icono de {app['name']}", "PNG · 1024 × 1024"),
+        dl_card(f"{root}assets/press/{slug}/icono-{slug}-512.png", f"{root}{icon(app, root='')}", f"Icono de {app['name']}", "PNG · 512 × 512"),
+        dl_card(f"{root}{STUDIO_LOGO}", f"{root}{STUDIO_LOGO}", "Símbolo de GitoCorp Studios", "PNG · 1024 × 1024 · fondo transparente", "logo"),
+    ])
+    out = head(root, f"{app['name']} · Kit de prensa · GitoCorp Studios",
+               f"Kit de prensa de {app['name']}: textos, ficha técnica, iconos, capturas e imágenes para descargar.", app["accent"])
+    out += topbar(root, "press")
+    out += f"""  <section class="ahero">
+    <div class="wrap ahero__grid">
+      <div>
+        <a class="crumb" href="{root}press/">Prensa</a>
+        <div class="ahero__id">
+          <img src="{icon(app, root)}" alt="Icono de {E(app['name'])}" width="96" height="96">
+          <p class="kicker">Kit de prensa</p>
+        </div>
+        <h1 class="display display--app">{E(app['name'])}</h1>
+        <p class="lead">{E(p['short'])}</p>
+        <div class="actions">
+          <a class="btn btn--solid" href="{root}assets/press/{slug}/{zpath.name}" download>Descargar el kit · ZIP, {human_size(zpath.stat().st_size)}</a>
+          <a class="btn" href="{root}apps/{slug}/">Ficha de la app</a>
+        </div>
+      </div>
+      <dl class="facts">{facts}</dl>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">Textos listos para usar.</h2>
+        <p class="sub">Descripción corta y larga, en español y en inglés. También van en el fichero de texto del ZIP.</p>
+      </div>
+      <div class="copies">
+        {copy_block(f"{slug}-corta", "Descripción corta", [p['short']])}
+        {copy_block(f"{slug}-larga", "Descripción", p['long'])}
+      </div>
+      <details class="lang">
+        <summary>In English</summary>
+        <div class="copies">
+          {copy_block(f"{slug}-short", "Short description", [p['short_en']])}
+          {copy_block(f"{slug}-long", "Description", p['long_en'])}
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block block--tight">
+    <div class="wrap">
+      <h2 class="h3x">Lo más destacado</h2>
+      <div class="feats feats--press">{feats}</div>
+    </div>
+  </section>
+
+{gallery(app, root, "capturas", "Capturas.", "Capturas reales de la app. Pulsa una para descargarla a tamaño completo.")}{gallery(app, root, "imagenes", "Imágenes promocionales.", "Composiciones para artículos y redes, hechas con capturas reales.")}  <section class="block block--tight">
+    <div class="wrap">
+      <div class="sechead">
+        <h2 class="h2">Icono y logotipo.</h2>
+        <p class="sub">Úsalos tal cual: sin recortar, deformar ni cambiar sus colores.</p>
+      </div>
+      <div class="dls">{icons}</div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="note">
+      <div>
+        <h2 class="h3x">Contacto de prensa</h2>
+        <p class="sub">Para entrevistas, más material o cualquier consulta sobre {E(app['name'])}, escribe a GitoCorp Studios.</p>
+      </div>
+      <a class="btn btn--solid" href="mailto:{EMAIL}?subject={E(app['name'])}%20%C2%B7%20Prensa">{EMAIL}</a>
+    </div>
+  </section>
+"""
+    out += footer(root)
+    return out
+
+
+def page_press_hub(zips):
+    root = "../"
+    rows = []
+    for slug, p in PRESS.items():
+        a = next(x for x in APPS if x["slug"] == slug)
+        rows.append(f"""    <article class="app-row" style="--accent:{a['accent']}">
+      <div class="app-row__id">
+        <img class="app-row__icon" src="{icon(a, root)}" alt="Icono de {E(a['name'])}" width="88" height="88" loading="lazy">
+        <div>
+          <p class="kicker">{E(a['kicker'])}</p>
+          <h3 class="app-row__name"><a href="{root}press/{slug}/">{E(a['name'])}</a></h3>
+        </div>
+      </div>
+      <div class="app-row__text">
+        <p>{E(p['short'])}</p>
+      </div>
+      <div class="app-row__links">
+        <a class="btn btn--solid" href="{root}press/{slug}/">Kit de prensa</a>
+        <a class="btn" href="{root}assets/press/{slug}/{zips[slug].name}" download>ZIP</a>
+      </div>
+    </article>
+""")
+    out = head(root, "Prensa · GitoCorp Studios",
+               "Kits de prensa de las apps de GitoCorp Studios: textos, ficha técnica, iconos, capturas e imágenes para descargar.")
+    out += topbar(root, "press")
+    out += f"""  <section class="phero">
+    <div class="wrap">
+      <h1 class="display display--legal">Prensa.</h1>
+      <p class="lead">Textos, iconos, capturas e imágenes de las apps de GitoCorp Studios, listos para descargar. Para medios, editores y cualquiera que quiera hablar de ellas.</p>
+    </div>
+  </section>
+  <section class="block block--tight">
+    <div class="wrap">
+      <div class="apps">
+{"".join(rows)}      </div>
+    </div>
+  </section>
+
+  <section class="block block--tight">
+    <div class="wrap duo">
+      <div>
+        <h2 class="h3x">GitoCorp Studios.</h2>
+        <p class="sub">Estudio independiente de apps para iPhone y iPad de Jorge Sanz Borrell: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.</p>
+        <div class="dls dls--one">{dl_card(f"{root}{STUDIO_LOGO}", f"{root}{STUDIO_LOGO}", "Símbolo de GitoCorp Studios", "PNG · 1024 × 1024 · fondo transparente", "logo")}</div>
+      </div>
+      <div>
+        <h2 class="h3x">Contacto de prensa.</h2>
+        <p class="sub">Entrevistas, material adicional o cualquier consulta.</p>
+        <p><a class="bigmail" href="mailto:{EMAIL}">{EMAIL}</a></p>
+      </div>
+    </div>
+  </section>
+"""
+    out += footer(root)
+    return out
+
+
 def write(path, content):
     p = ROOT / path
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -582,6 +915,13 @@ def main():
     for a in APPS:
         write(f"apps/{a['slug']}/index.html", page_app(a))
         write(f"privacy/{a['slug']}.html", page_privacy(a))
+    press_files()
+    zips = {}
+    for slug, p in PRESS.items():
+        app = next(x for x in APPS if x["slug"] == slug)
+        zips[slug] = press_zip(app, p)
+        write(f"press/{slug}/index.html", page_press(app, p, zips[slug]))
+    write("press/index.html", page_press_hub(zips))
 
 
 if __name__ == "__main__":

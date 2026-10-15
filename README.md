@@ -10,6 +10,8 @@ Web estática para GitHub Pages. Sube el **contenido** de esta carpeta a la raí
 - `assets/styles.css`, `assets/site.js`: diseño y la única interacción (la pared de iconos del inicio).
 - `assets/icons/<app>.png` (1024 px, originales) y `<app>-256.png` (los que usa la web, ligeros).
 - `content/privacy/<app>.html`: texto legal de cada política (la primera línea es la entradilla).
+- `press/index.html`: zona de prensa. `press/<app>/index.html`: kit de prensa de cada app nominada.
+- `assets/press/<app>/`: iconos para prensa, `capturas/` (reales), `imagenes/` (promocionales) y el ZIP del kit, que se genera solo.
 - `tools/build.py`: genera todas las páginas.
 
 ## URLs para App Store Connect
@@ -31,6 +33,12 @@ Contacto oficial: gito@gitocorp.com
 
 Para editar un texto de una política: cambia el fichero de `content/privacy/` y vuelve a ejecutar el script (no edites `privacy/*.html` a mano, se sobrescriben).
 
+## Kits de prensa
+
+1. Añade la app al diccionario `PRESS` de `tools/build.py` (ficha técnica, textos en español e inglés y lo más destacado).
+2. Deja las capturas reales en `assets/press/<app>/capturas/` y las promocionales en `assets/press/<app>/imagenes/`, con nombres ordenados (`01-ludoteca.png`, `02-...`).
+3. Ejecuta `python3 tools/build.py` (necesita Pillow): crea miniaturas, iconos de 1024 y 512 px, el ZIP y las páginas. Las secciones sin imágenes no se muestran.
+
 ## Diseño
 
 - Una sola familia tipográfica, Bricolage Grotesque (Google Fonts), con ejes de anchura y peso.
@@ -39,6 +47,8 @@ Para editar un texto de una política: cambia el fichero de `content/privacy/` y
 - Sin eyebrows, sin numeración y sin tarjetas idénticas: las apps van en filas, no en cuadrícula.
 
 ## Notas de versión
+
+- v5.4: zona de Prensa con kits de FamilyBank y Noche de Juegos (textos ES/EN, ficha técnica, icono, logotipo, capturas y ZIP). Sustituye el kit antiguo de Noche de Juegos 3.0.
 
 - v5.3: Carta Alta (ficha y política de privacidad). La pared de iconos del inicio admite 10 apps (filas 3-4-3).
 - v5.2: Disfrazados (ficha y política de privacidad). La pared de iconos del inicio admite 9 apps (filas 3-4-2).

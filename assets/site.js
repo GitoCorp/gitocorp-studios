@@ -1,3 +1,19 @@
+/* Prensa: botones «Copiar» de los textos. */
+(function () {
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.querySelector(btn.getAttribute('data-copy'));
+      if (!el || !navigator.clipboard) return;
+      var text = Array.prototype.map.call(el.querySelectorAll('p'), function (p) { return p.textContent; }).join('\n\n');
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copiado';
+        btn.classList.add('is-done');
+        setTimeout(function () { btn.textContent = 'Copiar'; btn.classList.remove('is-done'); }, 1800);
+      });
+    });
+  });
+})();
+
 /* Pared de iconos del inicio: al pasar por una app (o enfocarla con el teclado),
    el resplandor del hero toma su color y el pie muestra su nombre. */
 (function () {
