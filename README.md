@@ -48,6 +48,7 @@ Para editar un texto de una política: cambia el fichero de `content/privacy/` y
 
 ## Notas de versión
 
+- v5.6: FamilyBank usa gitos (GTO), su moneda ficticia, en ficha y kit de prensa; marcada como «Próximamente en la App Store».
 - v5.5: capturas reales, mockups de la App Store e imágenes de prensa (4 exclusivas) en los kits de FamilyBank y Noche de Juegos; enlace a la App Store de Noche de Juegos.
 - v5.4: zona de Prensa con kits de FamilyBank y Noche de Juegos (textos ES/EN, ficha técnica, icono, logotipo, capturas y ZIP). Sustituye el kit antiguo de Noche de Juegos 3.0.
 
