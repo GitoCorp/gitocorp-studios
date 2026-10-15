@@ -224,7 +224,10 @@ APPS = [
 # Apps con kit de prensa (el orden de PRESS es el de la página /press/).
 # Para nominar otra app: añade su entrada aquí y deja sus imágenes en
 #   assets/press/<slug>/capturas/   capturas reales (PNG/JPG), en orden por nombre: 01-..., 02-...
-#   assets/press/<slug>/imagenes/   imágenes promocionales / mockups
+#   assets/press/<slug>/imagenes/   imágenes promocionales y mockups exclusivos de prensa
+#   assets/press/<slug>/app-store/  los mockups publicados en la App Store
+# En capturas/ y app-store/, el prefijo 1-iphone-... / 2-ipad-... agrupa por dispositivo.
+# Si la app ya está publicada, pon su enlace en appstore=...
 # El script genera las miniaturas, los iconos y el ZIP del kit.
 
 PRESS = {
@@ -248,8 +251,9 @@ PRESS = {
                     ("Ahorrar tiene premio", "Fondo de ahorro intocable, huchas para retos y un programa de puntos con premios flash y acumulativos creados por cada familia.")],
     ),
     "noche-de-juegos": dict(
+        appstore="https://apps.apple.com/es/app/noche-de-juegos/id6771836805",
         facts=[("Desarrollador", "Jorge Sanz Borrell · GitoCorp Studios"),
-               ("Plataforma", "iPhone"),
+               ("Plataformas", "iPhone y iPad"),
                ("Disponibilidad", "App Store"),
                ("Idioma", "Español"),
                ("Datos", "En el dispositivo y en el iCloud de la familia")],
@@ -651,7 +655,7 @@ def media(slug, folder):
                 if not thumb.exists() or thumb.stat().st_mtime < f.stat().st_mtime:
                     thumb.parent.mkdir(parents=True, exist_ok=True)
                     t = im.convert("RGBA")
-                    t.thumbnail((720, 720 * 3))
+                    t.thumbnail((1400, 1400) if folder == "imagenes" else (720, 720 * 3))
                     bg = Image.new("RGB", t.size, (255, 255, 255))
                     bg.paste(t, mask=t.split()[3])
                     bg.save(thumb, "JPEG", quality=82, optimize=True, progressive=True)
@@ -689,6 +693,8 @@ def press_text(app, p):
     lines += ["", "DESCRIPCIÓN CORTA", p["short"], "", "DESCRIPCIÓN", *sum(([x, ""] for x in p["long"]), [])]
     lines += ["LO MÁS DESTACADO", *[f"- {t}. {d}" for t, d in p["highlights"]], ""]
     lines += ["SHORT DESCRIPTION (ENGLISH)", p["short_en"], "", "DESCRIPTION (ENGLISH)", *sum(([x, ""] for x in p["long_en"]), [])]
+    if p.get("appstore"):
+        lines += [f"App Store: {p['appstore']}"]
     lines += [f"Web: https://gitocorp.com/apps/{app['slug']}/", f"Privacidad: https://gitocorp.com/privacy/{app['slug']}.html",
               f"Contacto de prensa: {EMAIL}", "",
               "Puedes usar este material para hablar de la app. Por favor, no modifiques el icono ni el logotipo."]
@@ -705,7 +711,7 @@ def press_zip(app, p):
         f = ROOT / "assets" / "press" / slug / f"icono-{slug}-{px}.png"
         if f.exists():
             entries.append((f"{slug}-kit-de-prensa/icono/{f.name}", f.read_bytes()))
-    for folder in ("capturas", "imagenes"):
+    for folder in ("capturas", "app-store", "imagenes"):
         for m in media(slug, folder):
             entries.append((f"{slug}-kit-de-prensa/{folder}/{m['name']}", (ROOT / m["path"]).read_bytes()))
     logo = ROOT / STUDIO_LOGO
@@ -734,21 +740,30 @@ def gallery(app, root, folder, title, sub):
     items = media(app["slug"], folder)
     if not items:
         return ""
-    kind = "shot" if folder == "capturas" else "promo"
-    cards = "".join(
-        f'<a class="media media--{kind}" href="{root}{m["path"]}" download>'
-        f'<img src="{root}{m["thumb"]}" alt="{E(app["name"])}: {E(m["name"].rsplit(".", 1)[0])}" loading="lazy"'
-        + (f' width="{m["w"]}" height="{m["h"]}"' if m["w"] else "")
-        + f'><small>{m["name"].rsplit(".", 1)[1].upper()}'
-        + (f' · {m["w"]} × {m["h"]}' if m["w"] else "") + f' · {human_size(m["size"])}</small></a>'
-        for m in items)
+    kind = "promo" if folder == "imagenes" else "shot"
+
+    def card(m):
+        dims = f' width="{m["w"]}" height="{m["h"]}"' if m["w"] else ""
+        meta = m["name"].rsplit(".", 1)[1].upper() + (f' · {m["w"]} × {m["h"]}' if m["w"] else "") + f' · {human_size(m["size"])}'
+        alt = m["name"].rsplit(".", 1)[0].split("-", 1)[-1].replace("-", " ")
+        return (f'<a class="media media--{kind}" href="{root}{m["path"]}" download>'
+                f'<img src="{root}{m["thumb"]}" alt="{E(app["name"])}: {E(alt)}" loading="lazy"{dims}><small>{meta}</small></a>')
+
+    groups = {}
+    for m in items:
+        key = "iPhone" if "iphone" in m["name"] else "iPad" if "ipad" in m["name"] else ""
+        groups.setdefault(key, []).append(m)
+    body = ""
+    for key, ms in groups.items():
+        head_ = f'<h3 class="gallery__dev">{key}</h3>' if key and len(groups) > 1 else ""
+        body += f'{head_}<div class="gallery gallery--{kind}{" gallery--pad" if key == "iPad" else ""}">{"".join(card(m) for m in ms)}</div>'
     return f"""  <section class="block block--tight">
     <div class="wrap">
       <div class="sechead">
         <h2 class="h2">{title}</h2>
         <p class="sub">{sub}</p>
       </div>
-      <div class="gallery gallery--{kind}">{cards}</div>
+      {body}
     </div>
   </section>
 
@@ -787,7 +802,7 @@ def page_press(app, p, zpath):
         <p class="lead">{E(p['short'])}</p>
         <div class="actions">
           <a class="btn btn--solid" href="{root}assets/press/{slug}/{zpath.name}" download>Descargar el kit · ZIP, {human_size(zpath.stat().st_size)}</a>
-          <a class="btn" href="{root}apps/{slug}/">Ficha de la app</a>
+          {f'<a class="btn" href="{p["appstore"]}">Ver en la App Store</a>' if p.get("appstore") else f'<a class="btn" href="{root}apps/{slug}/">Ficha de la app</a>'}
         </div>
       </div>
       <dl class="facts">{facts}</dl>
@@ -821,7 +836,7 @@ def page_press(app, p, zpath):
     </div>
   </section>
 
-{gallery(app, root, "capturas", "Capturas.", "Capturas reales de la app. Pulsa una para descargarla a tamaño completo.")}{gallery(app, root, "imagenes", "Imágenes promocionales.", "Composiciones para artículos y redes, hechas con capturas reales.")}  <section class="block block--tight">
+{gallery(app, root, "imagenes", "Imágenes de prensa.", "Composiciones para artículos y redes, hechas con capturas reales. Pulsa una para descargarla a tamaño completo.")}{gallery(app, root, "capturas", "Capturas.", "Capturas reales de la app, sin retocar, a resolución nativa del iPhone 17 Pro Max y del iPad Pro de 13 pulgadas.")}{gallery(app, root, "app-store", "En la App Store.", "Las imágenes que acompañan a la app en su página de la App Store.")}  <section class="block block--tight">
     <div class="wrap">
       <div class="sechead">
         <h2 class="h2">Icono y logotipo.</h2>

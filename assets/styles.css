@@ -309,8 +309,11 @@ a { color: inherit; }
 .feats--press { margin-top: 28px; }
 
 .gallery { display: grid; gap: clamp(14px, 2vw, 24px); }
-.gallery--shot { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-.gallery--promo { grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
+.gallery--shot { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+.gallery--shot.gallery--pad { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); }
+.gallery + .gallery__dev { margin-top: clamp(32px, 4vw, 48px); }
+.gallery__dev { margin-bottom: 16px; font-size: 1.15rem; font-weight: 720; letter-spacing: -0.02em; }
+.gallery--promo { grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); align-items: start; }
 .media { display: grid; gap: 10px; align-content: start; text-decoration: none; }
 .media img { width: 100%; border-radius: 18px; background: var(--surface); box-shadow: 0 24px 40px -26px rgba(16, 24, 40, 0.6); transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .media--shot img { border-radius: 22px; }

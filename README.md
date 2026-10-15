@@ -36,7 +36,7 @@ Para editar un texto de una política: cambia el fichero de `content/privacy/` y
 ## Kits de prensa
 
 1. Añade la app al diccionario `PRESS` de `tools/build.py` (ficha técnica, textos en español e inglés y lo más destacado).
-2. Deja las capturas reales en `assets/press/<app>/capturas/` y las promocionales en `assets/press/<app>/imagenes/`, con nombres ordenados (`01-ludoteca.png`, `02-...`).
+2. Deja las capturas reales en `assets/press/<app>/capturas/`, los mockups de la App Store en `assets/press/<app>/app-store/` (prefijos `1-iphone-` y `2-ipad-` para agruparlos) y las imágenes de prensa en `assets/press/<app>/imagenes/`, con nombres ordenados. Cada imagen va en una sola carpeta: no la dupliques. Cuando la app esté publicada, pon su enlace en `appstore=`.
 3. Ejecuta `python3 tools/build.py` (necesita Pillow): crea miniaturas, iconos de 1024 y 512 px, el ZIP y las páginas. Las secciones sin imágenes no se muestran.
 
 ## Diseño
@@ -48,6 +48,7 @@ Para editar un texto de una política: cambia el fichero de `content/privacy/` y
 
 ## Notas de versión
 
+- v5.5: capturas reales, mockups de la App Store e imágenes de prensa (4 exclusivas) en los kits de FamilyBank y Noche de Juegos; enlace a la App Store de Noche de Juegos.
 - v5.4: zona de Prensa con kits de FamilyBank y Noche de Juegos (textos ES/EN, ficha técnica, icono, logotipo, capturas y ZIP). Sustituye el kit antiguo de Noche de Juegos 3.0.
 
 - v5.3: Carta Alta (ficha y política de privacidad). La pared de iconos del inicio admite 10 apps (filas 3-4-3).
