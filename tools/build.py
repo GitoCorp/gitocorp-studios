@@ -12,8 +12,13 @@ Uso (desde la raíz del repositorio):  python3 tools/build.py
 import html
 import pathlib
 import re
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from en import UI as UI_EN, APPS_EN  # noqa: E402
+
+LANG = "es"  # idioma de la pasada actual: "es" o "en"
 EMAIL = "gito@gitocorp.com"
 FONTS = ("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:"
          "opsz,wdth,wght@12..96,75..100,200..800&display=swap")
@@ -284,6 +289,21 @@ NUMBERS = {1: "Una", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7:
 N = len(APPS)
 E = html.escape
 
+
+def t(s, **kw):
+    """Texto de interfaz en el idioma actual (la clave es el texto en español)."""
+    if LANG == "en":
+        s = UI_EN.get(s, s)
+    return s.format(**kw) if kw else s
+
+
+def A(app, key):
+    """Campo de una app en el idioma actual; si falta en inglés, cae al español."""
+    if LANG == "en":
+        return APPS_EN.get(app["slug"], {}).get(key, app.get(key))
+    return app.get(key)
+
+
 # ---------------------------------------------------------------- piezas
 
 
@@ -291,10 +311,35 @@ def icon(app, root, size=256):
     return f"{root}assets/icons/{app['slug']}-{size}.png"
 
 
+def pre():
+    """Prefijo de carpeta del idioma actual ('' en español, 'en/' en inglés)."""
+    return "en/" if LANG == "en" else ""
+
+
+def has_policy_en(slug):
+    return (ROOT / "content" / "privacy" / "en" / f"{slug}.html").exists()
+
+
+def policy_href(app, root):
+    """Enlace a la política en el idioma actual; en inglés, si aún no hay texto inglés, a la española."""
+    if LANG == "en" and has_policy_en(app["slug"]):
+        return f"{root}{pre()}privacy/{app['slug']}.html", True
+    return f"{root}privacy/{app['slug']}.html", LANG == "es"
+
+
+def lang_switch(root, path):
+    """Enlace al mismo contenido en el otro idioma (path es la ruta sin prefijo de idioma)."""
+    if LANG == "es":
+        return (f'<a class="nav__lang" href="{root}en/{path}" hreflang="en" lang="en" '
+                f'aria-label="{E(UI_EN["Switch to English"])}" title="English">EN</a>')
+    return (f'<a class="nav__lang" href="{root}{path}" hreflang="es" lang="es" '
+            f'aria-label="{E(UI_EN["Cambiar a español"])}" title="Español">ES</a>')
+
+
 def head(root, title, desc, accent=None):
     style = f' style="--accent:{accent}"' if accent else ""
     return f"""<!doctype html>
-<html lang="es">
+<html lang="{LANG}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -315,24 +360,27 @@ def head(root, title, desc, accent=None):
   <script src="{root}assets/site.js" defer></script>
 </head>
 <body{style}>
-<a class="skip" href="#main">Saltar al contenido</a>
+<a class="skip" href="#main">{t("Saltar al contenido")}</a>
 """
 
 
-def topbar(root, current):
+def topbar(root, current, path=""):
+    lr = root + pre()
+
     def a(label, href, key):
         cur = ' aria-current="page"' if current == key else ""
         cls = ' class="nav__opt"' if key in ("apps", "studio", "press") else ""
         return f'<a href="{href}"{cur}{cls}>{label}</a>'
     return f"""<header class="topbar">
   <div class="wrap topbar__in">
-    <a class="brand" href="{root or './'}" aria-label="GitoCorp Studios, inicio"><img src="{root}assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
-    <nav class="nav" aria-label="Navegación principal">
-      {a('Apps', root + '#apps', 'apps')}
-      {a('Estudio', root + '#studio', 'studio')}
-      {a('Privacidad', root + 'privacy/', 'privacy')}
-      {a('Prensa', root + 'press/', 'press')}
-      <a href="mailto:{EMAIL}">Contacto</a>
+    <a class="brand" href="{lr or './'}" aria-label="{t("GitoCorp Studios, inicio")}"><img src="{root}assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+    <nav class="nav" aria-label="{t("Navegación principal")}">
+      {a(t('Apps'), lr + '#apps', 'apps')}
+      {a(t('Estudio'), lr + '#studio', 'studio')}
+      {a(t('Privacidad'), lr + 'privacy/', 'privacy')}
+      {a(t('Prensa'), root + 'press/', 'press')}
+      <a href="mailto:{EMAIL}">{t('Contacto')}</a>
+      {lang_switch(root, path)}
     </nav>
   </div>
 </header>
@@ -341,22 +389,23 @@ def topbar(root, current):
 
 
 def footer(root):
-    links = "\n".join(f'        <a href="{root}apps/{a["slug"]}/">{E(a["name"])}</a>' for a in APPS)
+    lr = root + pre()
+    links = "\n".join(f'        <a href="{lr}apps/{a["slug"]}/">{E(a["name"])}</a>' for a in APPS)
     return f"""</main>
 <footer class="foot">
   <div class="wrap foot__in">
     <div class="foot__brand">
-      <a class="brand" href="{root or './'}"><img src="{root}assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
-      <p>Apps iPhone independientes: juegos, herramientas y experiencias digitales.</p>
-      <p class="foot__legal">Desarrollador: Jorge Sanz Borrell.<br>Marca pública: GitoCorp Studios.</p>
+      <a class="brand" href="{lr or './'}"><img src="{root}assets/brand/mark-96.png" alt="" width="36" height="36"><span>GitoCorp<span class="brand__sub"> Studios</span></span></a>
+      <p>{t("Apps iPhone independientes: juegos, herramientas y experiencias digitales.")}</p>
+      <p class="foot__legal">{t("Desarrollador: Jorge Sanz Borrell.<br>Marca pública: GitoCorp Studios.")}</p>
     </div>
     <div class="foot__links">
       <div>
 {links}
       </div>
       <div>
-        <a href="{root}privacy/">Privacidad</a>
-        <a href="{root}press/">Prensa</a>
+        <a href="{lr}privacy/">{t("Privacidad")}</a>
+        <a href="{root}press/">{t("Prensa")}</a>
         <a href="mailto:{EMAIL}">{EMAIL}</a>
       </div>
     </div>
@@ -370,19 +419,22 @@ def footer(root):
 def app_row(app, root, mode):
     """mode: 'apps' (landing) o 'privacy' (hub)."""
     slug = app["slug"]
+    lr = root + pre()
+    pol_href, pol_native = policy_href(app, root)
+    pol_label = t("Privacidad") if pol_native else t("Política (ES)")
     if mode == "apps":
-        text = f'<p>{E(app["desc"])}</p>\n        <ul class="points">' + "".join(f"<li>{E(p)}</li>" for p in app["points"]) + "</ul>"
-        main_href, main_label = f'{root}apps/{slug}/', "Ver app"
-        sec_href, sec_label = f'{root}privacy/{slug}.html', "Privacidad"
+        text = f'<p>{E(A(app, "desc"))}</p>\n        <ul class="points">' + "".join(f"<li>{E(p)}</li>" for p in A(app, "points")) + "</ul>"
+        main_href, main_label = f'{lr}apps/{slug}/', t("Ver app")
+        sec_href, sec_label = pol_href, pol_label
     else:
-        text = f'<p>{E(app["hub"])}</p>'
-        main_href, main_label = f'{root}privacy/{slug}.html', "Ver política"
-        sec_href, sec_label = f'{root}apps/{slug}/', "Ver app"
+        text = f'<p>{E(A(app, "hub"))}</p>'
+        main_href, main_label = pol_href, t("Ver política") if pol_native else t("Política (ES)")
+        sec_href, sec_label = f'{lr}apps/{slug}/', t("Ver app")
     return f"""    <article class="app-row" style="--accent:{app['accent']}">
       <div class="app-row__id">
-        <img class="app-row__icon" src="{icon(app, root)}" alt="Icono de {E(app['name'])}" width="88" height="88" loading="lazy">
+        <img class="app-row__icon" src="{icon(app, root)}" alt="{t("Icono de ")}{E(app['name'])}" width="88" height="88" loading="lazy">
         <div>
-          <p class="kicker">{E(app['kicker'])}</p>
+          <p class="kicker">{E(A(app, 'kicker'))}</p>
           <h3 class="app-row__name"><a href="{main_href}">{E(app['name'])}</a></h3>
         </div>
       </div>
@@ -401,39 +453,42 @@ def app_row(app, root, mode):
 
 
 def page_index():
-    root = ""
+    root = "../" if LANG == "en" else ""
+    lr = root + pre()
     tiles = []
     for i, a in enumerate(APPS):
         tiles.append(
-            f'      <a class="tile" href="apps/{a["slug"]}/" style="--i:{i}" data-accent="{a["accent"]}" '
-            f'data-name="{E(a["name"])}" data-tagline="{E(a["tagline"])}">'
+            f'      <a class="tile" href="{lr}apps/{a["slug"]}/" style="--i:{i}" data-accent="{a["accent"]}" '
+            f'data-name="{E(a["name"])}" data-tagline="{E(A(a, "tagline"))}">'
             f'<img src="{icon(a, root)}" alt="{E(a["name"])}" width="256" height="256"></a>')
     rows = "".join(app_row(a, root, "apps") for a in APPS)
     studio_items = [
-        ("Diseñadas para iPhone", "Interfaces directas, legibles y pensadas para usarse cómodamente desde el primer momento."),
-        ("Privacidad sin rodeos", "Cada app tiene su política, su contacto y una explicación clara de lo que necesita para funcionar."),
-        ("Identidad propia", "Cada app tiene su carácter, su color y su ritmo, pero todas comparten una misma mirada de estudio."),
+        (t("Diseñadas para iPhone"), t("Interfaces directas, legibles y pensadas para usarse cómodamente desde el primer momento.")),
+        (t("Privacidad sin rodeos"), t("Cada app tiene su política, su contacto y una explicación clara de lo que necesita para funcionar.")),
+        (t("Identidad propia"), t("Cada app tiene su carácter, su color y su ritmo, pero todas comparten una misma mirada de estudio.")),
     ]
-    items = "".join(f'<div class="studio__item"><h3>{E(t)}</h3><p>{E(p)}</p></div>' for t, p in studio_items)
-    out = head(root, "GitoCorp Studios · Donde una idea se convierte en una app",
-               "GitoCorp Studios: estudio independiente de apps iPhone para juegos, herramientas y experiencias digitales útiles, entretenidas y con identidad propia.")
-    out += topbar(root, "")
+    items = "".join(f'<div class="studio__item"><h3>{E(a)}</h3><p>{E(p)}</p></div>' for a, p in studio_items)
+    caption = (f"{NUMBERS[N]} apps independientes. Elige una para ver su ficha." if LANG == "es"
+               else t("{n} apps independientes. Elige una para ver su ficha.", n=N))
+    out = head(root, t("GitoCorp Studios · Donde una idea se convierte en una app"),
+               t("GitoCorp Studios: estudio independiente de apps iPhone para juegos, herramientas y experiencias digitales útiles, entretenidas y con identidad propia."))
+    out += topbar(root, "", "")
     out += f"""  <section class="hero" data-hero>
     <div class="hero__glow" aria-hidden="true"></div>
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <h1 class="display">Donde una idea se convierte en una app.</h1>
-        <p class="lead">En GitoCorp Studios convertimos ideas reales en apps iPhone independientes: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.</p>
+        <h1 class="display">{t("Donde una idea se convierte en una app.")}</h1>
+        <p class="lead">{t("En GitoCorp Studios convertimos ideas reales en apps iPhone independientes: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.")}</p>
         <div class="actions">
-          <a class="btn btn--solid" href="#apps">Ver las apps</a>
-          <a class="btn" href="privacy/">Privacidad</a>
+          <a class="btn btn--solid" href="#apps">{t("Ver las apps")}</a>
+          <a class="btn" href="{lr}privacy/">{t("Privacidad")}</a>
         </div>
       </div>
       <div class="wallwrap">
         <div class="wall" data-wall>
 {chr(10).join(tiles)}
         </div>
-        <p class="caption" aria-live="polite" data-caption data-default="{NUMBERS[N]} apps independientes. Elige una para ver su ficha.">{NUMBERS[N]} apps independientes. Elige una para ver su ficha.</p>
+        <p class="caption" aria-live="polite" data-caption data-default="{caption}">{caption}</p>
       </div>
     </div>
   </section>
@@ -441,20 +496,20 @@ def page_index():
   <section id="apps" class="block">
     <div class="wrap">
       <div class="sechead">
-        <h2 class="h2">Apps útiles, entretenidas y con identidad propia.</h2>
-        <p class="sub">Entretenimiento, organización, planificación y pequeñas herramientas pensadas para resolver momentos concretos con una experiencia clara.</p>
+        <h2 class="h2">{t("Apps útiles, entretenidas y con identidad propia.")}</h2>
+        <p class="sub">{t("Entretenimiento, organización, planificación y pequeñas herramientas pensadas para resolver momentos concretos con una experiencia clara.")}</p>
       </div>
       <div class="apps">
 {rows}    <article class="app-row app-row--soon">
       <div class="app-row__id">
         <div class="ghost" aria-hidden="true">+</div>
         <div>
-          <p class="kicker">Próximamente</p>
-          <h3 class="app-row__name">Más ideas en camino</h3>
+          <p class="kicker">{t("Próximamente")}</p>
+          <h3 class="app-row__name">{t("Más ideas en camino")}</h3>
         </div>
       </div>
       <div class="app-row__text">
-        <p>GitoCorp Studios seguirá sumando apps independientes: herramientas útiles, juegos sociales y nuevas experiencias narrativas como <strong>Expedientes</strong>, siempre con la misma idea de fondo: convertir necesidades reales en aplicaciones cuidadas.</p>
+        <p>{t("GitoCorp Studios seguirá sumando apps independientes: herramientas útiles, juegos sociales y nuevas experiencias narrativas como <strong>Expedientes</strong>, siempre con la misma idea de fondo: convertir necesidades reales en aplicaciones cuidadas.")}</p>
       </div>
     </article>
       </div>
@@ -463,8 +518,8 @@ def page_index():
 
   <section id="studio" class="wrap">
     <div class="studio">
-      <h2 class="h2">Ideas reales, experiencias cuidadas.</h2>
-      <p class="studio__lead">El punto de partida siempre es una necesidad concreta: jugar mejor, organizar algo, simplificar una tarea o dar forma a una idea que merece convertirse en app.</p>
+      <h2 class="h2">{t("Ideas reales, experiencias cuidadas.")}</h2>
+      <p class="studio__lead">{t("El punto de partida siempre es una necesidad concreta: jugar mejor, organizar algo, simplificar una tarea o dar forma a una idea que merece convertirse en app.")}</p>
       <div class="studio__items">{items}</div>
     </div>
   </section>
@@ -472,13 +527,13 @@ def page_index():
   <section class="block">
     <div class="wrap duo">
       <div>
-        <h2 class="h3x">Información clara y accesible.</h2>
-        <p class="sub">Cada aplicación cuenta con su propia política de privacidad y una página de referencia para soporte, contacto y consulta pública.</p>
-        <p><a class="btn btn--solid" href="privacy/">Ver privacidad</a></p>
+        <h2 class="h3x">{t("Información clara y accesible.")}</h2>
+        <p class="sub">{t("Cada aplicación cuenta con su propia política de privacidad y una página de referencia para soporte, contacto y consulta pública.")}</p>
+        <p><a class="btn btn--solid" href="{lr}privacy/">{t("Ver privacidad")}</a></p>
       </div>
       <div>
-        <h2 class="h3x">Contacto directo.</h2>
-        <p class="sub">Para soporte, sugerencias o consultas relacionadas con las apps, escribe al correo oficial de GitoCorp Studios.</p>
+        <h2 class="h3x">{t("Contacto directo.")}</h2>
+        <p class="sub">{t("Para soporte, sugerencias o consultas relacionadas con las apps, escribe al correo oficial de GitoCorp Studios.")}</p>
         <p><a class="bigmail" href="mailto:{EMAIL}">{EMAIL}</a></p>
       </div>
     </div>
@@ -489,9 +544,9 @@ def page_index():
 
 
 def phone(app, root):
-    title, sub, rows = app["screen"]
-    r = "".join(f'<div class="srow"><small>{E(l)}</small><b>{E(t)}</b><span>{E(s)}</span></div>' for l, t, s in rows)
-    return f"""<div class="phone" role="img" aria-label="Ilustración de la pantalla de {E(app['name'])}">
+    title, sub, rows = A(app, "screen")
+    r = "".join(f'<div class="srow"><small>{E(l)}</small><b>{E(x)}</b><span>{E(s)}</span></div>' for l, x, s in rows)
+    return f"""<div class="phone" role="img" aria-label="{t("Ilustración de la pantalla de ")}{E(app['name'])}">
         <div class="screen">
           <div class="screen__head"><img src="{icon(app, root)}" alt="" width="44" height="44"><div><b>{E(title)}</b><span>{E(sub)}</span></div></div>
           {r}
@@ -501,15 +556,15 @@ def phone(app, root):
 
 def steps_html(app):
     """Guía rápida opcional (clave 'steps' en APPS)."""
-    steps = app.get("steps")
+    steps = A(app, "steps")
     if not steps:
         return ""
-    items = "".join(f'<div class="feat"><h3>{i}. {E(t)}</h3><p>{E(p)}</p></div>' for i, (t, p) in enumerate(steps, 1))
+    items = "".join(f'<div class="feat"><h3>{i}. {E(x)}</h3><p>{E(p)}</p></div>' for i, (x, p) in enumerate(steps, 1))
     return f"""  <section class="block" id="como-empezar">
     <div class="wrap">
       <div class="sechead">
-        <h2 class="h2">Cómo empezar</h2>
-        <p class="sub">Una guía rápida de {E(app['name'])}. El mismo tutorial aparece en la app la primera vez y desde el menú «Cómo funciona».</p>
+        <h2 class="h2">{t("Cómo empezar")}</h2>
+        <p class="sub">{t("Una guía rápida de {name}. El mismo tutorial aparece en la app la primera vez y desde el menú «Cómo funciona».", name=E(app['name']))}</p>
       </div>
       <div class="feats">{items}</div>
     </div>
@@ -519,27 +574,30 @@ def steps_html(app):
 
 
 def page_app(app):
-    root = "../../"
+    root = "../../" + ("../" if LANG == "en" else "")
+    lr = root + pre()
     slug = app["slug"]
+    pol_href, pol_native = policy_href(app, root)
     others = "".join(
-        f'<a class="other" href="{root}apps/{o["slug"]}/"><img src="{icon(o, root)}" alt="" width="84" height="84" loading="lazy"><span>{E(o["name"])}</span></a>'
+        f'<a class="other" href="{lr}apps/{o["slug"]}/"><img src="{icon(o, root)}" alt="" width="84" height="84" loading="lazy"><span>{E(o["name"])}</span></a>'
         for o in APPS if o["slug"] != slug)
-    feats = "".join(f'<div class="feat"><h3>{E(t)}</h3><p>{E(p)}</p></div>' for t, p in app["feats"])
-    out = head(root, f"{app['name']} · GitoCorp Studios", app["meta"], app["accent"])
-    out += topbar(root, "apps")
+    feats = "".join(f'<div class="feat"><h3>{E(x)}</h3><p>{E(p)}</p></div>' for x, p in A(app, "feats"))
+    h0, h1 = A(app, "head")
+    out = head(root, f"{app['name']} · GitoCorp Studios", A(app, "meta"), app["accent"])
+    out += topbar(root, "apps", f"apps/{slug}/")
     out += f"""  <section class="ahero">
     <div class="wrap ahero__grid">
       <div>
-        <a class="crumb" href="{root}#apps">Todas las apps</a>
+        <a class="crumb" href="{lr}#apps">{t("Todas las apps")}</a>
         <div class="ahero__id">
-          <img src="{icon(app, root)}" alt="Icono de {E(app['name'])}" width="96" height="96">
-          <p class="kicker">{E(app['badge'])}</p>
+          <img src="{icon(app, root)}" alt="{t("Icono de ")}{E(app['name'])}" width="96" height="96">
+          <p class="kicker">{E(A(app, 'badge'))}</p>
         </div>
         <h1 class="display display--app">{E(app['name'])}</h1>
-        <p class="lead">{E(app['lead'])}</p>
+        <p class="lead">{E(A(app, 'lead'))}</p>
         <div class="actions">
-          <a class="btn btn--solid" href="{root}privacy/{slug}.html">Política de privacidad</a>
-          {f'<a class="btn" href="{root}press/{slug}/">Kit de prensa</a>' if slug in PRESS else f'<a class="btn" href="mailto:{EMAIL}">Contactar</a>'}
+          <a class="btn btn--solid" href="{pol_href}">{t("Política de privacidad") if pol_native else t("Política de privacidad") + " (ES)"}</a>
+          {f'<a class="btn" href="{root}press/{slug}/">{t("Kit de prensa")}</a>' if slug in PRESS else f'<a class="btn" href="mailto:{EMAIL}">{t("Contactar")}</a>'}
         </div>
       </div>
       {phone(app, root)}
@@ -549,8 +607,8 @@ def page_app(app):
   <section class="block">
     <div class="wrap">
       <div class="sechead">
-        <h2 class="h2">{E(app['head'][0])}</h2>
-        <p class="sub">{E(app['head'][1])}</p>
+        <h2 class="h2">{E(h0)}</h2>
+        <p class="sub">{E(h1)}</p>
       </div>
       <div class="feats">{feats}</div>
     </div>
@@ -559,16 +617,16 @@ def page_app(app):
 {steps_html(app)}  <section class="wrap">
     <div class="note">
       <div>
-        <h2 class="h3x">Privacidad de {E(app['name'])}</h2>
-        <p class="sub">{E(app['privacy'])}</p>
+        <h2 class="h3x">{t("Privacidad de {name}", name=E(app['name']))}</h2>
+        <p class="sub">{E(A(app, 'privacy'))}</p>
       </div>
-      <a class="btn btn--solid" href="{root}privacy/{slug}.html">Leer la política</a>
+      <a class="btn btn--solid" href="{pol_href}">{t("Leer la política") if pol_native else t("Leer la política (ES)")}</a>
     </div>
   </section>
 
   <section class="block">
     <div class="wrap">
-      <h2 class="h3x">Más apps de GitoCorp</h2>
+      <h2 class="h3x">{t("Más apps de GitoCorp")}</h2>
       <div class="others">{others}</div>
     </div>
   </section>
@@ -578,21 +636,24 @@ def page_app(app):
 
 
 def page_privacy(app):
-    root = "../"
-    frag = (ROOT / "content" / "privacy" / f"{app['slug']}.html").read_text()
+    root = "../" + ("../" if LANG == "en" else "")
+    lr = root + pre()
+    folder = ROOT / "content" / "privacy" / ("en" if LANG == "en" else "")
+    frag = (folder / f"{app['slug']}.html").read_text()
     m = re.match(r"<!--lead:(.*?)-->\n", frag, re.S)
     lead, legal = m.group(1), frag[m.end():]
-    out = head(root, f"Política de privacidad de {app['name']} · GitoCorp Studios",
-               f"Política de privacidad de {app['name']}, una app de GitoCorp Studios.", app["accent"])
-    out += topbar(root, "privacy")
+    name = E(app['name'])
+    out = head(root, t("Política de privacidad de {name} · GitoCorp Studios", name=app['name']),
+               t("Política de privacidad de {name}, una app de GitoCorp Studios.", name=app['name']), app["accent"])
+    out += topbar(root, "privacy", f"privacy/{app['slug']}.html" if (LANG == "en" or has_policy_en(app["slug"])) else "privacy/")
     out += f"""  <section class="phero">
     <div class="wrap">
-      <a class="crumb" href="{root}privacy/">Todas las políticas</a>
+      <a class="crumb" href="{lr}privacy/">{t("Todas las políticas")}</a>
       <div class="phero__id">
-        <img src="{icon(app, root)}" alt="Icono de {E(app['name'])}" width="72" height="72">
-        <p class="kicker">Política de privacidad de {E(app['name'])}</p>
+        <img src="{icon(app, root)}" alt="{t("Icono de ")}{name}" width="72" height="72">
+        <p class="kicker">{t("Política de privacidad de {name}", name=name)}</p>
       </div>
-      <h1 class="display display--legal">Privacidad de {E(app['name'])}.</h1>
+      <h1 class="display display--legal">{t("Privacidad de {name}.", name=name)}</h1>
       <p class="lead">{lead}</p>
     </div>
   </section>
@@ -600,7 +661,7 @@ def page_privacy(app):
     <div class="wrap">
       <div class="legal">
 {legal}
-        <p><a class="link" href="{root}apps/{app['slug']}/">Volver a la ficha de {E(app['name'])}</a></p>
+        <p><a class="link" href="{lr}apps/{app['slug']}/">{t("Volver a la ficha de {name}", name=name)}</a></p>
       </div>
     </div>
   </section>
@@ -610,14 +671,14 @@ def page_privacy(app):
 
 
 def page_privacy_hub():
-    root = "../"
+    root = "../" + ("../" if LANG == "en" else "")
     rows = "".join(app_row(a, root, "privacy") for a in APPS)
-    out = head(root, "Privacidad · GitoCorp Studios", "Privacidad y soporte de las apps de GitoCorp Studios.")
-    out += topbar(root, "privacy")
+    out = head(root, t("Privacidad · GitoCorp Studios"), t("Privacidad y soporte de las apps de GitoCorp Studios."))
+    out += topbar(root, "privacy", "privacy/")
     out += f"""  <section class="phero">
     <div class="wrap">
-      <h1 class="display display--legal">Privacidad y soporte.</h1>
-      <p class="lead">Cada app tiene su propia política para consultar qué información necesita, cómo funciona y cómo contactar con soporte.</p>
+      <h1 class="display display--legal">{t("Privacidad y soporte.")}</h1>
+      <p class="lead">{t("Cada app tiene su propia política para consultar qué información necesita, cómo funciona y cómo contactar con soporte.")}</p>
     </div>
   </section>
   <section class="block block--tight">
@@ -629,6 +690,7 @@ def page_privacy_hub():
 """
     out += footer(root)
     return out
+
 
 
 # ---------------------------------------------------------------- prensa: ficheros
@@ -925,12 +987,24 @@ def write(path, content):
     print("escrito", path)
 
 
-def main():
-    write("index.html", page_index())
-    write("privacy/index.html", page_privacy_hub())
+def build_lang(lang):
+    """Landing, fichas, hub de privacidad y políticas en un idioma ('' = español, 'en/' = inglés)."""
+    global LANG
+    LANG = lang
+    base = pre()
+    write(f"{base}index.html", page_index())
+    write(f"{base}privacy/index.html", page_privacy_hub())
     for a in APPS:
-        write(f"apps/{a['slug']}/index.html", page_app(a))
-        write(f"privacy/{a['slug']}.html", page_privacy(a))
+        write(f"{base}apps/{a['slug']}/index.html", page_app(a))
+        if lang == "es" or has_policy_en(a["slug"]):
+            write(f"{base}privacy/{a['slug']}.html", page_privacy(a))
+
+
+def main():
+    build_lang("es")
+    build_lang("en")
+    global LANG
+    LANG = "es"  # la zona de prensa, por ahora, solo en español
     press_files()
     zips = {}
     for slug, p in PRESS.items():
