@@ -276,3 +276,71 @@ APPS_EN = {
         hub="A card duel for two. Profiles, points and photo decks are stored on the device only; photos are processed inside the iPhone and sent nowhere.",
     ),
 }
+
+# ---- Press area -------------------------------------------------------------
+
+UI.update({
+    "Copiar": "Copy",
+    "Copiado": "Copied",
+    "Kit de prensa de {name}: textos, ficha técnica, iconos, capturas e imágenes para descargar.":
+        "{name} press kit: texts, fact sheet, icons, screenshots and images to download.",
+    "Descargar el kit · ZIP, {size}": "Download the kit · ZIP, {size}",
+    "Ver en la App Store": "View on the App Store",
+    "Ficha de la app": "App page",
+    "Textos listos para usar.": "Ready-to-use texts.",
+    "Descripción corta y larga, en español y en inglés. También van en el fichero de texto del ZIP.":
+        "Short and long descriptions, in English and Spanish. They are also in the text file inside the ZIP.",
+    "Descripción corta": "Short description",
+    "Descripción": "Description",
+    "Lo más destacado": "Highlights",
+    "Imágenes de prensa.": "Press images.",
+    "Composiciones para artículos y redes, hechas con capturas reales. Pulsa una para descargarla a tamaño completo.":
+        "Compositions for articles and social media, made from real screenshots. Click one to download it at full size.",
+    "Capturas.": "Screenshots.",
+    "Capturas reales de la app, sin retocar, a resolución nativa del iPhone 17 Pro Max y del iPad Pro de 13 pulgadas.":
+        "Real screenshots of the app, untouched, at the native resolution of the iPhone 17 Pro Max and the 13-inch iPad Pro.",
+    "En la App Store.": "On the App Store.",
+    "Las imágenes que acompañan a la app en su página de la App Store.": "The images that accompany the app on its App Store page.",
+    "Icono y logotipo.": "Icon and logo.",
+    "Úsalos tal cual: sin recortar, deformar ni cambiar sus colores.": "Use them as they are: do not crop, distort or change their colours.",
+    "Contacto de prensa": "Press contact",
+    "Contacto de prensa.": "Press contact.",
+    "Para entrevistas, más material o cualquier consulta sobre {name}, escribe a GitoCorp Studios.":
+        "For interviews, more material or any question about {name}, write to GitoCorp Studios.",
+    "Símbolo de GitoCorp Studios": "GitoCorp Studios symbol",
+    "PNG · 1024 × 1024 · fondo transparente": "PNG · 1024 × 1024 · transparent background",
+    "Prensa · GitoCorp Studios": "Press · GitoCorp Studios",
+    "Kits de prensa de las apps de GitoCorp Studios: textos, ficha técnica, iconos, capturas e imágenes para descargar.":
+        "Press kits for GitoCorp Studios apps: texts, fact sheets, icons, screenshots and images to download.",
+    "Prensa.": "Press.",
+    "Textos, iconos, capturas e imágenes de las apps de GitoCorp Studios, listos para descargar. Para medios, editores y cualquiera que quiera hablar de ellas.":
+        "Texts, icons, screenshots and images of GitoCorp Studios apps, ready to download. For media, editors and anyone who wants to write about them.",
+    "Estudio independiente de apps para iPhone y iPad de Jorge Sanz Borrell: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.":
+        "Independent iPhone and iPad app studio of Jorge Sanz Borrell: useful tools, social games and digital experiences with careful design and a personality of their own.",
+    "Entrevistas, material adicional o cualquier consulta.": "Interviews, additional material or any enquiry.",
+})
+
+PRESS_EN = {
+    "familybank": dict(
+        facts=[("Developer", "Jorge Sanz Borrell · GitoCorp Studios"),
+               ("Platforms", "iPhone and iPad"),
+               ("Availability", "Coming soon to the App Store"),
+               ("Release", "Autumn 2026"),
+               ("Language", "Spanish"),
+               ("Currency", "The gito (GTO), pretend and unrelated to any real currency"),
+               ("Sign-in", "Sign in with Apple; NFC card, Face ID or Touch ID")],
+        highlights=[("A card for every member", "Balance and points at a glance, with access by NFC card, Face ID or Touch ID and a card each person can personalise."),
+                    ("Adults in charge", "Director and client roles: directors pay the allowance, award points and see every transaction so they can carry it over to the real world."),
+                    ("Saving pays off", "An untouchable savings fund, piggy banks for goals and a points programme with flash and cumulative rewards created by each family.")],
+    ),
+    "noche-de-juegos": dict(
+        facts=[("Developer", "Jorge Sanz Borrell · GitoCorp Studios"),
+               ("Platforms", "iPhone and iPad"),
+               ("Availability", "App Store"),
+               ("Language", "Spanish"),
+               ("Data", "On the device and in the family's iCloud")],
+        highlights=[("An organised game library", "The whole collection with its own page, added by hand or filled in with public information from BoardGameGeek."),
+                    ("Plays, challenges and rankings", "Every play is logged, and challenges and session planning give continuity to game nights."),
+                    ("Ludo, the assistant", "Recommends what to play based on the table, the time and the history, without leaving the iPhone.")],
+    ),
+}

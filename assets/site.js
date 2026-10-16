@@ -4,11 +4,12 @@
     btn.addEventListener('click', function () {
       var el = document.querySelector(btn.getAttribute('data-copy'));
       if (!el || !navigator.clipboard) return;
+      var label = btn.textContent, done = btn.getAttribute('data-done') || 'Copiado';
       var text = Array.prototype.map.call(el.querySelectorAll('p'), function (p) { return p.textContent; }).join('\n\n');
       navigator.clipboard.writeText(text).then(function () {
-        btn.textContent = 'Copiado';
+        btn.textContent = done;
         btn.classList.add('is-done');
-        setTimeout(function () { btn.textContent = 'Copiar'; btn.classList.remove('is-done'); }, 1800);
+        setTimeout(function () { btn.textContent = label; btn.classList.remove('is-done'); }, 1800);
       });
     });
   });

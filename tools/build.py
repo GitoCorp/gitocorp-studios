@@ -16,10 +16,11 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from en import UI as UI_EN, APPS_EN  # noqa: E402
+from en import UI as UI_EN, APPS_EN, PRESS_EN  # noqa: E402
 
 LANG = "es"  # idioma de la pasada actual: "es" o "en"
 EMAIL = "gito@gitocorp.com"
+BASE_URL = "https://www.gitocorp.com/"  # dirección principal (canonical, hreflang y sitemap)
 FONTS = ("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:"
          "opsz,wdth,wght@12..96,75..100,200..800&display=swap")
 
@@ -336,8 +337,21 @@ def lang_switch(root, path):
             f'aria-label="{E(UI_EN["Cambiar a español"])}" title="Español">ES</a>')
 
 
-def head(root, title, desc, accent=None):
+def has_en(path):
+    """¿Existe la versión inglesa de esta ruta (sin prefijo de idioma)?"""
+    m = re.fullmatch(r"privacy/([\w-]+)\.html", path)
+    return has_policy_en(m.group(1)) if m else True
+
+
+def head(root, title, desc, accent=None, path=None):
     style = f' style="--accent:{accent}"' if accent else ""
+    seo = ""
+    if path is not None:
+        seo = f'  <link rel="canonical" href="{BASE_URL}{pre()}{path}">\n'
+        if has_en(path):
+            seo += (f'  <link rel="alternate" hreflang="es" href="{BASE_URL}{path}">\n'
+                    f'  <link rel="alternate" hreflang="en" href="{BASE_URL}en/{path}">\n'
+                    f'  <link rel="alternate" hreflang="x-default" href="{BASE_URL}{path}">\n')
     return f"""<!doctype html>
 <html lang="{LANG}">
 <head>
@@ -345,7 +359,7 @@ def head(root, title, desc, accent=None):
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{E(title)}</title>
   <meta name="description" content="{E(desc)}">
-  <meta name="color-scheme" content="light dark">
+{seo}  <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a0e18" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="{root}favicon.ico" sizes="48x48">
@@ -378,7 +392,7 @@ def topbar(root, current, path=""):
       {a(t('Apps'), lr + '#apps', 'apps')}
       {a(t('Estudio'), lr + '#studio', 'studio')}
       {a(t('Privacidad'), lr + 'privacy/', 'privacy')}
-      {a(t('Prensa'), root + 'press/', 'press')}
+      {a(t('Prensa'), lr + 'press/', 'press')}
       <a href="mailto:{EMAIL}">{t('Contacto')}</a>
       {lang_switch(root, path)}
     </nav>
@@ -405,7 +419,7 @@ def footer(root):
       </div>
       <div>
         <a href="{lr}privacy/">{t("Privacidad")}</a>
-        <a href="{root}press/">{t("Prensa")}</a>
+        <a href="{lr}press/">{t("Prensa")}</a>
         <a href="mailto:{EMAIL}">{EMAIL}</a>
       </div>
     </div>
@@ -471,7 +485,7 @@ def page_index():
     caption = (f"{NUMBERS[N]} apps independientes. Elige una para ver su ficha." if LANG == "es"
                else t("{n} apps independientes. Elige una para ver su ficha.", n=N))
     out = head(root, t("GitoCorp Studios · Donde una idea se convierte en una app"),
-               t("GitoCorp Studios: estudio independiente de apps iPhone para juegos, herramientas y experiencias digitales útiles, entretenidas y con identidad propia."))
+               t("GitoCorp Studios: estudio independiente de apps iPhone para juegos, herramientas y experiencias digitales útiles, entretenidas y con identidad propia."), path="")
     out += topbar(root, "", "")
     out += f"""  <section class="hero" data-hero>
     <div class="hero__glow" aria-hidden="true"></div>
@@ -583,7 +597,7 @@ def page_app(app):
         for o in APPS if o["slug"] != slug)
     feats = "".join(f'<div class="feat"><h3>{E(x)}</h3><p>{E(p)}</p></div>' for x, p in A(app, "feats"))
     h0, h1 = A(app, "head")
-    out = head(root, f"{app['name']} · GitoCorp Studios", A(app, "meta"), app["accent"])
+    out = head(root, f"{app['name']} · GitoCorp Studios", A(app, "meta"), app["accent"], path=f"apps/{slug}/")
     out += topbar(root, "apps", f"apps/{slug}/")
     out += f"""  <section class="ahero">
     <div class="wrap ahero__grid">
@@ -597,7 +611,7 @@ def page_app(app):
         <p class="lead">{E(A(app, 'lead'))}</p>
         <div class="actions">
           <a class="btn btn--solid" href="{pol_href}">{t("Política de privacidad") if pol_native else t("Política de privacidad") + " (ES)"}</a>
-          {f'<a class="btn" href="{root}press/{slug}/">{t("Kit de prensa")}</a>' if slug in PRESS else f'<a class="btn" href="mailto:{EMAIL}">{t("Contactar")}</a>'}
+          {f'<a class="btn" href="{lr}press/{slug}/">{t("Kit de prensa")}</a>' if slug in PRESS else f'<a class="btn" href="mailto:{EMAIL}">{t("Contactar")}</a>'}
         </div>
       </div>
       {phone(app, root)}
@@ -644,7 +658,8 @@ def page_privacy(app):
     lead, legal = m.group(1), frag[m.end():]
     name = E(app['name'])
     out = head(root, t("Política de privacidad de {name} · GitoCorp Studios", name=app['name']),
-               t("Política de privacidad de {name}, una app de GitoCorp Studios.", name=app['name']), app["accent"])
+               t("Política de privacidad de {name}, una app de GitoCorp Studios.", name=app['name']), app["accent"],
+               path=f"privacy/{app['slug']}.html")
     out += topbar(root, "privacy", f"privacy/{app['slug']}.html" if (LANG == "en" or has_policy_en(app["slug"])) else "privacy/")
     out += f"""  <section class="phero">
     <div class="wrap">
@@ -673,7 +688,7 @@ def page_privacy(app):
 def page_privacy_hub():
     root = "../" + ("../" if LANG == "en" else "")
     rows = "".join(app_row(a, root, "privacy") for a in APPS)
-    out = head(root, t("Privacidad · GitoCorp Studios"), t("Privacidad y soporte de las apps de GitoCorp Studios."))
+    out = head(root, t("Privacidad · GitoCorp Studios"), t("Privacidad y soporte de las apps de GitoCorp Studios."), path="privacy/")
     out += topbar(root, "privacy", "privacy/")
     out += f"""  <section class="phero">
     <div class="wrap">
@@ -697,7 +712,7 @@ def page_privacy_hub():
 
 
 def human_size(n):
-    return f"{n / 1_048_576:.1f} MB".replace(".", ",") if n >= 1_048_576 else f"{max(1, round(n / 1024))} KB"
+    return (f"{n / 1_048_576:.1f} MB" if LANG == "en" else f"{n / 1_048_576:.1f} MB".replace(".", ",")) if n >= 1_048_576 else f"{max(1, round(n / 1024))} KB"
 
 
 def media(slug, folder):
@@ -836,36 +851,53 @@ def gallery(app, root, folder, title, sub):
 def copy_block(id_, title, paras):
     body = "".join(f"<p>{E(x)}</p>" for x in paras)
     return (f'<div class="copy"><div class="copy__head"><h3>{E(title)}</h3>'
-            f'<button class="copybtn" type="button" data-copy="#{id_}">Copiar</button></div>'
+            f'<button class="copybtn" type="button" data-copy="#{id_}" data-done="{t("Copiado")}">{t("Copiar")}</button></div>'
             f'<div class="copy__body" id="{id_}">{body}</div></div>')
 
 
+def pr(slug, key):
+    """Dato de prensa en el idioma actual (hechos y destacados; las descripciones usan short/long y short_en/long_en)."""
+    if LANG == "en":
+        return PRESS_EN.get(slug, {}).get(key, PRESS[slug][key])
+    return PRESS[slug][key]
+
+
 def page_press(app, p, zpath):
-    root = "../../"
+    root = "../../" + ("../" if LANG == "en" else "")
+    lr = root + pre()
     slug = app["slug"]
-    facts = "".join(f"<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>" for k, v in p["facts"])
-    feats = "".join(f'<div class="feat"><h3>{E(t)}</h3><p>{E(d)}</p></div>' for t, d in p["highlights"])
+    en = LANG == "en"
+    short, long_ = (p["short_en"], p["long_en"]) if en else (p["short"], p["long"])
+    short2, long2 = (p["short"], p["long"]) if en else (p["short_en"], p["long_en"])
+    facts = "".join(f"<div><dt>{E(k)}</dt><dd>{E(v)}</dd></div>" for k, v in pr(slug, "facts"))
+    feats = "".join(f'<div class="feat"><h3>{E(x)}</h3><p>{E(d)}</p></div>' for x, d in pr(slug, "highlights"))
+    icon_alt = t("Icono de ") + app["name"]
+    transparent = t("PNG · 1024 × 1024 · fondo transparente")
     icons = "".join([
-        dl_card(f"{root}assets/press/{slug}/icono-{slug}-1024.png", f"{root}{icon(app, root='')}", f"Icono de {app['name']}", "PNG · 1024 × 1024"),
-        dl_card(f"{root}assets/press/{slug}/icono-{slug}-512.png", f"{root}{icon(app, root='')}", f"Icono de {app['name']}", "PNG · 512 × 512"),
-        dl_card(f"{root}{STUDIO_LOGO}", f"{root}{STUDIO_LOGO}", "Símbolo de GitoCorp Studios", "PNG · 1024 × 1024 · fondo transparente", "logo"),
+        dl_card(f"{root}assets/press/{slug}/icono-{slug}-1024.png", f"{root}{icon(app, root='')}", icon_alt, "PNG · 1024 × 1024"),
+        dl_card(f"{root}assets/press/{slug}/icono-{slug}-512.png", f"{root}{icon(app, root='')}", icon_alt, "PNG · 512 × 512"),
+        dl_card(f"{root}{STUDIO_LOGO}", f"{root}{STUDIO_LOGO}", t("Símbolo de GitoCorp Studios"), transparent, "logo"),
     ])
-    out = head(root, f"{app['name']} · Kit de prensa · GitoCorp Studios",
-               f"Kit de prensa de {app['name']}: textos, ficha técnica, iconos, capturas e imágenes para descargar.", app["accent"])
-    out += topbar(root, "press")
+    out = head(root, f"{app['name']} · {t('Kit de prensa')} · GitoCorp Studios",
+               t("Kit de prensa de {name}: textos, ficha técnica, iconos, capturas e imágenes para descargar.", name=app['name']), app["accent"],
+               path=f"press/{slug}/")
+    out += topbar(root, "press", f"press/{slug}/")
+    store = (f'<a class="btn" href="{p["appstore"]}">{t("Ver en la App Store")}</a>' if p.get("appstore")
+             else f'<a class="btn" href="{lr}apps/{slug}/">{t("Ficha de la app")}</a>')
+    sizes = human_size(zpath.stat().st_size)
     out += f"""  <section class="ahero">
     <div class="wrap ahero__grid">
       <div>
-        <a class="crumb" href="{root}press/">Prensa</a>
+        <a class="crumb" href="{lr}press/">{t("Prensa")}</a>
         <div class="ahero__id">
-          <img src="{icon(app, root)}" alt="Icono de {E(app['name'])}" width="96" height="96">
-          <p class="kicker">Kit de prensa</p>
+          <img src="{icon(app, root)}" alt="{E(icon_alt)}" width="96" height="96">
+          <p class="kicker">{t("Kit de prensa")}</p>
         </div>
         <h1 class="display display--app">{E(app['name'])}</h1>
-        <p class="lead">{E(p['short'])}</p>
+        <p class="lead">{E(short)}</p>
         <div class="actions">
-          <a class="btn btn--solid" href="{root}assets/press/{slug}/{zpath.name}" download>Descargar el kit · ZIP, {human_size(zpath.stat().st_size)}</a>
-          {f'<a class="btn" href="{p["appstore"]}">Ver en la App Store</a>' if p.get("appstore") else f'<a class="btn" href="{root}apps/{slug}/">Ficha de la app</a>'}
+          <a class="btn btn--solid" href="{root}assets/press/{slug}/{zpath.name}" download>{t("Descargar el kit · ZIP, {size}", size=sizes)}</a>
+          {store}
         </div>
       </div>
       <dl class="facts">{facts}</dl>
@@ -875,18 +907,18 @@ def page_press(app, p, zpath):
   <section class="block">
     <div class="wrap">
       <div class="sechead">
-        <h2 class="h2">Textos listos para usar.</h2>
-        <p class="sub">Descripción corta y larga, en español y en inglés. También van en el fichero de texto del ZIP.</p>
+        <h2 class="h2">{t("Textos listos para usar.")}</h2>
+        <p class="sub">{t("Descripción corta y larga, en español y en inglés. También van en el fichero de texto del ZIP.")}</p>
       </div>
       <div class="copies">
-        {copy_block(f"{slug}-corta", "Descripción corta", [p['short']])}
-        {copy_block(f"{slug}-larga", "Descripción", p['long'])}
+        {copy_block(f"{slug}-" + ("short" if en else "corta"), t("Descripción corta"), [short])}
+        {copy_block(f"{slug}-" + ("long" if en else "larga"), t("Descripción"), long_)}
       </div>
       <details class="lang">
-        <summary>In English</summary>
+        <summary>{"En español" if en else "In English"}</summary>
         <div class="copies">
-          {copy_block(f"{slug}-short", "Short description", [p['short_en']])}
-          {copy_block(f"{slug}-long", "Description", p['long_en'])}
+          {copy_block(f"{slug}-" + ("corta" if en else "short"), "Descripción corta" if en else "Short description", [short2])}
+          {copy_block(f"{slug}-" + ("larga" if en else "long"), "Descripción" if en else "Description", long2)}
         </div>
       </details>
     </div>
@@ -894,16 +926,16 @@ def page_press(app, p, zpath):
 
   <section class="block block--tight">
     <div class="wrap">
-      <h2 class="h3x">Lo más destacado</h2>
+      <h2 class="h3x">{t("Lo más destacado")}</h2>
       <div class="feats feats--press">{feats}</div>
     </div>
   </section>
 
-{gallery(app, root, "imagenes", "Imágenes de prensa.", "Composiciones para artículos y redes, hechas con capturas reales. Pulsa una para descargarla a tamaño completo.")}{gallery(app, root, "capturas", "Capturas.", "Capturas reales de la app, sin retocar, a resolución nativa del iPhone 17 Pro Max y del iPad Pro de 13 pulgadas.")}{gallery(app, root, "app-store", "En la App Store.", "Las imágenes que acompañan a la app en su página de la App Store.")}  <section class="block block--tight">
+{gallery(app, root, "imagenes", t("Imágenes de prensa."), t("Composiciones para artículos y redes, hechas con capturas reales. Pulsa una para descargarla a tamaño completo."))}{gallery(app, root, "capturas", t("Capturas."), t("Capturas reales de la app, sin retocar, a resolución nativa del iPhone 17 Pro Max y del iPad Pro de 13 pulgadas."))}{gallery(app, root, "app-store", t("En la App Store."), t("Las imágenes que acompañan a la app en su página de la App Store."))}  <section class="block block--tight">
     <div class="wrap">
       <div class="sechead">
-        <h2 class="h2">Icono y logotipo.</h2>
-        <p class="sub">Úsalos tal cual: sin recortar, deformar ni cambiar sus colores.</p>
+        <h2 class="h2">{t("Icono y logotipo.")}</h2>
+        <p class="sub">{t("Úsalos tal cual: sin recortar, deformar ni cambiar sus colores.")}</p>
       </div>
       <div class="dls">{icons}</div>
     </div>
@@ -912,10 +944,10 @@ def page_press(app, p, zpath):
   <section class="wrap">
     <div class="note">
       <div>
-        <h2 class="h3x">Contacto de prensa</h2>
-        <p class="sub">Para entrevistas, más material o cualquier consulta sobre {E(app['name'])}, escribe a GitoCorp Studios.</p>
+        <h2 class="h3x">{t("Contacto de prensa")}</h2>
+        <p class="sub">{t("Para entrevistas, más material o cualquier consulta sobre {name}, escribe a GitoCorp Studios.", name=E(app['name']))}</p>
       </div>
-      <a class="btn btn--solid" href="mailto:{EMAIL}?subject={E(app['name'])}%20%C2%B7%20Prensa">{EMAIL}</a>
+      <a class="btn btn--solid" href="mailto:{EMAIL}?subject={E(app['name'])}%20%C2%B7%20{"Press" if en else "Prensa"}">{EMAIL}</a>
     </div>
   </section>
 """
@@ -924,34 +956,36 @@ def page_press(app, p, zpath):
 
 
 def page_press_hub(zips):
-    root = "../"
+    root = "../" + ("../" if LANG == "en" else "")
+    lr = root + pre()
+    en = LANG == "en"
     rows = []
     for slug, p in PRESS.items():
         a = next(x for x in APPS if x["slug"] == slug)
         rows.append(f"""    <article class="app-row" style="--accent:{a['accent']}">
       <div class="app-row__id">
-        <img class="app-row__icon" src="{icon(a, root)}" alt="Icono de {E(a['name'])}" width="88" height="88" loading="lazy">
+        <img class="app-row__icon" src="{icon(a, root)}" alt="{t("Icono de ")}{E(a['name'])}" width="88" height="88" loading="lazy">
         <div>
-          <p class="kicker">{E(a['kicker'])}</p>
-          <h3 class="app-row__name"><a href="{root}press/{slug}/">{E(a['name'])}</a></h3>
+          <p class="kicker">{E(A(a, 'kicker'))}</p>
+          <h3 class="app-row__name"><a href="{lr}press/{slug}/">{E(a['name'])}</a></h3>
         </div>
       </div>
       <div class="app-row__text">
-        <p>{E(p['short'])}</p>
+        <p>{E(p['short_en'] if en else p['short'])}</p>
       </div>
       <div class="app-row__links">
-        <a class="btn btn--solid" href="{root}press/{slug}/">Kit de prensa</a>
+        <a class="btn btn--solid" href="{lr}press/{slug}/">{t("Kit de prensa")}</a>
         <a class="btn" href="{root}assets/press/{slug}/{zips[slug].name}" download>ZIP</a>
       </div>
     </article>
 """)
-    out = head(root, "Prensa · GitoCorp Studios",
-               "Kits de prensa de las apps de GitoCorp Studios: textos, ficha técnica, iconos, capturas e imágenes para descargar.")
-    out += topbar(root, "press")
+    out = head(root, t("Prensa · GitoCorp Studios"),
+               t("Kits de prensa de las apps de GitoCorp Studios: textos, ficha técnica, iconos, capturas e imágenes para descargar."), path="press/")
+    out += topbar(root, "press", "press/")
     out += f"""  <section class="phero">
     <div class="wrap">
-      <h1 class="display display--legal">Prensa.</h1>
-      <p class="lead">Textos, iconos, capturas e imágenes de las apps de GitoCorp Studios, listos para descargar. Para medios, editores y cualquiera que quiera hablar de ellas.</p>
+      <h1 class="display display--legal">{t("Prensa.")}</h1>
+      <p class="lead">{t("Textos, iconos, capturas e imágenes de las apps de GitoCorp Studios, listos para descargar. Para medios, editores y cualquiera que quiera hablar de ellas.")}</p>
     </div>
   </section>
   <section class="block block--tight">
@@ -965,12 +999,12 @@ def page_press_hub(zips):
     <div class="wrap duo">
       <div>
         <h2 class="h3x">GitoCorp Studios.</h2>
-        <p class="sub">Estudio independiente de apps para iPhone y iPad de Jorge Sanz Borrell: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.</p>
-        <div class="dls dls--one">{dl_card(f"{root}{STUDIO_LOGO}", f"{root}{STUDIO_LOGO}", "Símbolo de GitoCorp Studios", "PNG · 1024 × 1024 · fondo transparente", "logo")}</div>
+        <p class="sub">{t("Estudio independiente de apps para iPhone y iPad de Jorge Sanz Borrell: herramientas útiles, juegos sociales y experiencias digitales con diseño cuidado y personalidad propia.")}</p>
+        <div class="dls dls--one">{dl_card(f"{root}{STUDIO_LOGO}", f"{root}{STUDIO_LOGO}", t("Símbolo de GitoCorp Studios"), t("PNG · 1024 × 1024 · fondo transparente"), "logo")}</div>
       </div>
       <div>
-        <h2 class="h3x">Contacto de prensa.</h2>
-        <p class="sub">Entrevistas, material adicional o cualquier consulta.</p>
+        <h2 class="h3x">{t("Contacto de prensa.")}</h2>
+        <p class="sub">{t("Entrevistas, material adicional o cualquier consulta.")}</p>
         <p><a class="bigmail" href="mailto:{EMAIL}">{EMAIL}</a></p>
       </div>
     </div>
@@ -1000,18 +1034,48 @@ def build_lang(lang):
             write(f"{base}privacy/{a['slug']}.html", page_privacy(a))
 
 
+def build_press(lang, zips):
+    global LANG
+    LANG = lang
+    base = pre()
+    for slug, p in PRESS.items():
+        app = next(x for x in APPS if x["slug"] == slug)
+        write(f"{base}press/{slug}/index.html", page_press(app, p, zips[slug]))
+    write(f"{base}press/index.html", page_press_hub(zips))
+
+
+def build_seo():
+    """sitemap.xml (con alternativas de idioma) y robots.txt."""
+    paths = ["", "privacy/", "press/"]
+    paths += [f"apps/{a['slug']}/" for a in APPS]
+    paths += [f"privacy/{a['slug']}.html" for a in APPS]
+    paths += [f"press/{slug}/" for slug in PRESS]
+    urls = []
+    for pth in paths:
+        alts = (f'    <xhtml:link rel="alternate" hreflang="es" href="{BASE_URL}{pth}"/>\n'
+                f'    <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}en/{pth}"/>\n'
+                f'    <xhtml:link rel="alternate" hreflang="x-default" href="{BASE_URL}{pth}"/>\n') if has_en(pth) else ""
+        urls.append(f"  <url>\n    <loc>{BASE_URL}{pth}</loc>\n{alts}  </url>")
+        if has_en(pth):
+            urls.append(f"  <url>\n    <loc>{BASE_URL}en/{pth}</loc>\n{alts}  </url>")
+    sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+               + "\n".join(urls) + "\n</urlset>\n")
+    write("sitemap.xml", sitemap)
+    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}sitemap.xml\n")
+
+
 def main():
     build_lang("es")
     build_lang("en")
-    global LANG
-    LANG = "es"  # la zona de prensa, por ahora, solo en español
     press_files()
     zips = {}
     for slug, p in PRESS.items():
         app = next(x for x in APPS if x["slug"] == slug)
         zips[slug] = press_zip(app, p)
-        write(f"press/{slug}/index.html", page_press(app, p, zips[slug]))
-    write("press/index.html", page_press_hub(zips))
+    build_press("es", zips)
+    build_press("en", zips)
+    build_seo()
 
 
 if __name__ == "__main__":
