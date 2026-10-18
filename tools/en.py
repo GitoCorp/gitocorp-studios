@@ -218,7 +218,7 @@ APPS_EN = {
         badge="Your home library, in order", kicker="Home library",
         tagline="Every book at home, on its shelf",
         desc="Your home library on your iPhone: scan the barcode and Lomos fills in the title, author and cover; draw your bookcases room by room and find any book on its shelf.",
-        points=["ISBN scanning with data and covers from Google Books and Open Library.", "A map of each room with your furniture drawn and your real books on their shelves.", "Family readers with their progress, times read, ratings, loans and a wishlist.", "A library shared with your family through iCloud."],
+        points=["ISBN scanning with data and covers from Google Books, Open Library and Apple Books.", "A map of each room with your furniture drawn and your real books on their shelves.", "Family readers with their progress, times read, ratings, loans and a wishlist.", "A library shared with your family through iCloud."],
         meta="Lomos is an iPhone and iPad app to organise your home library: scan the ISBN, draw your bookcases room by room and find every book on its shelf.",
         lead="Where is tonight's bedtime story? Scan, place and find any book at home in seconds.",
         screen=("Where is it?", "Living room · Right Billy · Shelf 3", [
@@ -236,8 +236,8 @@ APPS_EN = {
                ("Place each book", "Choose the shelf when adding a book or move several at once from the shelf. Shelves with decorations or games can be marked so they don't count."),
                ("Find and read", "Type in “Where is it?” and Lomos takes you to the shelf. Note the page you're on and Lomos works out the percentage."),
                ("Share with your family", "From “Family”, invite another adult with their own iPhone: you will see and edit the same library with your own iCloud accounts.")],
-        privacy="Books, readers, bookcases and loans are stored on your device and in your private iCloud, and are only shared with your family if you invite them. To fill in a book's details, the ISBN or title is sent to Google Books and Open Library. No accounts of our own, ads or analytics.",
-        hub="Home library with a map of your bookcases. It syncs with the user's iCloud and is shared only with people they invite; book searches query Google Books and Open Library.",
+        privacy="Books, readers, bookcases and loans are stored on your device and in your private iCloud, and are only shared with your family if you invite them. To fill in a book's details, the ISBN or title is sent to Google Books, Open Library and Apple Books. No accounts of our own, ads or analytics.",
+        hub="Home library with a map of your bookcases. It syncs with the user's iCloud and is shared only with people they invite; book searches query Google Books, Open Library and Apple Books.",
     ),
     "nickclick": dict(
         badge="Your toy collections, with names", kicker="Toy figure collections",

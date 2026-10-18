@@ -70,7 +70,7 @@ APPS = [
         badge="La biblioteca de casa, en orden", kicker="Biblioteca de casa",
         tagline="Cada libro de casa, en su balda",
         desc="La biblioteca de casa en el iPhone: escanea el código de barras y Lomos rellena título, autor y portada; dibuja tus estanterías por habitaciones y encuentra cualquier libro en su balda.",
-        points=["Escaneo del ISBN con datos y portada de Google Books y Open Library.", "Mapa de cada habitación con tus muebles dibujados y los libros reales en sus baldas.", "Lectores de la familia con su progreso, veces leído, valoraciones, préstamos y lista de deseos.", "Biblioteca compartida con la familia por iCloud."],
+        points=["Escaneo del ISBN con datos y portada de Google Books, Open Library y Apple Books.", "Mapa de cada habitación con tus muebles dibujados y los libros reales en sus baldas.", "Lectores de la familia con su progreso, veces leído, valoraciones, préstamos y lista de deseos.", "Biblioteca compartida con la familia por iCloud."],
         meta="Lomos es una app para iPhone y iPad para organizar la biblioteca de casa: escanea el ISBN, dibuja tus estanterías por habitaciones y encuentra cada libro en su balda.",
         lead="¿Dónde está el cuento de esta noche? Escanea, coloca y encuentra cualquier libro de casa en segundos.",
         screen=("¿Dónde está?", "Salón · Billy derecha · Balda 3", [
@@ -88,8 +88,8 @@ APPS = [
                ("Coloca cada libro", "Elige la balda al añadir un libro o mueve varios a la vez desde la balda. Las baldas con decoración o juegos se marcan para que no cuenten."),
                ("Encuentra y lee", "Escribe en «¿Dónde está?» y Lomos te lleva a la balda. Apunta la página por la que vas y Lomos calcula el porcentaje."),
                ("Comparte con la familia", "Desde «Familia», invita a otro adulto con su propio iPhone: veréis y editaréis la misma biblioteca con vuestras cuentas de iCloud.")],
-        privacy="Los libros, lectores, estanterías y préstamos se guardan en tu dispositivo y en tu iCloud privado, y solo se comparten con la familia si tú la invitas. Para rellenar los datos de un libro se envía el ISBN o el título a Google Books y Open Library. Sin cuentas propias, anuncios ni analíticas.",
-        hub="Biblioteca de casa con mapa de estanterías. Se sincroniza con el iCloud del usuario y se comparte solo con quien él invite; las búsquedas de libros consultan Google Books y Open Library.",
+        privacy="Los libros, lectores, estanterías y préstamos se guardan en tu dispositivo y en tu iCloud privado, y solo se comparten con la familia si tú la invitas. Para rellenar los datos de un libro se envía el ISBN o el título a Google Books, Open Library y Apple Books. Sin cuentas propias, anuncios ni analíticas.",
+        hub="Biblioteca de casa con mapa de estanterías. Se sincroniza con el iCloud del usuario y se comparte solo con quien él invite; las búsquedas de libros consultan Google Books, Open Library y Apple Books.",
     ),
     dict(
         slug="realfood-planner", name="RealFood Planner", accent="#22c55e",
