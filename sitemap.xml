@@ -61,6 +61,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gitocorp.com/apps/noche-de-juegos/"/>
   </url>
   <url>
+    <loc>https://www.gitocorp.com/apps/lomos/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.gitocorp.com/apps/lomos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gitocorp.com/en/apps/lomos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gitocorp.com/apps/lomos/"/>
+  </url>
+  <url>
+    <loc>https://www.gitocorp.com/en/apps/lomos/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.gitocorp.com/apps/lomos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gitocorp.com/en/apps/lomos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gitocorp.com/apps/lomos/"/>
+  </url>
+  <url>
     <loc>https://www.gitocorp.com/apps/realfood-planner/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.gitocorp.com/apps/realfood-planner/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.gitocorp.com/en/apps/realfood-planner/"/>
@@ -179,6 +191,18 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.gitocorp.com/privacy/noche-de-juegos.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.gitocorp.com/en/privacy/noche-de-juegos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gitocorp.com/privacy/noche-de-juegos.html"/>
+  </url>
+  <url>
+    <loc>https://www.gitocorp.com/privacy/lomos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.gitocorp.com/privacy/lomos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gitocorp.com/en/privacy/lomos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gitocorp.com/privacy/lomos.html"/>
+  </url>
+  <url>
+    <loc>https://www.gitocorp.com/en/privacy/lomos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.gitocorp.com/privacy/lomos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gitocorp.com/en/privacy/lomos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.gitocorp.com/privacy/lomos.html"/>
   </url>
   <url>
     <loc>https://www.gitocorp.com/privacy/realfood-planner.html</loc>

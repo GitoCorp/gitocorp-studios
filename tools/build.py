@@ -66,6 +66,32 @@ APPS = [
         hub="Biblioteca, retos y sesiones de juego. Puede consultar BoardGameGeek para buscar o importar información pública de juegos.",
     ),
     dict(
+        slug="lomos", name="Lomos", accent="#1F7A86",
+        badge="La biblioteca de casa, en orden", kicker="Biblioteca de casa",
+        tagline="Cada libro de casa, en su balda",
+        desc="La biblioteca de casa en el iPhone: escanea el código de barras y Lomos rellena título, autor y portada; dibuja tus estanterías por habitaciones y encuentra cualquier libro en su balda.",
+        points=["Escaneo del ISBN con datos y portada de Google Books y Open Library.", "Mapa de cada habitación con tus muebles dibujados y los libros reales en sus baldas.", "Lectores de la familia con su progreso, veces leído, valoraciones, préstamos y lista de deseos.", "Biblioteca compartida con la familia por iCloud."],
+        meta="Lomos es una app para iPhone y iPad para organizar la biblioteca de casa: escanea el ISBN, dibuja tus estanterías por habitaciones y encuentra cada libro en su balda.",
+        lead="¿Dónde está el cuento de esta noche? Escanea, coloca y encuentra cualquier libro de casa en segundos.",
+        screen=("¿Dónde está?", "Salón · Billy derecha · Balda 3", [
+            ("Escanear", "El monstruo de colores", "Título, autor y portada con solo enfocar el código."),
+            ("Leyendo", "Sara va por el 50 %", "Dice la página y Lomos calcula el porcentaje."),
+            ("Para devolver", "Biblioteca municipal · en 2 días", "Aviso antes de que venza el préstamo.")]),
+        head=("Tus libros, en su sitio.", "Lomos redibuja tus estanterías —Billy, de cubos, esquineras, mesitas de noche o a medida— con los lomos de tus libros reales, para que toda la familia sepa dónde está cada uno."),
+        feats=[("Escanear y listo", "Enfoca el código de barras y Lomos trae título, autor, páginas, sinopsis y portada. También por título, en lote o a mano con una foto de la portada."),
+               ("El mapa de casa", "Habitaciones y zonas vistas de frente, con cada mueble a escala, su color de lomo y su grosor según las páginas. Toca un libro y se ilumina su balda."),
+               ("Lectores de la familia", "Cada lector con su progreso, sus lecturas y sus valoraciones. Préstamos a amigos, libros de la biblioteca pública con aviso de devolución y una lista de deseos con tiendas y precios.")],
+        steps_sub="Una guía rápida para tener la biblioteca de casa lista en una tarde.",
+        steps=[("Crea tu biblioteca", "Al abrir Lomos por primera vez, ponle nombre y di quién eres. Añade los lectores de casa: los peques sin móvil los gestionas tú."),
+               ("Añade los libros", "Pulsa «+» y escanea el código de barras de la contraportada. Si no aparece, búscalo por título y autor o añádelo a mano con una foto de la portada."),
+               ("Dibuja tus muebles", "En «Mapa», crea las habitaciones y sus zonas y elige el modelo de cada mueble: Billy ancha o estrecha, de cubos, esquinera, mesita de noche, cómoda, a medida o sobre tu propia foto."),
+               ("Coloca cada libro", "Elige la balda al añadir un libro o mueve varios a la vez desde la balda. Las baldas con decoración o juegos se marcan para que no cuenten."),
+               ("Encuentra y lee", "Escribe en «¿Dónde está?» y Lomos te lleva a la balda. Apunta la página por la que vas y Lomos calcula el porcentaje."),
+               ("Comparte con la familia", "Desde «Familia», invita a otro adulto con su propio iPhone: veréis y editaréis la misma biblioteca con vuestras cuentas de iCloud.")],
+        privacy="Los libros, lectores, estanterías y préstamos se guardan en tu dispositivo y en tu iCloud privado, y solo se comparten con la familia si tú la invitas. Para rellenar los datos de un libro se envía el ISBN o el título a Google Books y Open Library. Sin cuentas propias, anuncios ni analíticas.",
+        hub="Biblioteca de casa con mapa de estanterías. Se sincroniza con el iCloud del usuario y se comparte solo con quien él invite; las búsquedas de libros consultan Google Books y Open Library.",
+    ),
+    dict(
         slug="realfood-planner", name="RealFood Planner", accent="#22c55e",
         badge="Planificación de comidas", kicker="Planificación de comidas",
         tagline="Planificación real de comidas",
@@ -578,7 +604,7 @@ def steps_html(app):
     <div class="wrap">
       <div class="sechead">
         <h2 class="h2">{t("Cómo empezar")}</h2>
-        <p class="sub">{t("Una guía rápida de {name}. El mismo tutorial aparece en la app la primera vez y desde el menú «Cómo funciona».", name=E(app['name']))}</p>
+        <p class="sub">{E(A(app, "steps_sub")) if app.get("steps_sub") else t("Una guía rápida de {name}. El mismo tutorial aparece en la app la primera vez y desde el menú «Cómo funciona».", name=E(app['name']))}</p>
       </div>
       <div class="feats">{items}</div>
     </div>
