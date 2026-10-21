@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /content/
+Disallow: /tools/
 
 Sitemap: https://www.gitocorp.com/sitemap.xml

@@ -16,7 +16,7 @@ Web estática para GitHub Pages. Sube el **contenido** de esta carpeta a la raí
 
 ## URLs para App Store Connect
 
-Base: `https://gitocorp.github.io/gitocorp-studios/`
+Base: `https://www.gitocorp.com/` (las direcciones antiguas `gitocorp.github.io/gitocorp-studios/…` y `gitocorp.com/gitocorp-studios/…` redirigen solas aquí)
 
 - `privacy/infiltrado.html`, `privacy/realfood-planner.html`, `privacy/noche-de-juegos.html`
 - `privacy/turno-plus.html`, `privacy/nfc-life.html`, `privacy/familybank.html`, `privacy/danoquiz.html`
@@ -58,3 +58,8 @@ Para editar un texto de una política: cambia el fichero de `content/privacy/` y
 - v5.1: NickClick (ficha, guía «Cómo empezar» y política de privacidad). La ficha de una app admite una guía opcional con la clave `steps`.
 - v5.0: rediseño completo y generador de páginas. Iconos ligeros de 256 px.
 - v4.0: FamilyBank. v3.9: Turno+ y NFC Life.
+
+## Buscadores (Google)
+
+- `tools/build.py` genera `sitemap.xml` (con fecha de último cambio de cada página), `robots.txt` y la carpeta `gitocorp-studios/`, que redirige las rutas antiguas a la raíz. No la borres.
+- El dominio propio `www.gitocorp.com` debe estar puesto en *Settings → Pages* de **este** repositorio (no en `gitocorp.github.io`).

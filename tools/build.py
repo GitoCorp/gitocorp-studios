@@ -1070,8 +1070,37 @@ def build_press(lang, zips):
     write(f"{base}press/index.html", page_press_hub(zips))
 
 
+LEGACY_PREFIX = "gitocorp-studios/"  # ruta antigua (gitocorp.com/gitocorp-studios/...) que redirige a la raíz
+
+
+def lastmod(pth):
+    """Fecha del último cambio del fichero de una URL (git), o la de hoy si no está en git."""
+    import datetime
+    import subprocess
+    f = pth + "index.html" if (pth == "" or pth.endswith("/")) else pth
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", f], cwd=ROOT,
+                             capture_output=True, text=True, timeout=10).stdout.strip()
+    except Exception:
+        out = ""
+    return out or datetime.date.today().isoformat()
+
+
+def legacy_redirect(pth):
+    """Página mínima que lleva de la ruta antigua /gitocorp-studios/<pth> a la nueva en la raíz."""
+    url = BASE_URL + pth
+    u = html.escape(url, quote=True)
+    return ('<!doctype html>\n<html lang="es"><head><meta charset="utf-8">\n'
+            '<meta name="robots" content="noindex">\n'
+            f'<link rel="canonical" href="{u}">\n'
+            f'<meta http-equiv="refresh" content="0; url={u}">\n'
+            '<title>GitoCorp Studios</title>\n'
+            f'<script>location.replace({url!r} + location.hash);</script>\n'
+            f'</head><body><p>Esta página se ha movido a <a href="{u}">{u}</a>.</p></body></html>\n')
+
+
 def build_seo():
-    """sitemap.xml (con alternativas de idioma) y robots.txt."""
+    """sitemap.xml (con alternativas de idioma y fecha), robots.txt y redirecciones de las rutas antiguas."""
     paths = ["", "privacy/", "press/"]
     paths += [f"apps/{a['slug']}/" for a in APPS]
     paths += [f"privacy/{a['slug']}.html" for a in APPS]
@@ -1081,14 +1110,20 @@ def build_seo():
         alts = (f'    <xhtml:link rel="alternate" hreflang="es" href="{BASE_URL}{pth}"/>\n'
                 f'    <xhtml:link rel="alternate" hreflang="en" href="{BASE_URL}en/{pth}"/>\n'
                 f'    <xhtml:link rel="alternate" hreflang="x-default" href="{BASE_URL}{pth}"/>\n') if has_en(pth) else ""
-        urls.append(f"  <url>\n    <loc>{BASE_URL}{pth}</loc>\n{alts}  </url>")
+        urls.append(f"  <url>\n    <loc>{BASE_URL}{pth}</loc>\n    <lastmod>{lastmod(pth)}</lastmod>\n{alts}  </url>")
         if has_en(pth):
-            urls.append(f"  <url>\n    <loc>{BASE_URL}en/{pth}</loc>\n{alts}  </url>")
+            urls.append(f"  <url>\n    <loc>{BASE_URL}en/{pth}</loc>\n    <lastmod>{lastmod('en/' + pth)}</lastmod>\n{alts}  </url>")
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + "\n".join(urls) + "\n</urlset>\n")
     write("sitemap.xml", sitemap)
-    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}sitemap.xml\n")
+    write("robots.txt", ("User-agent: *\nAllow: /\n"
+                         "Disallow: /content/\nDisallow: /tools/\n\n"
+                         f"Sitemap: {BASE_URL}sitemap.xml\n"))
+    # Enlaces viejos (App Store Connect, buscadores) a gitocorp.com/gitocorp-studios/... siguen funcionando.
+    for pth in paths + [("en/" + p) for p in paths if has_en(p)]:
+        target = pth + "index.html" if (pth == "" or pth.endswith("/")) else pth
+        write(LEGACY_PREFIX + target, legacy_redirect(pth))
 
 
 def main():
