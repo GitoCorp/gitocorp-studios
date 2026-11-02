@@ -264,6 +264,7 @@ APPS = [
 
 PRESS = {
     "familybank": dict(
+        appstore="https://apps.apple.com/es/app/familybank/id6818896343",
         facts=[("Desarrollador", "Jorge Sanz Borrell · GitoCorp Studios"),
                ("Plataformas", "iPhone y iPad"),
                ("Disponibilidad", "App Store, en 18 países de habla hispana"),
@@ -636,7 +637,8 @@ def page_app(app):
         <h1 class="display display--app">{E(app['name'])}</h1>
         <p class="lead">{E(A(app, 'lead'))}</p>
         <div class="actions">
-          <a class="btn btn--solid" href="{pol_href}">{t("Política de privacidad") if pol_native else t("Política de privacidad") + " (ES)"}</a>
+          {f'<a class="btn btn--solid" href="{PRESS[slug]["appstore"]}">{t("Ver en la App Store")}</a>' if PRESS.get(slug, {}).get("appstore") else ""}
+          <a class="btn{"" if PRESS.get(slug, {}).get("appstore") else " btn--solid"}" href="{pol_href}">{t("Política de privacidad") if pol_native else t("Política de privacidad") + " (ES)"}</a>
           {f'<a class="btn" href="{lr}press/{slug}/">{t("Kit de prensa")}</a>' if slug in PRESS else f'<a class="btn" href="mailto:{EMAIL}">{t("Contactar")}</a>'}
         </div>
       </div>
