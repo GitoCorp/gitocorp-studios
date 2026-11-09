@@ -61,8 +61,10 @@ APPS = [
         head=("Tu ludoteca, más viva.", "Noche de Juegos convierte la colección en planes, retos y sesiones para que elegir mesa sea más fácil y jugar tenga más continuidad."),
         feats=[("Biblioteca organizada", "Ten tus juegos a mano, añádelos manualmente o apóyate en BoardGameGeek para completar información pública de la colección."),
                ("Retos y sesiones", "Marca objetivos, programa partidas y sigue el progreso sin depender de notas sueltas."),
-               ("Memoria de partidas", "Guarda lo jugado para recordar qué funcionó, cuándo y con quién.")],
-        privacy="La app guarda tu biblioteca, partidas y retos para organizar tus sesiones. Las búsquedas online pueden consultar BoardGameGeek para obtener información pública de juegos; cualquier permiso del dispositivo se solicita solo cuando una función lo necesita.",
+               ("Memoria de partidas", "Guarda lo jugado para recordar qué funcionó, cuándo y con quién."),
+               ("Juegos prestados", "Apunta a quién le has dejado cada juego y desde cuándo, para que ninguno se pierda por el camino."),
+               ("Hablar con Ludo", "Pregúntale a Ludo, ahora con forma de dado, qué jugar. Responde con IA que funciona dentro del iPhone.")],
+        privacy="La app guarda tu biblioteca, partidas y retos para organizar tus sesiones. Los juegos prestados y la IA de Ludo se quedan en tu dispositivo. Las búsquedas online pueden consultar BoardGameGeek para obtener información pública de juegos; cualquier permiso del dispositivo se solicita solo cuando una función lo necesita.",
         hub="Biblioteca, retos y sesiones de juego. Puede consultar BoardGameGeek para buscar o importar información pública de juegos.",
     ),
     dict(
@@ -301,7 +303,8 @@ PRESS = {
                  "The collection is shared with the family through iCloud, and public game information can be filled in from BoardGameGeek. Player profiles, rankings and session planning round out an app designed to help people play more and choose better."],
         highlights=[("Ludoteca organizada", "Toda la colección con su ficha, añadida a mano o completada con la información pública de BoardGameGeek."),
                     ("Partidas, retos y rankings", "Cada partida queda registrada, y los retos y la planificación de sesiones dan continuidad a las noches de juego."),
-                    ("Ludo, el asistente", "Recomienda qué jugar según la mesa, el tiempo y el historial, sin salir del iPhone.")],
+                    ("Ludo, el asistente", "Recomienda qué jugar según la mesa, el tiempo y el historial, y se le puede hablar, todo sin salir del iPhone."),
+                    ("Juegos prestados", "Control de a quién se ha dejado cada juego, guardado solo en el dispositivo.")],
     ),
 }
 

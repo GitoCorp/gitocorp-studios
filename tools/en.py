@@ -120,8 +120,10 @@ APPS_EN = {
         head=("Your game library, more alive.", "Noche de Juegos turns your collection into plans, challenges and sessions, so choosing a game is easier and playing has more continuity."),
         feats=[("Organised library", "Keep your games at hand, add them manually or rely on BoardGameGeek to fill in the public information of your collection."),
                ("Challenges and sessions", "Set goals, schedule plays and follow your progress without loose notes."),
-               ("Memory of plays", "Save what you played to remember what worked, when and with whom.")],
-        privacy="The app stores your library, plays and challenges to organise your sessions. Online searches may query BoardGameGeek for public game information; any device permission is requested only when a feature needs it.",
+               ("Memory of plays", "Save what you played to remember what worked, when and with whom."),
+               ("Lent games", "Note who you have lent each game to and since when, so none gets lost along the way."),
+               ("Talk to Ludo", "Ask Ludo, now shaped like a die, what to play. It answers with AI that runs on the iPhone.")],
+        privacy="The app stores your library, plays and challenges to organise your sessions. Lent games and Ludo's AI stay on your device. Online searches may query BoardGameGeek for public game information; any device permission is requested only when a feature needs it.",
         hub="Library, challenges and game sessions. It can query BoardGameGeek to search or import public game information.",
     ),
     "realfood-planner": dict(
@@ -366,6 +368,7 @@ PRESS_EN = {
                ("Data", "On the device and in the family's iCloud")],
         highlights=[("An organised game library", "The whole collection with its own page, added by hand or filled in with public information from BoardGameGeek."),
                     ("Plays, challenges and rankings", "Every play is logged, and challenges and session planning give continuity to game nights."),
-                    ("Ludo, the assistant", "Recommends what to play based on the table, the time and the history, without leaving the iPhone.")],
+                    ("Ludo, the assistant", "Recommends what to play based on the table, the time and the history, and you can talk to it, all without leaving the iPhone."),
+                    ("Lent games", "Keeps track of who each game was lent to, stored only on the device.")],
     ),
 }
